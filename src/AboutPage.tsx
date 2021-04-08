@@ -73,6 +73,33 @@ export default function AboutPage(): JSX.Element {
     <Box fill>
       <AppBar />
       <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
+        <Heading level="2">GraphQL in AWS Lambda</Heading>
+        <Paragraph>
+          <b>good</b>
+          <ul>
+            <li>
+              GraphQL (well defined API, only one endpoint, enables client-side)
+            </li>
+            <li>
+              serverless (little maintainance, pay-per-use, highly available,
+              scalable)
+            </li>
+            <li>only one endpoint (Lambda function less likely to be cold)</li>
+            <li>only one endpoint (no 1k lines of template.yaml)</li>
+            <li>
+              no changes in template.yaml (once defined, development happens
+              solely in code)
+            </li>
+          </ul>
+          <b>bad</b>
+          <ul>
+            <li>technical limitations of AWS API Gateway + Lambda</li>
+            <li>Multipart file-upload sucks</li>
+            <li>
+              100-150ms overhead (10-100 times slower than a running server)
+            </li>
+          </ul>
+        </Paragraph>
         <Heading level="3">Setup Endpoint in template.yaml</Heading>
         <Paragraph>
           You only need one endpoint to answer POST requests. So, the SAM
