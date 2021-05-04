@@ -15,21 +15,30 @@ type RegistryEntry = {
 
 export const registry: RegistryEntry[] = [
   {
-    path: "/lambda-graphql",
+    path: "/til/lambda-graphql",
     title: "AWS Lambda and GraphQL",
     description:
-      "Deploying a GraphQL API using AWS API Gateway and Lambda with python Ariadne. Much better than a normal REST API.",
+      "Deploying a GraphQL API using AWS API Gateway and Lambda with python Ariadne. More elegant than a normal REST API.",
     tags: ["AWS Lambda", "AWS API Gateway", "GraphQL", "python Ariadne"],
-    date: "2021-01-01",
+    date: "2020-12-22",
     content: LambdaGraphqlPage,
   },
   {
-    path: "/mercato-gotchas",
-    title: "Lat/Lng Grid and Mercator Gotchas",
+    path: "/til/decimal-and-dms",
+    title: "Converting between decimal and DMS coordinates",
     description:
-      "Some details when working with latitudes/longitudes and the Mercator projection.",
+      "Some pitfalls when working with leaflet and converting decimal coordinates to degrees/minutes/seconds with cardinal directions.",
     tags: ["Typescript", "Mercator", "longitude", "latitude", "leaflet"],
-    date: "2021-01-01",
+    date: "2021-03-12",
+    content: LatLngMercator,
+  },
+  {
+    path: "/til/",
+    title: "Calculate surface areas and distances from geographic coordinates",
+    description:
+      "Calculate surface areas and distances from geographic coordinates.",
+    tags: ["Typescript", "Mercator", "longitude", "latitude", "leaflet"],
+    date: "2021-03-12",
     content: LatLngMercator,
   },
 ];

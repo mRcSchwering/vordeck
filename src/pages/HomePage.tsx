@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Heading, Paragraph } from "grommet";
 import AppHeader from "../AppHeader";
 
-export default function AboutPage(): JSX.Element {
+export default function HomePage(): JSX.Element {
   return (
     <Box fill>
       <AppHeader />

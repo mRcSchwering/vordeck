@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Anchor, Nav } from "grommet";
-import { registry } from "./tils";
 
 function HeaderAnchor(props: { href: string; label: string }): JSX.Element {
   return (
@@ -18,10 +17,6 @@ type AppHeaderProps = {
 };
 
 export default function AppHeader(props: AppHeaderProps): JSX.Element {
-  const anchors = registry.map((d) => (
-    <HeaderAnchor href={d.path} label={d.title} key={d.path} />
-  ));
-
   return (
     <Box
       tag="header"
@@ -36,7 +31,6 @@ export default function AppHeader(props: AppHeaderProps): JSX.Element {
       <Nav direction="row" background="brand" pad="xsmall">
         <HeaderAnchor href="/" label="Home" />
         <HeaderAnchor href="/tils" label="TILs" />
-        {anchors}
       </Nav>
       {props.children}
     </Box>
