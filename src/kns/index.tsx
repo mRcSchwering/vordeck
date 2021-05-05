@@ -1,6 +1,6 @@
 import React from "react";
 import AppHeader from "../AppHeader";
-import { Box, Heading } from "grommet";
+import { Box, Heading, Spinner } from "grommet";
 
 type RegistryEntry = {
   title: string;
@@ -58,7 +58,7 @@ function Page(props: PageProps): JSX.Element {
       <AppHeader />
       <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
         <Heading level="2">{props.title}</Heading>
-        <React.Suspense fallback={<div>Loading...</div>}>
+        <React.Suspense fallback={<Spinner />}>
           <Content />
         </React.Suspense>
       </Box>
