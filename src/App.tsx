@@ -3,15 +3,15 @@ import { Grommet } from "grommet";
 import { hp } from "grommet-theme-hp";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import TilPage from "./pages/TilPage";
-import { pages } from "./tils";
+import KnsPage from "./pages/KnsPage";
+import { pages } from "./kns";
 
 function App() {
   return (
     <Grommet theme={hp}>
       <Router>
         <Route key="about" path="/" exact component={HomePage} />
-        <Route key="tils" path="/tils" exact component={TilPage} />
+        <Route key="kns" path="/kns" exact component={KnsPage} />
         {pages.map((d) => (
           <Route key={d.path} path={d.path} exact component={d.page} />
         ))}

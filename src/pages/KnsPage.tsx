@@ -12,7 +12,7 @@ import {
 } from "grommet";
 import { Search } from "grommet-icons";
 import AppHeader from "../AppHeader";
-import { registry } from "../tils";
+import { registry } from "../kns";
 
 type FilterProps = {
   search: string;

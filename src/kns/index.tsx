@@ -1,8 +1,6 @@
 import React from "react";
 import AppHeader from "../AppHeader";
 import { Box, Heading } from "grommet";
-import LambdaGraphqlPage from "./LambdaGraphql";
-import LatLngMercator from "./LatLngMercator";
 
 type RegistryEntry = {
   title: string;
@@ -10,36 +8,36 @@ type RegistryEntry = {
   tags: string[];
   date: string;
   path: string;
-  content: () => JSX.Element;
+  depends: () => Promise<{ default: any }>;
 };
 
 export const registry: RegistryEntry[] = [
   {
-    path: "/til/lambda-graphql",
+    path: "/kn/lambda-graphql",
     title: "AWS Lambda and GraphQL",
     description:
       "Deploying a GraphQL API using AWS API Gateway and Lambda with python Ariadne. More elegant than a normal REST API.",
     tags: ["AWS Lambda", "AWS API Gateway", "GraphQL", "python Ariadne"],
     date: "2020-12-22",
-    content: LambdaGraphqlPage,
+    depends: () => import("./LambdaGraphql"),
   },
   {
-    path: "/til/decimal-and-dms",
+    path: "/kn/decimal-and-dms",
     title: "Converting between decimal and DMS coordinates",
     description:
       "Some pitfalls when working with leaflet and converting decimal coordinates to degrees/minutes/seconds with cardinal directions.",
     tags: ["Typescript", "Mercator", "longitude", "latitude", "leaflet"],
     date: "2021-03-12",
-    content: LatLngMercator,
+    depends: () => import("./LatLngMercator"),
   },
   {
-    path: "/til/",
+    path: "/kn/",
     title: "Calculate surface areas and distances from geographic coordinates",
     description:
       "Calculate surface areas and distances from geographic coordinates.",
     tags: ["Typescript", "Mercator", "longitude", "latitude", "leaflet"],
     date: "2021-03-12",
-    content: LatLngMercator,
+    depends: () => import("./LatLngMercator"),
   },
 ];
 
@@ -50,16 +48,19 @@ type PageProps = {
   tags: string[];
   date: string;
   path: string;
-  content?: () => JSX.Element;
+  depends: () => Promise<{ default: any }>;
 };
 
 function Page(props: PageProps): JSX.Element {
+  const Content = React.lazy(props.depends);
   return (
     <Box fill>
       <AppHeader />
       <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
         <Heading level="2">{props.title}</Heading>
-        {props.content && props.content()}
+        <React.Suspense fallback={<div>Loading...</div>}>
+          <Content />
+        </React.Suspense>
       </Box>
     </Box>
   );

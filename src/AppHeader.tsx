@@ -30,7 +30,7 @@ export default function AppHeader(props: AppHeaderProps): JSX.Element {
     >
       <Nav direction="row" background="brand" pad="xsmall">
         <HeaderAnchor href="/" label="Home" />
-        <HeaderAnchor href="/tils" label="TILs" />
+        <HeaderAnchor href="/kns" label="Knowledge Nuggets" />
       </Nav>
       {props.children}
     </Box>
