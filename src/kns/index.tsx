@@ -1,6 +1,6 @@
 import React from "react";
 import AppHeader from "../AppHeader";
-import { Box, Heading, Spinner } from "grommet";
+import { Box, Heading, Spinner, Text } from "grommet";
 
 type RegistryEntry = {
   title: string;
@@ -25,19 +25,19 @@ export const registry: RegistryEntry[] = [
     path: "/kn/decimal-and-dms",
     title: "Converting between decimal and DMS coordinates",
     description:
-      "Some pitfalls when working with leaflet and converting decimal coordinates to degrees/minutes/seconds with cardinal directions.",
-    tags: ["Typescript", "Mercator", "longitude", "latitude", "leaflet"],
-    date: "2021-03-12",
-    depends: () => import("./LatLngMercator"),
+      "Converting decimal coordinates to degrees/minutes/seconds with cardinal directions when working with leaflet.",
+    tags: ["Typescript", "longitude", "latitude", "leaflet"],
+    date: "2021-03-11",
+    depends: () => import("./DecimalDms"),
   },
   {
-    path: "/kn/",
-    title: "Calculate surface areas and distances from geographic coordinates",
+    path: "/kn/earth-rectangle-area",
+    title: "Area on earth from geographic coordinates",
     description:
-      "Calculate surface areas and distances from geographic coordinates.",
-    tags: ["Typescript", "Mercator", "longitude", "latitude", "leaflet"],
+      "Approximate area of a reasonably small rectangle on a Mercator projection given by 2 bounding geographic coordinates.",
+    tags: ["Typescript", "longitude", "latitude", "leaflet", "Mercator"],
     date: "2021-03-12",
-    depends: () => import("./LatLngMercator"),
+    depends: () => import("./EartRectangleArea"),
   },
 ];
 
@@ -58,6 +58,8 @@ function Page(props: PageProps): JSX.Element {
       <AppHeader />
       <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
         <Heading level="2">{props.title}</Heading>
+        <Text color="dark-3">{props.description}</Text>
+        <Text color="dark-3">{props.date} by Marc Schwering</Text>
         <React.Suspense fallback={<Spinner />}>
           <Content />
         </React.Suspense>

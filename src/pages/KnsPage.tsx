@@ -61,7 +61,7 @@ function TilCard(props: TilCardProps): JSX.Element {
   ));
 
   return (
-    <Card width="medium">
+    <Card width="450px">
       <CardHeader pad="small" background="light-1" direction="row">
         <Text size="small" color="dark-2">
           {props.date}
