@@ -15,10 +15,12 @@ function SuspendedKnsPage(): JSX.Element {
 }
 
 function App() {
+  const isFullPage = window.location.href.endsWith("/");
+
   return (
-    <Grommet theme={hp}>
+    <Grommet theme={hp} full={false}>
       <Router>
-        <Route key="about" path="/" exact component={HomePage} />
+        <Route key="home" path="/" exact component={HomePage} />
         <Route key="kns" path="/kns" exact component={SuspendedKnsPage} />
         {pages.map((d) => (
           <Route key={d.path} path={d.path} exact component={d.page} />
