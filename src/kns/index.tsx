@@ -1,5 +1,5 @@
 import React from "react";
-import AppHeader from "../AppHeader";
+import { AppHeader } from "../components";
 import { Box, Heading, Spinner, Text } from "grommet";
 
 type RegistryEntry = {

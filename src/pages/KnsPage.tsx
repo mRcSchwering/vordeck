@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from "grommet";
 import { Search } from "grommet-icons";
-import AppHeader from "../AppHeader";
+import { AppHeader } from "../components";
 import { registry } from "../kns";
 
 type FilterProps = {

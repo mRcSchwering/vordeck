@@ -1,80 +1,29 @@
 import React from "react";
-import { Box, Heading, Paragraph, Menu, Anchor } from "grommet";
-import { Menu as MenuIcon } from "grommet-icons";
-import { useHistory } from "react-router-dom";
-
-function AppHeader(): JSX.Element {
-  const history = useHistory();
-
-  return (
-    <Box
-      tag="header"
-      direction="row"
-      align="center"
-      justify="between"
-      background="transparent"
-      pad={{ left: "medium", right: "medium", vertical: "xsmall" }}
-      elevation="xsmall"
-      margin="none"
-    >
-      <Anchor href="/" label="Home" margin="xsmall" color="dark-1" />
-      <Menu
-        label={<MenuIcon />}
-        icon={false}
-        items={[
-          { label: "Home", onClick: () => history.push("/") },
-          { label: "About", onClick: () => history.push("/about") },
-          { label: "Knowledge Nuggets", onClick: () => history.push("/kns") },
-        ]}
-      />
-    </Box>
-  );
-}
+import { Box, Heading, Paragraph, Text } from "grommet";
+import { AppHeader, Section } from "../components";
 
 export default function HomePage(): JSX.Element {
-  const parallaxStyle = {
-    minWidth: "100%",
-    backgroundAttachment: "fixed",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat",
-    backgroundSize: "cover",
+  const darkBackgroundPage = {
+    backgroundColor: "#042124",
+    height: "100vh",
   } as React.CSSProperties;
 
   return (
     <>
-      <AppHeader />
-      <Box background="url('background.jpg')" style={parallaxStyle}>
-        <Box pad="large" gap="large" align="center">
-          <Heading level="2">Some Shitty Name</Heading>
-          <Paragraph textAlign="center">
-            Software for Biotech and Pharma
-          </Paragraph>
-          <Paragraph textAlign="center">Contact | About</Paragraph>
-        </Box>
+      <Box style={darkBackgroundPage}>
+        <AppHeader />
+        <Section style={{ marginTop: "20vh" }}>
+          <Heading level="1">vordeck</Heading>
+          <Text textAlign="center" size="large" color="light-5">
+            Heaving software for Biotech and Pharma
+          </Text>
+        </Section>
       </Box>
-      <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
-        <Box pad="large" gap="large">
-          <Heading level="2">Some Shitty Name</Heading>
-          <Paragraph textAlign="center">
-            Software for Biotech and Pharma
-          </Paragraph>
-          <Paragraph textAlign="center">Contact | About</Paragraph>
-        </Box>
-        <Box pad="large" gap="large">
-          <Heading level="2">Some Shitty Name</Heading>
-          <Paragraph textAlign="center">
-            Software for Biotech and Pharma
-          </Paragraph>
-          <Paragraph textAlign="center">Contact | About</Paragraph>
-        </Box>
-        <Box pad="large" gap="large">
-          <Heading level="2">Some Shitty Name</Heading>
-          <Paragraph textAlign="center">
-            Software for Biotech and Pharma
-          </Paragraph>
-          <Paragraph textAlign="center">Contact | About</Paragraph>
-        </Box>
-      </Box>
+      <Section>
+        <Heading level="2">Summary</Heading>
+        <Paragraph textAlign="center">Some sentences</Paragraph>
+        <Paragraph textAlign="center">Contact | About</Paragraph>
+      </Section>
     </>
   );
 }
