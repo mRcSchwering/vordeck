@@ -11,7 +11,7 @@ import {
   CardFooter,
 } from "grommet";
 import { Search } from "grommet-icons";
-import { AppHeader } from "../components";
+import { AppHeader, AppFooter } from "../components";
 import { registry } from "../kns";
 
 type FilterProps = {
@@ -129,6 +129,7 @@ export default function TilPage(): JSX.Element {
           </Box>
         </Box>
       </Box>
+      <AppFooter />
     </Box>
   );
 }
