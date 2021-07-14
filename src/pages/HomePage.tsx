@@ -1,6 +1,6 @@
 import React from "react";
-import { Box, Heading, Paragraph, Text } from "grommet";
-import { AppHeader, Section, AppFooter } from "../components";
+import { Box, Heading, Paragraph, Text, Button } from "grommet";
+import { AppHeader, Section, AppFooter, mailToHref } from "../components";
 
 export default function HomePage(): JSX.Element {
   const darkBackgroundPage = {
@@ -19,21 +19,17 @@ export default function HomePage(): JSX.Element {
           </Text>
         </Section>
       </Box>
-      <Section style={{ marginBottom: "20vh" }}>
-        <Heading level="2">Summary</Heading>
-        <Paragraph textAlign="center">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et
-          faucibus dui. Interdum et malesuada fames ac ante ipsum primis in
-          faucibus. Vivamus vel fringilla ex, in interdum ex. Morbi eu turpis eu
-          sem interdum finibus sit amet non ante. Aenean dictum egestas
-          molestie. Vivamus molestie, lectus vitae condimentum consequat, massa
-          dolor malesuada eros, convallis euismod est velit at ex. Morbi eu
-          maximus mauris. Nulla nec ipsum quis erat auctor viverra. Donec eget
-          convallis felis. Phasellus cursus orci eget quam tempor iaculis. Fusce
-          posuere arcu sed dolor accumsan porttitor. Aenean eu mauris non turpis
-          condimentum malesuada. Fusce venenatis convallis neque nec eleifend.
+      <Section style={{ marginBottom: "20vh", marginTop: "20vh" }}>
+        <Paragraph textAlign="center" size="large">
+          I am Marc and I love technology. My background is Molecular
+          Biotechnology but for the past years I have worked as a Software
+          Developer in Pharma R&D. Another career jumper? Yes, but with
+          experience. Do you need help realizing some ideas? Let's have a chat.
         </Paragraph>
-        <Paragraph textAlign="center">Contact | About</Paragraph>
+        <Paragraph textAlign="center" size="large">
+          <Button label="Contact" href={mailToHref} plain /> |{" "}
+          <Button label="About" href="/about" plain />
+        </Paragraph>
       </Section>
       <AppFooter />
     </>

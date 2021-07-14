@@ -8,6 +8,9 @@ import {
   MailOption,
 } from "grommet-icons";
 
+export const mailToHref =
+  "mailto:someone@yoursite.com?subject=Contact%20from%20vordeck.de";
+
 export function AppHeader(): JSX.Element {
   return (
     <Box
@@ -63,13 +66,15 @@ export function AppFooter(): JSX.Element {
       <Box direction="row" gap="small">
         <Button label="legal notice" href="/" plain />
         <Button label="cookie policy" href="/" plain />
+        <Button
+          label="page source"
+          href="https://github.com/mRcSchwering/vordeck"
+          plain
+          target="_blank"
+        />
       </Box>
       <Box direction="row" gap="small">
-        <Button
-          icon={<MailOption />}
-          href="mailto:someone@yoursite.com?subject=Contact%20from%20vordeck.de"
-          plain
-        />
+        <Button icon={<MailOption />} href={mailToHref} plain />
         <Button icon={<LinkedinOption />} href="/" plain />
         <Button icon={<Twitter />} href="/" plain />
         <Button icon={<Github />} href="/" plain />
