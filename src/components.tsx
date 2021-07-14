@@ -11,6 +11,24 @@ import {
 export const mailToHref =
   "mailto:someone@yoursite.com?subject=Contact%20from%20vordeck.de";
 
+interface HrefButtonProps {
+  icon?: JSX.Element;
+  label?: string;
+  href: string;
+}
+
+export function HrefButton(props: HrefButtonProps): JSX.Element {
+  return (
+    <Button
+      icon={props.icon}
+      label={props.label}
+      href={props.href}
+      plain
+      target={props.href.startsWith("http") ? "_blank" : "_self"}
+    />
+  );
+}
+
 export function AppHeader(): JSX.Element {
   return (
     <Box
@@ -24,9 +42,9 @@ export function AppHeader(): JSX.Element {
       elevation="none"
       margin="none"
     >
-      <Button href="/" label="Home" plain />
-      <Button href="/about" label="About" plain />
-      <Button href="/kns" label="Knowledge Nuggets" plain />
+      <HrefButton href="/" label="Home" />
+      <HrefButton href="/about" label="About" />
+      <HrefButton href="/kns" label="Knowledge Nuggets" />
     </Box>
   );
 }
@@ -64,21 +82,28 @@ export function AppFooter(): JSX.Element {
       margin="auto"
     >
       <Box direction="row" gap="small">
-        <Button label="legal notice" href="/" plain />
-        <Button label="cookie policy" href="/" plain />
-        <Button
+        <HrefButton label="legal notice" href="/ln" />
+        <HrefButton label="cookie policy" href="/cp" />
+        <HrefButton
           label="page source"
           href="https://github.com/mRcSchwering/vordeck"
-          plain
-          target="_blank"
         />
       </Box>
       <Box direction="row" gap="small">
-        <Button icon={<MailOption />} href={mailToHref} plain />
-        <Button icon={<LinkedinOption />} href="/" plain />
-        <Button icon={<Twitter />} href="/" plain />
-        <Button icon={<Github />} href="/" plain />
-        <Button icon={<StackOverflow />} href="/" plain />
+        <HrefButton icon={<MailOption />} href={mailToHref} />
+        <HrefButton
+          icon={<LinkedinOption />}
+          href="https://www.linkedin.com/in/marc-schwering-139914103/"
+        />
+        <HrefButton
+          icon={<Twitter />}
+          href="https://twitter.com/schweringMarc"
+        />
+        <HrefButton icon={<Github />} href="https://github.com/mRcSchwering" />
+        <HrefButton
+          icon={<StackOverflow />}
+          href="https://stackoverflow.com/users/5562431/mrcschwering"
+        />
       </Box>
     </Box>
   );

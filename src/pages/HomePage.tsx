@@ -1,6 +1,12 @@
 import React from "react";
-import { Box, Heading, Paragraph, Text, Button } from "grommet";
-import { AppHeader, Section, AppFooter, mailToHref } from "../components";
+import { Box, Heading, Paragraph, Text } from "grommet";
+import {
+  AppHeader,
+  Section,
+  AppFooter,
+  mailToHref,
+  HrefButton,
+} from "../components";
 
 export default function HomePage(): JSX.Element {
   const darkBackgroundPage = {
@@ -20,15 +26,15 @@ export default function HomePage(): JSX.Element {
         </Section>
       </Box>
       <Section style={{ marginBottom: "20vh", marginTop: "20vh" }}>
-        <Paragraph textAlign="center" size="large">
+        <Paragraph size="xlarge">
           I am Marc and I love technology. My background is Molecular
           Biotechnology but for the past years I have worked as a Software
           Developer in Pharma R&D. Another career jumper? Yes, but with
           experience. Do you need help realizing some ideas? Let's have a chat.
         </Paragraph>
         <Paragraph textAlign="center" size="large">
-          <Button label="Contact" href={mailToHref} plain /> |{" "}
-          <Button label="About" href="/about" plain />
+          <HrefButton label="Contact" href={mailToHref} /> |{" "}
+          <HrefButton label="About" href="/about" />
         </Paragraph>
       </Section>
       <AppFooter />
