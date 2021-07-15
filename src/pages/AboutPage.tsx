@@ -1,6 +1,9 @@
 import React from "react";
 import { Heading, Paragraph, Box } from "grommet";
 import { AppHeader, Section, AppFooter } from "../components";
+import BiotechSvg from "../assets/biotech.svg";
+import DataSvg from "../assets/data.svg";
+import SoftwareSvg from "../assets/software.svg";
 
 export default function HomePage(): JSX.Element {
   const molbioBackground = {
@@ -36,7 +39,7 @@ export default function HomePage(): JSX.Element {
         </Paragraph>
       </Section>
       <Box style={molbioBackground}>
-        <Box direction="row" justify="center" pad="xlarge">
+        <Box direction="row" justify="center" pad="xlarge" gap="xsmall">
           <Box margin="small">
             <Heading level="2">Molecular Biotechnology</Heading>
             <Paragraph size="large">
@@ -46,12 +49,12 @@ export default function HomePage(): JSX.Element {
               turpis eu sem interdum finibus sit amet non ante.
             </Paragraph>
           </Box>
-          <Box background="gray" width="medium"></Box>
+          <img src={BiotechSvg} alt="biotech icon" width="200px" />
         </Box>
       </Box>
       <Box style={datascienceBackground}>
-        <Box direction="row" justify="center" pad="xlarge">
-          <Box background="gray" width="medium"></Box>
+        <Box direction="row" justify="center" pad="xlarge" gap="xsmall">
+          <img src={DataSvg} alt="data science icon" width="230px" />
           <Box margin="small">
             <Heading level="2">Data Science</Heading>
             <Paragraph size="large">
@@ -64,7 +67,7 @@ export default function HomePage(): JSX.Element {
         </Box>
       </Box>
       <Box style={engineeringBackground}>
-        <Box direction="row" justify="center" pad="xlarge">
+        <Box direction="row" justify="center" pad="xlarge" gap="xsmall">
           <Box margin="small">
             <Heading level="2">Software Engineering</Heading>
             <Paragraph size="large">
@@ -75,7 +78,11 @@ export default function HomePage(): JSX.Element {
               eleifend.
             </Paragraph>
           </Box>
-          <Box background="gray" width="medium"></Box>
+          <img
+            src={SoftwareSvg}
+            alt="software engineering icon"
+            width="200px"
+          />
         </Box>
       </Box>
       <Section style={dottedBackground}>
