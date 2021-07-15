@@ -1,9 +1,35 @@
 import React from "react";
-import { Heading, Paragraph, Box } from "grommet";
+import {
+  Heading,
+  Paragraph,
+  Box,
+  Carousel,
+  Card,
+  CardBody,
+  CardFooter,
+} from "grommet";
 import { AppHeader, Section, AppFooter } from "../components";
 import BiotechSvg from "../assets/biotech.svg";
 import DataSvg from "../assets/data.svg";
 import SoftwareSvg from "../assets/software.svg";
+
+interface CarouselEntryProps {
+  title: string;
+  children?: React.ReactNode;
+}
+
+function CarouselEntry(props: CarouselEntryProps): JSX.Element {
+  return (
+    <Box direction="row" justify="center">
+      <Card elevation="large" width="medium" background="light-1">
+        <CardBody pad="small">{props.children}</CardBody>
+        <CardFooter background="light-2" pad="small">
+          {props.title}
+        </CardFooter>
+      </Card>
+    </Box>
+  );
+}
 
 export default function HomePage(): JSX.Element {
   const molbioBackground = {
@@ -90,15 +116,39 @@ export default function HomePage(): JSX.Element {
         <Paragraph size="large">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et
           faucibus dui. Interdum et malesuada fames ac ante ipsum primis in
-          faucibus. Vivamus vel fringilla ex, in interdum ex. Morbi eu turpis eu
-          sem interdum finibus sit amet non ante. Aenean dictum egestas
-          molestie. Vivamus molestie, lectus vitae condimentum consequat, massa
-          dolor malesuada eros, convallis euismod est velit at ex. Morbi eu
-          maximus mauris. Nulla nec ipsum quis erat auctor viverra. Donec eget
-          convallis felis. Phasellus cursus orci eget quam tempor iaculis. Fusce
-          posuere arcu sed dolor accumsan porttitor. Aenean eu mauris non turpis
-          condimentum malesuada. Fusce venenatis convallis neque nec eleifend.
+          faucibus. Vivamus vel fringilla ex, in interdum ex.
         </Paragraph>
+        <Box height="medium" width="large" overflow="hidden">
+          <Carousel fill>
+            <CarouselEntry title="Project 1">
+              <Paragraph>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                et faucibus dui. Interdum et malesuada fames ac ante ipsum
+                primis in faucibus. Vivamus vel fringilla ex, in interdum ex.
+              </Paragraph>
+            </CarouselEntry>
+            <CarouselEntry title="Project 2">
+              <Paragraph>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                et faucibus dui. Interdum et malesuada fames ac ante ipsum
+                primis in faucibus. Vivamus vel fringilla ex, in interdum ex.
+                Morbi eu turpis eu sem interdum finibus sit amet non ante.
+                Interdum et malesuada fames ac ante ipsum primis in faucibus.
+                Vivamus vel fringilla ex, in interdum ex. Morbi eu turpis eu sem
+                interdum finibus sit amet non ante.
+              </Paragraph>
+            </CarouselEntry>
+            <CarouselEntry title="Project 3">
+              <Paragraph>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam
+                et faucibus dui. Interdum et malesuada fames ac ante ipsum
+                primis in faucibus. Vivamus vel fringilla ex, in interdum ex.
+                Morbi eu turpis eu sem interdum finibus sit amet non ante. neque
+                nec eleifend.
+              </Paragraph>
+            </CarouselEntry>
+          </Carousel>
+        </Box>
       </Section>
       <AppFooter />
     </>
