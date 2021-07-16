@@ -65,7 +65,7 @@ export default function HomePage(): JSX.Element {
         </Paragraph>
       </Section>
       <Box style={molbioBackground}>
-        <Box direction="row" justify="center" pad="xlarge" gap="xsmall">
+        <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
           <Box margin="small">
             <Heading level="2">Molecular Biotechnology</Heading>
             <Paragraph size="large">
@@ -79,7 +79,7 @@ export default function HomePage(): JSX.Element {
         </Box>
       </Box>
       <Box style={datascienceBackground}>
-        <Box direction="row" justify="center" pad="xlarge" gap="xsmall">
+        <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
           <img src={DataSvg} alt="data science icon" width="230px" />
           <Box margin="small">
             <Heading level="2">Data Science</Heading>
@@ -93,7 +93,7 @@ export default function HomePage(): JSX.Element {
         </Box>
       </Box>
       <Box style={engineeringBackground}>
-        <Box direction="row" justify="center" pad="xlarge" gap="xsmall">
+        <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
           <Box margin="small">
             <Heading level="2">Software Engineering</Heading>
             <Paragraph size="large">

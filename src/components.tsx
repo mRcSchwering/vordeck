@@ -80,6 +80,7 @@ export function AppFooter(): JSX.Element {
       elevation="none"
       width="large"
       margin="auto"
+      wrap
     >
       <Box direction="row" gap="small">
         <HrefButton label="legal notice" href="/ln" />
