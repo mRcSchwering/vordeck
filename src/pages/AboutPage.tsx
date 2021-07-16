@@ -9,19 +9,11 @@ import {
   CardFooter,
   Image,
   Text,
-  Anchor,
 } from "grommet";
 import { AppHeader, Section, AppFooter } from "../components";
 import BiotechSvg from "../assets/biotech.svg";
 import DataSvg from "../assets/data.svg";
 import SoftwareSvg from "../assets/software.svg";
-
-const cirsprPaper = (
-  <Anchor
-    href="https://www.biorxiv.org/content/10.1101/109967v1"
-    label="paper"
-  />
-);
 
 interface CarouselEntryProps {
   title: string;
@@ -30,10 +22,9 @@ interface CarouselEntryProps {
 
 function CarouselEntry(props: CarouselEntryProps): JSX.Element {
   // TODO: carousel bug: https://github.com/grommet/grommet/issues/3536
-
   return (
     <Box direction="row" justify="center">
-      <Card elevation="large" width="medium" background="light-1">
+      <Card elevation="large" background="light-1">
         <CardBody pad="small">{props.children}</CardBody>
         <CardFooter background="light-2" pad="small">
           {props.title}
@@ -169,9 +160,8 @@ export default function HomePage(): JSX.Element {
                 While performing pooled CRISPR/Cas screens in the lab I created
                 a tool to analyze data from these screens. It performs quality
                 controls, data cleaning, and calculates differential
-                distributions (here is the {cirsprPaper}). Years later I
-                discovered that this tool is beeing used by quite a few Pharma
-                companies.
+                distributions. Years later I discovered that this tool is beeing
+                used by quite a few Pharma companies.
               </Paragraph>
             </CarouselEntry>
             <CarouselEntry title="Visual Analytics Platforms">
