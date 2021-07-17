@@ -1,8 +1,8 @@
 import React from "react";
 import { Grommet, Spinner } from "grommet";
-import { hp } from "grommet-theme-hp";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { pages } from "./kns";
+import theme from "./theme.json";
 
 function SuspendedHomePage(): JSX.Element {
   const Page = React.lazy(() => import("./pages/HomePage"));
@@ -51,7 +51,7 @@ function SuspendedCookiePolicyPage(): JSX.Element {
 
 function App() {
   return (
-    <Grommet theme={hp}>
+    <Grommet theme={theme}>
       <Router>
         <Route key="home" path="/" exact component={SuspendedHomePage} />
         <Route key="about" path="/about" exact component={SuspendedAboutPage} />

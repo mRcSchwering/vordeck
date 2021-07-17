@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Heading, Paragraph, Text } from "grommet";
 import {
   AppHeader,
@@ -9,18 +8,15 @@ import {
 } from "../components";
 
 export default function HomePage(): JSX.Element {
-  const darkBackgroundPage = {
-    backgroundColor: "#042124",
-    height: "100vh",
-  } as React.CSSProperties;
-
   return (
     <>
-      <Box style={darkBackgroundPage}>
+      <Box background="brand" height="100vh">
         <AppHeader />
         <Section style={{ marginTop: "20vh" }}>
-          <Heading level="1">vordeck</Heading>
-          <Text textAlign="center" size="large" color="light-5" margin="medium">
+          <Heading level="1" color="dark-5">
+            vordeck
+          </Heading>
+          <Text textAlign="center" size="large" margin="medium">
             Heaving software for Biotech and Pharma
           </Text>
         </Section>
