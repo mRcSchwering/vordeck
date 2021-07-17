@@ -1,10 +1,10 @@
 import { Box, Heading, Paragraph, Text } from "grommet";
 import {
   AppHeader,
-  Section,
   AppFooter,
   mailToHref,
   HrefButton,
+  Section,
 } from "../components";
 
 export default function HomePage(): JSX.Element {

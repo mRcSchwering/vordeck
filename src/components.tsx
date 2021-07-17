@@ -29,25 +29,6 @@ export function HrefButton(props: HrefButtonProps): JSX.Element {
   );
 }
 
-export function AppHeader(): JSX.Element {
-  return (
-    <Box
-      tag="header"
-      direction="row"
-      align="center"
-      justify="start"
-      background="transparent"
-      pad={{ horizontal: "medium", vertical: "xsmall" }}
-      gap="small"
-      elevation="none"
-      margin="none"
-    >
-      <HrefButton href="/" label="Home" />
-      <HrefButton href="/about" label="About" />
-    </Box>
-  );
-}
-
 interface SectionProps {
   children?: React.ReactNode;
   style?: React.CSSProperties;
@@ -63,6 +44,25 @@ export function Section(props: SectionProps): JSX.Element {
       style={props.style}
     >
       {props.children}
+    </Box>
+  );
+}
+
+export function AppHeader(): JSX.Element {
+  return (
+    <Box
+      tag="header"
+      direction="row"
+      align="center"
+      justify="start"
+      background="transparent"
+      pad={{ horizontal: "medium", vertical: "xsmall" }}
+      gap="small"
+      elevation="none"
+      margin="none"
+    >
+      <HrefButton href="/" label="Home" />
+      <HrefButton href="/about" label="About" />
     </Box>
   );
 }

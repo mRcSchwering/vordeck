@@ -10,7 +10,7 @@ import {
   Image,
   Text,
 } from "grommet";
-import { AppHeader, Section, AppFooter } from "../components";
+import { AppHeader, AppFooter, Section } from "../components";
 import BiotechSvg from "../assets/biotech.svg";
 import DataSvg from "../assets/data.svg";
 import SoftwareSvg from "../assets/software.svg";
@@ -34,19 +34,22 @@ function CarouselEntry(props: CarouselEntryProps): JSX.Element {
   );
 }
 
+interface PhaseSectionProps {
+  children?: React.ReactNode;
+  background?: string;
+}
+
+function PhaseSection(props: PhaseSectionProps): JSX.Element {
+  return (
+    <Box background={props.background}>
+      <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
+        {props.children}
+      </Box>
+    </Box>
+  );
+}
+
 export default function HomePage(): JSX.Element {
-  const molbioBackground = {
-    backgroundColor: "#CEE7BB",
-  } as React.CSSProperties;
-
-  const datascienceBackground = {
-    backgroundColor: "#99AFC0",
-  } as React.CSSProperties;
-
-  const engineeringBackground = {
-    backgroundColor: "#EABDCA",
-  } as React.CSSProperties;
-
   const dottedBackground = {
     backgroundImage: "url('dot.png')",
     backgroundSize: 16,
@@ -64,9 +67,9 @@ export default function HomePage(): JSX.Element {
           margin="large"
         >
           Software development is full of decisions, a lot of which are left to
-          the developer team. Understanding the business domain as a developer
-          can be key to creating the right software. This is especially true for
-          research and development.
+          the developer team. Understanding the business domain is key to
+          creating the useful software. This is especially true for research and
+          development.
         </Text>
         <Box direction="row" justify="center" pad="medium" gap="small" wrap>
           <Image
@@ -81,76 +84,68 @@ export default function HomePage(): JSX.Element {
             career paths quite a few times. During my studies in Heidelberg I
             was working as a wetlab scientist. Later, I converted to
             bioinformatics and machine learning. When I moved to Berlin and
-            started working for Bayer I converted again to software development.
-            For 4 years I was surrounded by senior developers creating software
-            for researchers in Pharma. I want to continue doing that for Biotch
-            and Pharma.
+            started working for Bayer I became a software developer. For 4 years
+            I was surrounded by senior developers creating software for
+            researchers.
           </Paragraph>
         </Box>
       </Section>
-      <Box style={molbioBackground}>
-        <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
-          <Box margin="small">
-            <Heading level="2" margin={{ vertical: "small" }}>
-              Biotechnology
-            </Heading>
-            <Paragraph size="large">
-              I studied Molecular Biotechnology in Heidelberg and worked at the
-              German Cancer Research Center for a while. My big fascinations
-              were synthetic biology and biophysics. I believe that
-              biotechnology can play a key role in solving most of humanities
-              problems. Although, I have officially left the wetlab for now, I
-              never lost interest. I am continuously trying to stay up to date
-              with latest methods and the current state of Biohacking.
-            </Paragraph>
-          </Box>
-          <Image src={BiotechSvg} alt="biotech icon" width="200px" />
+      <PhaseSection background="#CEE7BB">
+        <Box margin="small">
+          <Heading level="2" margin={{ vertical: "small" }}>
+            Biotechnology
+          </Heading>
+          <Paragraph size="large">
+            I studied Molecular Biotechnology in Heidelberg and worked at the
+            German Cancer Research Center for a while. My big fascinations were
+            synthetic biology and biophysics. I believe that biotechnology can
+            be key to solving many of humanities problems. Although, I have
+            officially left the wetlab for now, I never lost interest. I am
+            continuously trying to stay up to date with latest methods and the
+            current state of Biohacking.
+          </Paragraph>
         </Box>
-      </Box>
-      <Box style={datascienceBackground}>
-        <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
-          <Image src={DataSvg} alt="data science icon" width="230px" />
-          <Box margin="small">
-            <Heading level="2" margin={{ vertical: "small" }}>
-              Data Science
-            </Heading>
-            <Paragraph size="large">
-              Towards to end of my studies I drifted from pure wetlab work more
-              and more over to bioinformatics. At first I worked with
-              traditional sequencing and imaging methods, later with machine
-              learning. My Bachelor thesis was spatial modeling and simulations,
-              and my Master thesis single cell RNA sequencing. During my time at
-              Bayer I had the chance to keep up to date by having several
-              machine learning research projects on the side.
-            </Paragraph>
-          </Box>
+        <Image src={BiotechSvg} alt="biotech icon" width="200px" />
+      </PhaseSection>
+      <PhaseSection background="#99AFC0">
+        <Image src={DataSvg} alt="data science icon" width="230px" />
+        <Box margin="small">
+          <Heading level="2" margin={{ vertical: "small" }}>
+            Data Science
+          </Heading>
+          <Paragraph size="large">
+            Towards to end of my studies I drifted from pure wetlab work more
+            and more over to bioinformatics. At first I worked with traditional
+            sequencing and imaging methods, later with machine learning. My
+            Bachelor thesis was spatial modeling and simulations, and my Master
+            thesis single cell RNA sequencing. During my time at Bayer I had the
+            chance to keep up to date by having several machine learning
+            research projects on the side.
+          </Paragraph>
         </Box>
-      </Box>
-      <Box style={engineeringBackground}>
-        <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
-          <Box margin="small">
-            <Heading level="2" margin={{ vertical: "small" }}>
-              Software Engineering
-            </Heading>
-            <Paragraph size="large">
-              Already during my studies I created some apps for others. When I
-              naively joined Bayer I realized how complex software development
-              can be. I was fortunate enough to be part of an amazing DevOps
-              team of senior developers. We were mostly autonomous and owned our
-              products as a whole: from business analysis and UX design, over
-              development and deployment, to maintainance. I helped the
-              organization move services into the cloud and learned how to deal
-              with legacy systems as well as build serverless applications on
-              AWS.
-            </Paragraph>
-          </Box>
-          <Image
-            src={SoftwareSvg}
-            alt="software engineering icon"
-            width="200px"
-          />
+      </PhaseSection>
+      <PhaseSection background="#EABDCA">
+        <Box margin="small">
+          <Heading level="2" margin={{ vertical: "small" }}>
+            Software Engineering
+          </Heading>
+          <Paragraph size="large">
+            Already during my studies I created some apps for others. When I
+            naively joined Bayer I realized how complex software development can
+            be. I was fortunate enough to be part of an amazing DevOps team of
+            senior developers. We were mostly autonomous and owned our products
+            as a whole: from business analysis and UX design, over development
+            and deployment, to maintainance. I helped the organization move
+            services into the cloud, and learned how to deal with legacy systems
+            as well as build serverless applications on AWS.
+          </Paragraph>
         </Box>
-      </Box>
+        <Image
+          src={SoftwareSvg}
+          alt="software engineering icon"
+          width="200px"
+        />
+      </PhaseSection>
       <Section style={dottedBackground}>
         <Heading level="2">Previous Projects</Heading>
         <Box height="medium" width="large" overflow="hidden">
