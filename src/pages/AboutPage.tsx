@@ -90,7 +90,7 @@ export default function HomePage(): JSX.Element {
           </Paragraph>
         </Box>
       </Section>
-      <PhaseSection background="#CEE7BB">
+      <PhaseSection background="#edfadd">
         <Box margin="small">
           <Heading level="2" margin={{ vertical: "small" }}>
             Biotechnology
@@ -107,7 +107,7 @@ export default function HomePage(): JSX.Element {
         </Box>
         <Image src={BiotechSvg} alt="biotech icon" width="200px" />
       </PhaseSection>
-      <PhaseSection background="#99AFC0">
+      <PhaseSection background="#d3e8eb">
         <Image src={DataSvg} alt="data science icon" width="230px" />
         <Box margin="small">
           <Heading level="2" margin={{ vertical: "small" }}>
@@ -124,7 +124,7 @@ export default function HomePage(): JSX.Element {
           </Paragraph>
         </Box>
       </PhaseSection>
-      <PhaseSection background="#EABDCA">
+      <PhaseSection background="#fff1e8">
         <Box margin="small">
           <Heading level="2" margin={{ vertical: "small" }}>
             Software Engineering
