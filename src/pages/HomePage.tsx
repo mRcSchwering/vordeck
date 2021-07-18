@@ -1,4 +1,4 @@
-import { Box, Heading, Paragraph, Text } from "grommet";
+import { Box, Heading, Paragraph, Text, Image } from "grommet";
 import {
   AppHeader,
   AppFooter,
@@ -6,6 +6,7 @@ import {
   HrefButton,
   Section,
 } from "../components";
+import logoSvg from "../assets/logo.svg";
 
 export default function HomePage(): JSX.Element {
   return (
@@ -15,6 +16,12 @@ export default function HomePage(): JSX.Element {
         <Section style={{ marginTop: "20vh" }}>
           <Heading level="1" color="dark-5">
             vordeck
+            <Image
+              src={logoSvg}
+              alt="data science icon"
+              width="35px"
+              margin={{ horizontal: "small" }}
+            />
           </Heading>
           <Text textAlign="center" size="large" margin="medium">
             Heaving software for Biotech and Pharma
