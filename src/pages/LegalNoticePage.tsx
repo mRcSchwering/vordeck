@@ -6,7 +6,7 @@ export default function LegalNoticePage(): JSX.Element {
   return (
     <Box style={{ height: "100vh" }}>
       <AppHeader />
-      <Section style={{ marginBottom: "50vh" }}>
+      <Section style={{ marginBottom: "30vh" }}>
         <Heading level="2">Legal Notice</Heading>
         <Paragraph textAlign="center">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam et

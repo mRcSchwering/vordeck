@@ -78,7 +78,7 @@ export function AppFooter(): JSX.Element {
       pad="small"
       elevation="none"
       width="large"
-      margin="auto"
+      margin={{ horizontal: "auto", top: "20vh" }}
       wrap
     >
       <Box direction="row" gap="small">

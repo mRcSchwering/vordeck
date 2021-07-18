@@ -9,11 +9,98 @@ import {
   CardFooter,
   Image,
   Text,
+  List,
 } from "grommet";
 import { AppHeader, AppFooter, Section } from "../components";
 import BiotechSvg from "../assets/biotech.svg";
 import DataSvg from "../assets/data.svg";
 import SoftwareSvg from "../assets/software.svg";
+
+const preferredTechStack = [
+  {
+    name: "Python3 with type-hints",
+    text: "CLIs, backends, and general purpose",
+  },
+  { name: "React and Typescript", text: "frontends of all kind" },
+  { name: "docker", text: "testing, sometimes deployments" },
+  { name: "gitlab", text: "especially for its CI/CD pipelines" },
+  {
+    name: "AWS",
+    text: "as a huge toolbox to create any kind of infrastructure",
+  },
+  {
+    name: "AWS SAM",
+    text: "my preference for serverless backends",
+  },
+];
+
+const projects = [
+  <CarouselEntry title="CRISPR AnalyzeR">
+    <Paragraph>
+      While performing pooled CRISPR/Cas screens in the lab I created a tool to
+      analyze data from these screens. It performs quality controls, data
+      cleaning, and calculates differential distributions. Years later I
+      discovered that this tool is beeing used by quite a few Pharma companies.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Visual Analytics Platforms">
+    <Paragraph>
+      Together with team we created visual analytics platforms for entities such
+      as genes and diseases. A researcher should be able to quickly see
+      different aspects at once. We focused a lot on how to properly represent
+      the data graphically. Every plot should give you an overview first, but
+      have the option to drill down into single data points. Organizing and
+      harmonizing the data behind all these plots was a major obstacle,
+      technically and organizationally.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Digital Beehive">
+    <Paragraph>
+      As a side-project I developed a tool for beekeepers. From pictures of
+      honeycombs it can detect and distinguish contents such as larvae, capped
+      or empty cells, cells with eggs, nectar, and pollen. This can be used to
+      accurately characterize beehive's health.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Antibody BERT">
+    <Paragraph>
+      This was another side-project in a machine learning research group. I
+      repurposed a BERT transformer — usually used in natural language
+      processing — to understand antibodies. I took the original BERT
+      transformer and adapted some parts of the design to handle amino acid
+      sequences of antibodies. I performed a pre-training on several hundred
+      million antibodies, then fine-tuned it for specific downstream tasks.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Data and Metadata Management Solutions">
+    <Paragraph>
+      As the company was moving data and processes into the cloud I was part of
+      a DevOps team that supports this transition by developing data warehousing
+      and data management tools. We took care of doing business analyses,
+      designing and testing solutions, and implementing them while keeping
+      legacy systems alive for the transition.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="prevailing-winds.de">
+    <Paragraph>
+      This is an idea I had when planning a sailing trip. It's an interactive
+      pilot chart for surfers, pilots, sailors, paragliders, and anyone else
+      interested in wind strengh and direction. There are many great apps, like
+      windy.com, that show you the current winds with short-term predictions.
+      However, there is nothing similar with historic wind data for long-term
+      planning.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Pharmacometrics IT Landscape">
+    <Paragraph>
+      A fully GxP-validated IT landscape that supports a pharmacometrics group
+      in their activities, from study planning to result submission. One central
+      API combines multiple features, allowing us to automatically track the
+      flow of versions, data, and decisions while the experts are performing
+      their analyses.
+    </Paragraph>
+  </CarouselEntry>,
+];
 
 interface CarouselEntryProps {
   title: string;
@@ -53,7 +140,6 @@ export default function HomePage(): JSX.Element {
   const dottedBackground = {
     backgroundImage: "url('dot.png')",
     backgroundSize: 16,
-    marginBottom: "20vh",
   } as React.CSSProperties;
 
   return (
@@ -67,9 +153,8 @@ export default function HomePage(): JSX.Element {
           margin="large"
         >
           Software development is full of decisions, a lot of which are left to
-          the developer team. Understanding the business domain is key to
-          creating the useful software. This is especially true for research and
-          development.
+          the developer team. Domain knowledge is key to creating useful
+          software. This is especially true in research and development.
         </Text>
         <Box direction="row" justify="center" pad="medium" gap="small" wrap>
           <Image
@@ -80,19 +165,19 @@ export default function HomePage(): JSX.Element {
             style={{ borderRadius: "50%", margin: "30px" }}
           />
           <Paragraph size="large">
-            Hi, my name is Marc Schwering. Throughout my life I have changed
-            career paths quite a few times. During my studies in Heidelberg I
-            was working as a wetlab scientist. Later, I converted to
-            bioinformatics and machine learning. When I moved to Berlin and
-            started working for Bayer I became a software developer. For 4 years
-            I was surrounded by senior developers creating software for
-            researchers.
+            Hi, my name is Marc Schwering. Throughout my life I have worked in
+            many laboratories either as a wetlab scientist or as a
+            bioinformatician. Then, I converted to software development and
+            created software for Bayer's R&D departments. This is where I
+            learned to create and maintain software for an enterprise in an
+            agile fashion. Now, after 4 years, I want to continue with that on
+            my own.
           </Paragraph>
         </Box>
       </Section>
       <PhaseSection background="#edfadd">
         <Box margin="small">
-          <Heading level="2" margin={{ vertical: "small" }}>
+          <Heading level="3" margin={{ vertical: "small" }}>
             Biotechnology
           </Heading>
           <Paragraph size="large">
@@ -110,34 +195,32 @@ export default function HomePage(): JSX.Element {
       <PhaseSection background="#d3e8eb">
         <Image src={DataSvg} alt="data science icon" width="230px" />
         <Box margin="small">
-          <Heading level="2" margin={{ vertical: "small" }}>
+          <Heading level="3" margin={{ vertical: "small" }}>
             Data Science
           </Heading>
           <Paragraph size="large">
-            Towards to end of my studies I drifted from pure wetlab work more
-            and more over to bioinformatics. At first I worked with traditional
-            sequencing and imaging methods, later with machine learning. My
-            Bachelor thesis was spatial modeling and simulations, and my Master
-            thesis single cell RNA sequencing. During my time at Bayer I had the
-            chance to keep up to date by having several machine learning
-            research projects on the side.
+            Towards to end of my studies I drifted from pure wetlab work to
+            bioinformatics. At first I worked with traditional sequencing and
+            imaging methods, later with machine learning. My theses were in
+            spatial modeling and simulations, and single cell RNA sequencing.
+            During my time at Bayer I had the chance to stay up to date by
+            having several machine learning research projects on the side.
           </Paragraph>
         </Box>
       </PhaseSection>
       <PhaseSection background="#fff1e8">
         <Box margin="small">
-          <Heading level="2" margin={{ vertical: "small" }}>
+          <Heading level="3" margin={{ vertical: "small" }}>
             Software Engineering
           </Heading>
           <Paragraph size="large">
-            Already during my studies I created some apps for others. When I
-            naively joined Bayer I realized how complex software development can
-            be. I was fortunate enough to be part of an amazing DevOps team of
-            senior developers. We were mostly autonomous and owned our products
-            as a whole: from business analysis and UX design, over development
-            and deployment, to maintainance. I helped the organization move
-            services into the cloud, and learned how to deal with legacy systems
-            as well as build serverless applications on AWS.
+            When I naively joined Bayer as a former bioinformatician I realized
+            how complex software development can be. I was fortunate enough to
+            be part of an amazing DevOps team of senior developers. We were
+            mostly autonomous and owned our products: from business analysis,
+            over development and deployment, to maintainance. I helped the
+            organization move services into the cloud, and learned how to deal
+            with legacy systems as well as build serverless applications on AWS.
           </Paragraph>
         </Box>
         <Image
@@ -147,83 +230,14 @@ export default function HomePage(): JSX.Element {
         />
       </PhaseSection>
       <Section style={dottedBackground}>
-        <Heading level="2">Previous Projects</Heading>
+        <Heading level="3">Previous Projects</Heading>
         <Box height="medium" width="large" overflow="hidden">
-          <Carousel fill>
-            <CarouselEntry title="CRISPR AnalyzeR">
-              <Paragraph>
-                While performing pooled CRISPR/Cas screens in the lab I created
-                a tool to analyze data from these screens. It performs quality
-                controls, data cleaning, and calculates differential
-                distributions. Years later I discovered that this tool is beeing
-                used by quite a few Pharma companies.
-              </Paragraph>
-            </CarouselEntry>
-            <CarouselEntry title="Visual Analytics Platforms">
-              <Paragraph>
-                Together with team we created visual analytics platforms for
-                entities such as genes and diseases. A researcher should be able
-                to quickly see different aspects at once. We focused a lot on
-                how to properly represent the data graphically. Every plot
-                should give you an overview first, but have the option to drill
-                down into a single data point. Organizing and harmonizing the
-                data behind all these plots was a major obstacle, technically
-                and organizationally.
-              </Paragraph>
-            </CarouselEntry>
-            <CarouselEntry title="Digital Beehive">
-              <Paragraph>
-                As a side-project I developed a tool for beekeepers. From
-                pictures of honeycombs it can detect and distinguish contents
-                such as larvae, capped or empty cells, cells with eggs, nectar,
-                and pollen. This can be used to accurately characterize
-                beehive's health.
-              </Paragraph>
-            </CarouselEntry>
-            <CarouselEntry title="Antibody BERT">
-              <Paragraph>
-                This was another side-project in a machine learning research
-                group. I repurposed a BERT transformer — usually used in natural
-                language processing — to understand antibodies. I took the
-                original BERT transformer and adapted some parts of the design
-                to handle amino acid sequences of antibodies. I performed a
-                pre-training on several hundred million antibodies, then
-                fine-tuned it for specific downstream tasks.
-              </Paragraph>
-            </CarouselEntry>
-            <CarouselEntry title="Data and Metadata Management Solutions">
-              <Paragraph>
-                As the company was moving data and processes into the cloud I
-                was part of a DevOps team that supports this transition by
-                developing data warehousing and data management tools. We took
-                care of doing business analyses, designing and testing
-                solutions, and implementing them while keeping legacy systems
-                alive for the transition.
-              </Paragraph>
-            </CarouselEntry>
-            <CarouselEntry title="prevailing-winds.de">
-              <Paragraph>
-                This is an idea I had when planning a sailing trip. It's an
-                interactive pilot chart for surfers, pilots, sailors,
-                paragliders, and anyone else interested in wind strengh and
-                direction. There are many great apps, like windy.com, that show
-                you the current winds with short-term predictions. However,
-                there is nothing similar with historic wind data for long-term
-                planning.
-              </Paragraph>
-            </CarouselEntry>
-            <CarouselEntry title="Pharmacometrics IT Landscape">
-              <Paragraph>
-                A fully GxP-validated IT landscape that supports a
-                pharmacometrics group in their activities, from study planning
-                to result submission. One central API combines multiple
-                features, allowing us to automatically track the flow of
-                versions, data, and decisions while the experts are performing
-                their analyses.
-              </Paragraph>
-            </CarouselEntry>
-          </Carousel>
+          <Carousel fill>{projects}</Carousel>
         </Box>
+      </Section>
+      <Section>
+        <Heading level="3">Preferred Techstack</Heading>
+        <List primaryKey="name" secondaryKey="text" data={preferredTechStack} />
       </Section>
       <AppFooter />
     </>

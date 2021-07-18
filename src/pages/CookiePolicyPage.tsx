@@ -10,7 +10,7 @@ export default function CookiePolicyPage(): JSX.Element {
   return (
     <Box style={{ height: "100vh" }}>
       <AppHeader />
-      <Section style={{ marginBottom: "50vh" }}>
+      <Section style={{ marginBottom: "30vh" }}>
         <Heading level="2">Cookie Policy</Heading>
         <Paragraph textAlign="center">
           You might have noticed there was no <b>cookie banner</b> you had to
