@@ -59,7 +59,7 @@
       "graph-0": "brand",
       "graph-1": "status-warning",
       "focus": {
-        "light": "#D79152",
+        "light": "#c77933ff",
         "dark": "background"
       }
     },
