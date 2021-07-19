@@ -9,7 +9,7 @@ import {
 } from "grommet-icons";
 
 export const mailToHref =
-  "mailto:someone@yoursite.com?subject=Contact%20from%20vordeck.de";
+  "mailto:info@vordeck.de?subject=Contact%20from%20vordeck.de";
 
 interface HrefButtonProps {
   icon?: JSX.Element;
