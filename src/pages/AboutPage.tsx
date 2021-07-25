@@ -35,69 +35,72 @@ const preferredTechStack = [
 ];
 
 const projects = [
-  <CarouselEntry title="CRISPR AnalyzeR">
+  <CarouselEntry title="Pharmacometrics IT Landscape">
     <Paragraph>
-      While performing pooled CRISPR/Cas screens in the lab I created a tool to
-      analyze data from these screens. It performs quality controls, data
-      cleaning, and calculates differential distributions. Years later I
-      discovered that this tool is beeing used by quite a few Pharma companies.
-    </Paragraph>
-  </CarouselEntry>,
-  <CarouselEntry title="Visual Analytics Platforms">
-    <Paragraph>
-      Together with team we created visual analytics platforms for entities such
-      as genes and diseases. A researcher should be able to quickly see
-      different aspects at once. We focused a lot on how to properly represent
-      the data graphically. Every plot should give you an overview first, but
-      have the option to drill down into single data points. Organizing and
-      harmonizing the data behind all these plots was a major obstacle,
-      technically and organizationally.
-    </Paragraph>
-  </CarouselEntry>,
-  <CarouselEntry title="Digital Beehive">
-    <Paragraph>
-      As a side-project I developed a tool for beekeepers. From pictures of
-      honeycombs it can detect and distinguish contents such as larvae, capped
-      or empty cells, cells with eggs, nectar, and pollen. This can be used to
-      accurately characterize beehive's health.
-    </Paragraph>
-  </CarouselEntry>,
-  <CarouselEntry title="Antibody BERT">
-    <Paragraph>
-      This was another side-project in a machine learning research group. I
-      repurposed a BERT transformer — usually used in natural language
-      processing — to understand antibodies. I took the original BERT
-      transformer and adapted some parts of the design to handle amino acid
-      sequences of antibodies. I performed a pre-training on several hundred
-      million antibodies, then fine-tuned it for specific downstream tasks.
-    </Paragraph>
-  </CarouselEntry>,
-  <CarouselEntry title="Data and Metadata Management Solutions">
-    <Paragraph>
-      As the company was moving data and processes into the cloud I was part of
-      a DevOps team that supports this transition by developing data warehousing
-      and data management tools. We took care of doing business analyses,
-      designing and testing solutions, and implementing them while keeping
-      legacy systems alive for the transition.
+      As part of a DevOps team I was building a GxP-validated Pharmacometrics IT
+      landscape. The old one had to be replaced. Instead of just re-creating all
+      its parts we wanted to design it to be more efficient and flexible. Thus,
+      apart from developing the landscape itself, a lot of time was put into
+      understanding users, business processes, and regulatory requirements.
     </Paragraph>
   </CarouselEntry>,
   <CarouselEntry title="prevailing-winds.de">
     <Paragraph>
-      This is an idea I had when planning a sailing trip. It's an interactive
-      pilot chart for surfers, pilots, sailors, paragliders, and anyone else
-      interested in wind strengh and direction. There are many great apps, like
-      windy.com, that show you the current winds with short-term predictions.
-      However, there is nothing similar with historic wind data for long-term
-      planning.
+      This is a side-project I did on the weekend. It's an interactive pilot
+      chart for surfers, pilots, sailors, paragliders, and anyone else
+      interested in wind strength and directions. There are many great apps,
+      like windy.com, that show you the current winds with short-term
+      predictions. However, I didn't find anything with historic wind data for
+      planning a holiday or passage.
     </Paragraph>
   </CarouselEntry>,
-  <CarouselEntry title="Pharmacometrics IT Landscape">
+  <CarouselEntry title="Antibody BERT">
     <Paragraph>
-      A fully GxP-validated IT landscape that supports a pharmacometrics group
-      in their activities, from study planning to result submission. One central
-      API combines multiple features, allowing us to automatically track the
-      flow of versions, data, and decisions while the experts are performing
-      their analyses.
+      In a machine learning research group I created a transformer wich predicts
+      antibody characteristics. I re-designed a BERT - a transformer commonly
+      used in NLP - to understand amino acid chains of antibodies. Then, I
+      pre-trained this transformer on hundreds of millions of antibodies and
+      fine-tuned it to specific problems in the drug discovery and development
+      pipeline.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Digital Beehive">
+    <Paragraph>
+      This was a little side-project I did to help beekeepers. I developed and
+      trained a model which can detect the content of a honeycomb photo. E.g. it
+      can count the number of cells with larvae, pollen, nectar and so on. You
+      can use this to get an accurate estimate of your beehive's health.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Visual Analytics Platforms">
+    <Paragraph>
+      As part of a DevOps team I developed, deployed, and maintained 2 visual
+      analytics platforms: one for genes, one for diseases. These platforms
+      combined multiple data sources of each entity and represented them in
+      interactive plots. One interesting aspect of this project was to find
+      clear, useful, and scientificly accurate ways of representing the data.
+      Another interesting aspect was the harmonization of data and curation of
+      ontologies.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="Biotop Community Lab e.V.">
+    <Paragraph>
+      I co-founded and supported Biotop Community Lab e.V. as vice chairman.
+      This is a no-profit organization for promoting the democratization of
+      science through access to biotechnology and learn-by-doing education. We
+      are a part of the global DIY-bio movement, which focuses on bringing
+      biology outside of academic and industrial environment to the lay public.
+      We believe that biology is technology and we want to put citizens in the
+      conditions to make use of it, as any other common technology.
+    </Paragraph>
+  </CarouselEntry>,
+  <CarouselEntry title="CRISPR AnalyzeR">
+    <Paragraph>
+      This is a webapp I wrote during my Masters when working with pooled
+      CRISPR/Cas9 screens. Analyzing the data from these screens is tedious and
+      largely repetitive. This tool does all the pre-processing, data quality
+      checks, and differential distribution calculations. Years later I noticed
+      this tool was used by several Pharma companies.
     </Paragraph>
   </CarouselEntry>,
 ];
@@ -160,18 +163,15 @@ export default function HomePage(): JSX.Element {
           <Image
             src="avatar.jpg"
             alt="avatar"
-            width="200px"
-            height="200px"
+            width="170px"
+            height="170px"
             style={{ borderRadius: "50%", margin: "30px" }}
           />
           <Paragraph size="large">
-            Hi, my name is Marc Schwering. Throughout my life I have worked in
-            many laboratories either as a wetlab scientist or as a
-            bioinformatician. Then, I converted to software development and
-            created software for Bayer's R&D departments. This is where I
-            learned to create and maintain software for an enterprise in an
-            agile fashion. Now, after 4 years, I want to continue with that on
-            my own.
+            Hi, my name is Marc Schwering. My original background is Molecular
+            Biotechnology. Throughout my career I have changed from wetlab, to
+            data science, to software development. The past years I have built
+            software for Bayer's Pharma R&D. Now I am working as a freelancer.
           </Paragraph>
         </Box>
       </Section>
