@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Heading, Paragraph, Text, Image } from "grommet";
+import {
+  Box,
+  Heading,
+  Paragraph,
+  Text,
+  Image,
+  ResponsiveContext,
+} from "grommet";
 import {
   AppHeader,
   AppFooter,
@@ -9,70 +16,111 @@ import {
 } from "../components";
 import ReactCardFlip from "react-card-flip";
 import logoSvg from "../assets/logo.svg";
+import cloudSvg from "../assets/cloud-icon.svg";
+import cogwheelSvg from "../assets/cogwheel-icon.svg";
+import dnaSvg from "../assets/dna-icon.svg";
+import tachometerSvg from "../assets/tachometer-icon.svg";
 
-function ValuePropBox(props: { title: string; text: string }): JSX.Element {
+interface CardProps {
+  background?: string;
+  children?: React.ReactNode;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
+  onClick?: (e: MouseEvent) => void;
+}
+
+function Card(props: CardProps): JSX.Element {
+  return (
+    <Box
+      width="300px"
+      height="300px"
+      elevation="small"
+      round="300px"
+      margin="small"
+      align="center"
+      justify="center"
+      onClick={props.onClick}
+      onMouseEnter={props.onMouseEnter}
+      onMouseLeave={props.onMouseLeave}
+      background={props.background}
+    >
+      {props.children}
+    </Box>
+  );
+}
+
+interface ValuePropBoxProps {
+  title: string;
+  svg: string;
+  text: string;
+  size: string;
+}
+
+function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
   const [isFlipped, setIsFlipped] = React.useState(false);
 
-  function handleCardFlip(e: MouseEvent) {
+  function handleClick(e: MouseEvent) {
     e.preventDefault();
     setIsFlipped((prev) => !prev);
   }
 
+  function handleHover(d: boolean) {
+    props.size === "small" || setIsFlipped(d);
+  }
+
   return (
     <ReactCardFlip isFlipped={isFlipped}>
-      <Box
-        width="300px"
-        height="300px"
-        elevation="xsmall"
-        round="300px"
-        margin="small"
-        align="center"
-        justify="center"
-        onClick={handleCardFlip}
+      <Card
+        onClick={handleClick}
+        onMouseEnter={() => handleHover(true)}
         background="brand"
       >
-        <Box align="center" gap="small" margin="medium">
-          <Image src={logoSvg} alt="data science icon" width="50px" />
+        <Box
+          pad={{ horizontal: "medium", top: "80px" }}
+          gap="small"
+          justify="start"
+          fill
+        >
+          <Box height="70px">
+            <Image src={props.svg} alt={props.title} fit="contain" />
+          </Box>
           <Text weight="bold" size="large" textAlign="center">
             {props.title}
           </Text>
         </Box>
-      </Box>
-      <Box
-        width="300px"
-        height="300px"
-        elevation="xsmall"
-        round="300px"
-        margin="small"
-        align="center"
-        justify="center"
-        onClick={handleCardFlip}
-      >
+      </Card>
+      <Card onClick={handleClick} onMouseLeave={() => handleHover(false)}>
         <Text textAlign="center" margin="small" style={{ width: "200px" }}>
           {props.text}
         </Text>
-      </Box>
+      </Card>
     </ReactCardFlip>
   );
 }
 
 export default function HomePage(): JSX.Element {
+  const size = React.useContext(ResponsiveContext);
+
   const valueProps = [
     {
+      svg: dnaSvg,
       title: "Domain Knowledge",
-      text: "No introduction to genes and proteins. No PowerPoint karaoke about the drug discovery and development process. Get to the point on day one.",
+      text: "No PowerPoint karaoke about genes and proteins, or the drug discovery and development process. Get to the point on day one.",
     },
     {
+      svg: tachometerSvg,
       title: "MVP-driven",
       text: "Deploy a minimum viable product as soon as possible. See production pitfalls immediately. Get users involved early on.",
     },
     {
+      svg: cloudSvg,
       title: "Modern Architecture",
       text: "Serverless over self-hosted wherever possible. Minimize maintenance effort. Reduce costs. Have a product that scales seamlessly.",
     },
     {
+      svg: cogwheelSvg,
       title: "API-first",
-      text: "IT landscapes change, organizations change, even SOPs change. Focus on well-defined APIs. Build products on top. Integrate with legacy. Enable data scientists.",
+      text: "The system will change over time. Focus on well-defined APIs. Build products on top. Integrate legacy systems. Enable data scientists.",
     },
   ];
 
@@ -85,7 +133,7 @@ export default function HomePage(): JSX.Element {
             vordeck
             <Image
               src={logoSvg}
-              alt="data science icon"
+              alt="logo"
               width="35px"
               margin={{ horizontal: "small" }}
             />
@@ -106,10 +154,10 @@ export default function HomePage(): JSX.Element {
           direction="row"
           wrap
           justify="center"
-          margin={{ vertical: "medium" }}
+          margin={{ vertical: "large" }}
         >
           {valueProps.map((d) => (
-            <ValuePropBox key={d.title} {...d} />
+            <ValuePropBox key={d.title} size={size} {...d} />
           ))}
         </Box>
         <Paragraph textAlign="center" size="large">
