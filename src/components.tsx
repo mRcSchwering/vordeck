@@ -29,6 +29,28 @@ export function HrefButton(props: HrefButtonProps): JSX.Element {
   );
 }
 
+export const mailButton = (
+  <HrefButton icon={<MailOption />} href={mailToHref} />
+);
+export const linkedinButton = (
+  <HrefButton
+    icon={<LinkedinOption />}
+    href="https://www.linkedin.com/in/marc-schwering-139914103/"
+  />
+);
+export const twitterButton = (
+  <HrefButton icon={<Twitter />} href="https://twitter.com/schweringMarc" />
+);
+export const githubButton = (
+  <HrefButton icon={<Github />} href="https://github.com/mRcSchwering" />
+);
+export const soButton = (
+  <HrefButton
+    icon={<StackOverflow />}
+    href="https://stackoverflow.com/users/5562431/mrcschwering"
+  />
+);
+
 interface SectionProps {
   children?: React.ReactNode;
   style?: React.CSSProperties;
@@ -90,20 +112,11 @@ export function AppFooter(): JSX.Element {
         />
       </Box>
       <Box direction="row" gap="small">
-        <HrefButton icon={<MailOption />} href={mailToHref} />
-        <HrefButton
-          icon={<LinkedinOption />}
-          href="https://www.linkedin.com/in/marc-schwering-139914103/"
-        />
-        <HrefButton
-          icon={<Twitter />}
-          href="https://twitter.com/schweringMarc"
-        />
-        <HrefButton icon={<Github />} href="https://github.com/mRcSchwering" />
-        <HrefButton
-          icon={<StackOverflow />}
-          href="https://stackoverflow.com/users/5562431/mrcschwering"
-        />
+        {mailButton}
+        {linkedinButton}
+        {twitterButton}
+        {githubButton}
+        {soButton}
       </Box>
     </Box>
   );

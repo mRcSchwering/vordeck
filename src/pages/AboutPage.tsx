@@ -11,7 +11,16 @@ import {
   Text,
   List,
 } from "grommet";
-import { AppHeader, AppFooter, Section } from "../components";
+import {
+  AppHeader,
+  AppFooter,
+  Section,
+  linkedinButton,
+  twitterButton,
+  soButton,
+  githubButton,
+  mailButton,
+} from "../components";
 import BiotechSvg from "../assets/biotech.svg";
 import DataSvg from "../assets/data.svg";
 import SoftwareSvg from "../assets/software.svg";
@@ -22,15 +31,15 @@ const preferredTechStack = [
     text: "CLIs, backends, and general purpose",
   },
   { name: "React and Typescript", text: "frontends of all kind" },
-  { name: "docker", text: "testing, sometimes deployments" },
+  { name: "docker", text: "tests, builds, deployments" },
   { name: "gitlab", text: "especially for its CI/CD pipelines" },
   {
     name: "AWS",
-    text: "as a huge toolbox to create any kind of infrastructure",
+    text: "huge infrastructure toolbox",
   },
   {
-    name: "AWS SAM",
-    text: "my preference for serverless backends",
+    name: "serverless",
+    text: "over self-hosted where possible",
   },
 ];
 
@@ -163,16 +172,25 @@ export default function HomePage(): JSX.Element {
           <Image
             src="avatar.jpg"
             alt="avatar"
-            width="170px"
-            height="170px"
+            width="200px"
+            height="200px"
             style={{ borderRadius: "50%", margin: "30px" }}
           />
-          <Paragraph size="large">
-            Hi, my name is Marc Schwering. My original background is Molecular
-            Biotechnology. Throughout my career I have changed from wetlab, to
-            data science, to software development. The past years I have built
-            software for Bayer's Pharma R&D. Now I am working as a freelancer.
-          </Paragraph>
+          <Box margin="auto">
+            <Paragraph size="large">
+              Hi, my name is Marc Schwering. My original background is Molecular
+              Biotechnology. Throughout my career I have changed from wetlab, to
+              data science, to software development. The past years I have built
+              software for Bayer's Pharma R&D. Now I am working as a freelancer.
+            </Paragraph>
+            <Box direction="row" gap="small">
+              {mailButton}
+              {linkedinButton}
+              {twitterButton}
+              {soButton}
+              {githubButton}
+            </Box>
+          </Box>
         </Box>
       </Section>
       <PhaseSection background="#edfadd">
