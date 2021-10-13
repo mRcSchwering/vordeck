@@ -45,11 +45,11 @@ const projects = [
   </CarouselEntry>,
   <CarouselEntry title="prevailing-winds.de">
     <Paragraph>
-      <Anchor href="https://prevailing-winds.de" label="prevailing-winds.de" />{" "}
-      is a side-project I did on the weekend. It's an interactive pilot chart
-      for surfers, pilots, sailors, paragliders, and anyone else interested in
-      wind strength and directions. There are many great apps, like{" "}
-      <Anchor href="https://windy.com" label="windy.com" />, that show you the
+      <Link href="https://prevailing-winds.de" label="prevailing-winds.de" /> is
+      a side-project I did on the weekend. It's an interactive pilot chart for
+      surfers, pilots, sailors, paragliders, and anyone else interested in wind
+      strength and directions. There are many great apps, like{" "}
+      <Link href="https://windy.com" label="windy.com" />, that show you the
       current winds with short-term predictions. However, I didn't find anything
       with historic wind data passage planning. Over time I added more weather
       and sea state data. Now it is basically a holiday planner.
@@ -59,7 +59,7 @@ const projects = [
     <Paragraph>
       In a machine learning research group I created a transformer wich predicts
       antibody characteristics. I re-designed a{" "}
-      <Anchor label="BERT" href="https://arxiv.org/abs/1810.04805" /> - a
+      <Link label="BERT" href="https://arxiv.org/abs/1810.04805" /> - a
       transformer commonly used in NLP - to understand amino acid chains of
       antibodies. Then, I pre-trained this transformer on hundreds of millions
       of antibodies and fine-tuned it to specific problems in the drug discovery
@@ -68,7 +68,7 @@ const projects = [
   </CarouselEntry>,
   <CarouselEntry title="Digital Beehive">
     <Paragraph>
-      <Anchor href="https://github.com/mRcSchwering/beehive" label="beehive" />{" "}
+      <Link href="https://github.com/mRcSchwering/beehive" label="beehive" />{" "}
       was a little side-project I did to help beekeepers. I developed and
       trained a model which can detect the content of a honeycomb photo. E.g. it
       can count the number of cells with larvae, pollen, nectar and so on. You
@@ -89,7 +89,7 @@ const projects = [
   <CarouselEntry title="Biotop Community Lab e.V.">
     <Paragraph>
       I co-founded and supported{" "}
-      <Anchor
+      <Link
         href="https://www.biotop-heidelberg.de/"
         label="Biotop Community Lab e.V."
       />{" "}
@@ -104,7 +104,7 @@ const projects = [
   </CarouselEntry>,
   <CarouselEntry title="CRISPR AnalyzeR">
     <Paragraph>
-      <Anchor
+      <Link
         href="https://www.biorxiv.org/content/10.1101/109967v1"
         label="CRISPR AnalyzeR"
       />{" "}
@@ -116,6 +116,10 @@ const projects = [
     </Paragraph>
   </CarouselEntry>,
 ];
+
+function Link(props: { href: string; label: string }): JSX.Element {
+  return <Anchor href={props.href} label={props.label} target="_blank" />;
+}
 
 interface CarouselEntryProps {
   title: string;
