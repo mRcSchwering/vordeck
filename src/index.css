@@ -8,3 +8,23 @@ html {
 a {
   border-radius: 10%;
 }
+
+.slick-prev,
+.slick-prev::before {
+  color: rgb(90, 90, 90);
+  left: 25px;
+  z-index: 9999;
+}
+
+.slick-next,
+.slick-next::before {
+  color: rgb(90, 90, 90);
+  right: 25px;
+  z-index: 9999;
+}
+
+.slick-dots,
+.slick-dots::before {
+  color: rgb(90, 90, 90);
+  bottom: 25px;
+}

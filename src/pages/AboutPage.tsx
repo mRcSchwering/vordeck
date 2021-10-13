@@ -1,16 +1,6 @@
 import React from "react";
-import {
-  Heading,
-  Paragraph,
-  Box,
-  Carousel,
-  Card,
-  CardBody,
-  CardFooter,
-  Image,
-  Text,
-  List,
-} from "grommet";
+import { Heading, Paragraph, Box, Image, Text, List, Anchor } from "grommet";
+import Slider from "react-slick";
 import {
   AppHeader,
   AppFooter,
@@ -55,27 +45,31 @@ const projects = [
   </CarouselEntry>,
   <CarouselEntry title="prevailing-winds.de">
     <Paragraph>
-      This is a side-project I did on the weekend. It's an interactive pilot
-      chart for surfers, pilots, sailors, paragliders, and anyone else
-      interested in wind strength and directions. There are many great apps,
-      like windy.com, that show you the current winds with short-term
-      predictions. However, I didn't find anything with historic wind data for
-      planning a holiday or passage.
+      <Anchor href="https://prevailing-winds.de" label="prevailing-winds.de" />{" "}
+      is a side-project I did on the weekend. It's an interactive pilot chart
+      for surfers, pilots, sailors, paragliders, and anyone else interested in
+      wind strength and directions. There are many great apps, like{" "}
+      <Anchor href="https://windy.com" label="windy.com" />, that show you the
+      current winds with short-term predictions. However, I didn't find anything
+      with historic wind data passage planning. Over time I added more weather
+      and sea state data. Now it is basically a holiday planner.
     </Paragraph>
   </CarouselEntry>,
   <CarouselEntry title="Antibody BERT">
     <Paragraph>
       In a machine learning research group I created a transformer wich predicts
-      antibody characteristics. I re-designed a BERT - a transformer commonly
-      used in NLP - to understand amino acid chains of antibodies. Then, I
-      pre-trained this transformer on hundreds of millions of antibodies and
-      fine-tuned it to specific problems in the drug discovery and development
-      pipeline.
+      antibody characteristics. I re-designed a{" "}
+      <Anchor label="BERT" href="https://arxiv.org/abs/1810.04805" /> - a
+      transformer commonly used in NLP - to understand amino acid chains of
+      antibodies. Then, I pre-trained this transformer on hundreds of millions
+      of antibodies and fine-tuned it to specific problems in the drug discovery
+      and development pipeline.
     </Paragraph>
   </CarouselEntry>,
   <CarouselEntry title="Digital Beehive">
     <Paragraph>
-      This was a little side-project I did to help beekeepers. I developed and
+      <Anchor href="https://github.com/mRcSchwering/beehive" label="beehive" />{" "}
+      was a little side-project I did to help beekeepers. I developed and
       trained a model which can detect the content of a honeycomb photo. E.g. it
       can count the number of cells with larvae, pollen, nectar and so on. You
       can use this to get an accurate estimate of your beehive's health.
@@ -94,22 +88,31 @@ const projects = [
   </CarouselEntry>,
   <CarouselEntry title="Biotop Community Lab e.V.">
     <Paragraph>
-      I co-founded and supported Biotop Community Lab e.V. as vice chairman.
-      This is a no-profit organization for promoting the democratization of
-      science through access to biotechnology and learn-by-doing education. We
-      are a part of the global DIY-bio movement, which focuses on bringing
-      biology outside of academic and industrial environment to the lay public.
-      We believe that biology is technology and we want to put citizens in the
-      conditions to make use of it, as any other common technology.
+      I co-founded and supported{" "}
+      <Anchor
+        href="https://www.biotop-heidelberg.de/"
+        label="Biotop Community Lab e.V."
+      />{" "}
+      as vice chairman. This is a no-profit organization for promoting the
+      democratization of science through access to biotechnology and
+      learn-by-doing education. We are a part of the global DIY-bio movement,
+      which focuses on bringing biology outside of academic and industrial
+      environment to the lay public. We believe that biology is technology and
+      we want to put citizens in the conditions to make use of it, as any other
+      common technology.
     </Paragraph>
   </CarouselEntry>,
   <CarouselEntry title="CRISPR AnalyzeR">
     <Paragraph>
-      This is a webapp I wrote during my Masters when working with pooled
-      CRISPR/Cas9 screens. Analyzing the data from these screens is tedious and
-      largely repetitive. This tool does all the pre-processing, data quality
-      checks, and differential distribution calculations. Years later I noticed
-      this tool was used by several Pharma companies.
+      <Anchor
+        href="https://www.biorxiv.org/content/10.1101/109967v1"
+        label="CRISPR AnalyzeR"
+      />{" "}
+      is a webapp I wrote during my Masters when working with pooled CRISPR/Cas9
+      screens. Analyzing the data from these screens is tedious and largely
+      repetitive. This tool does all the pre-processing, data quality checks,
+      and differential distribution calculations. Years later I noticed this
+      tool was used by several Pharma companies.
     </Paragraph>
   </CarouselEntry>,
 ];
@@ -120,15 +123,12 @@ interface CarouselEntryProps {
 }
 
 function CarouselEntry(props: CarouselEntryProps): JSX.Element {
-  // TODO: carousel bug: https://github.com/grommet/grommet/issues/3536
   return (
-    <Box direction="row" justify="center">
-      <Card elevation="large" background="light-1">
-        <CardBody pad="small">{props.children}</CardBody>
-        <CardFooter background="light-2" pad="small">
-          {props.title}
-        </CardFooter>
-      </Card>
+    <Box pad={{ vertical: "medium", horizontal: "xlarge" }}>
+      <Heading margin="small" level="4">
+        {props.title}
+      </Heading>
+      <Paragraph>{props.children}</Paragraph>
     </Box>
   );
 }
@@ -249,8 +249,10 @@ export default function HomePage(): JSX.Element {
       </PhaseSection>
       <Section style={dottedBackground}>
         <Heading level="3">Previous Projects</Heading>
-        <Box height="medium" width="large" overflow="hidden">
-          <Carousel fill>{projects}</Carousel>
+        <Box width="large" overflow="hidden">
+          <Slider dots={true} arrows={true}>
+            {projects}
+          </Slider>
         </Box>
       </Section>
       <Section>
