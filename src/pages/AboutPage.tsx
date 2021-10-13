@@ -124,7 +124,7 @@ interface CarouselEntryProps {
 
 function CarouselEntry(props: CarouselEntryProps): JSX.Element {
   return (
-    <Box pad={{ vertical: "medium", horizontal: "xlarge" }}>
+    <Box pad="medium" align="center">
       <Heading margin="small" level="4">
         {props.title}
       </Heading>
