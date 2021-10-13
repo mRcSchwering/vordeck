@@ -1,43 +1,54 @@
 import React from "react";
-import { Heading, Paragraph, Box } from "grommet";
+import { Heading, Paragraph, Box, Anchor } from "grommet";
 import { AppHeader, Section, AppFooter } from "../components";
+
+function H6(props: { text: string }): JSX.Element {
+  return (
+    <>
+      <br />
+      <b>{props.text}</b>
+      <br />
+      <br />
+    </>
+  );
+}
 
 export default function LegalNoticePage(): JSX.Element {
   return (
     <Box>
       <AppHeader />
       <Section>
-        <Heading level="2">Legal Notice</Heading>
+        <Heading level="2">Impressum</Heading>
         <Paragraph>
-          <b>Marc Schwering</b>
+          <H6 text="Daten gemäß Abschnitt 5 TMG" />
+          (vordeck)
           <br />
-          xxxxxxxxxxxxxxxxxxxxxxxxx xxx
+          Marc Schwering
           <br />
-          xxxxxxx Berlin
+          Groninger Straße 32
           <br />
+          13347 Berlin
           <br />
-          <b>Contact</b>
+          <H6 text="Kontakt" />
+          E-Mail: info@vordeck.de
           <br />
-          Telephone: xxxxxxxxxxxxxxx
+          LinkedIn: marc-schwering-139914103
           <br />
-          E-mail: info@vordeck.de
+          Twitter: schweringMarc
           <br />
+          <H6 text="Umsatzsteuer-ID" />
+          Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
+          (kommt noch) <br />
+          <H6 text="Verbraucher­streit­beilegung/Universal­schlichtungs­stelle" />
+          Wir sind nicht bereit oder verpflichtet, an Streitbeile-
+          gungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
           <br />
-          Value added tax identification number: xxxxxxxxxxxxxxx
+          <Anchor
+            href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=DE"
+            label="Online -Streitbeilegungsplattform"
+          />
           <br />
-          Job title: xxxxxxxxxxxxxxxx
-          <br />
-          Awarded in: Germany
-          <br />
-          <br />
-          <b>Verbraucher­streit­beilegung/Universal­schlichtungs­stelle</b>
-          <br />
-          Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren
-          vor einer Verbraucherschlichtungsstelle teilzunehmen.
-          <br />
-          <br />
-          <b>Haftung für Inhalte</b>
-          <br />
+          <H6 text="Haftung für Inhalte" />
           Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte
           auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach
           §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
@@ -53,9 +64,7 @@ export default function LegalNoticePage(): JSX.Element {
           von entsprechenden Rechtsverletzungen werden wir diese Inhalte
           umgehend entfernen.
           <br />
-          <br />
-          <b>Haftung für Links</b>
-          <br />
+          <H6 text="Haftung für Links" />
           Unser Angebot enthält Links zu externen Websites Dritter, auf deren
           Inhalte wir keinen Einfluss haben. Deshalb können wir für diese
           fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
@@ -70,9 +79,7 @@ export default function LegalNoticePage(): JSX.Element {
           Bekanntwerden von Rechtsverletzungen werden wir derartige Links
           umgehend entfernen.
           <br />
-          <br />
-          <b>Urheberrecht</b>
-          <br />
+          <H6 text="Urheberrecht" />
           Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
           Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
           Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der
