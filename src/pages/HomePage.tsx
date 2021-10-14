@@ -32,10 +32,10 @@ interface CardProps {
 function Card(props: CardProps): JSX.Element {
   return (
     <Box
-      width="300px"
-      height="300px"
+      width="250px"
+      height="250px"
       elevation="small"
-      round="300px"
+      round="250px"
       margin="small"
       align="center"
       justify="center"
@@ -76,7 +76,7 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
         background="brand"
       >
         <Box
-          pad={{ horizontal: "medium", top: "80px" }}
+          pad={{ horizontal: "medium", top: "60px" }}
           gap="small"
           justify="start"
           fill
@@ -84,13 +84,18 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
           <Box height="70px">
             <Image src={props.svg} alt={props.title} fit="contain" />
           </Box>
-          <Text weight="bold" size="large" textAlign="center">
+          <Text weight="bold" size="medium" textAlign="center">
             {props.title}
           </Text>
         </Box>
       </Card>
       <Card onClick={handleClick} onMouseLeave={() => handleHover(false)}>
-        <Text textAlign="center" margin="small" style={{ width: "200px" }}>
+        <Text
+          textAlign="center"
+          margin="small"
+          size="small"
+          style={{ width: "180px" }}
+        >
           {props.text}
         </Text>
       </Card>
@@ -144,7 +149,7 @@ export default function HomePage(): JSX.Element {
         </Section>
       </Box>
       <Section style={{ marginBottom: "20vh", marginTop: "20vh" }}>
-        <Paragraph size="xlarge">
+        <Paragraph size="large">
           I am Marc. My background is Molecular Biotechnology but for the past
           years I have worked as a Software Developer in Pharma R&D. Another
           career jumper? Yes, but with experience. Do you need help realizing
