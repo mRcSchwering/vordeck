@@ -55,7 +55,7 @@ type TilCardProps = {
 
 function TilCard(props: TilCardProps): JSX.Element {
   const tags = props.tags.map((d) => (
-    <Box key={d} background="brand" margin="3px" pad="4px" round="small">
+    <Box key={d} background="brand" margin="3px" pad="4px" round="xsmall">
       <Text size="small">{d}</Text>
     </Box>
   ));

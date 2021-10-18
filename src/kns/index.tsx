@@ -1,5 +1,5 @@
 import React from "react";
-import { AppHeader } from "../components";
+import { AppHeader, AppFooter } from "../components";
 import { Box, Heading, Spinner, Text } from "grommet";
 
 type RegistryEntry = {
@@ -39,6 +39,15 @@ export const registry: RegistryEntry[] = [
     date: "2021-03-12",
     depends: () => import("./EartRectangleArea"),
   },
+  {
+    path: "/kn/s3-cloudfront-cloudflare",
+    title: "Deploy SPA using S3, Cloudfront, Cloudflare",
+    description:
+      "Deploy a single page application using AWS S3, AWS Cloudfront, and Cloudflare for free (almost).",
+    tags: ["Cloudflare", "S3", "Cloudfront"],
+    date: "2021-10-18",
+    depends: () => import("./S3CloudfrontCloudflareDeploy"),
+  },
 ];
 
 type PageProps = {
@@ -66,6 +75,7 @@ function Page(props: PageProps): JSX.Element {
           <Content />
         </React.Suspense>
       </Box>
+      <AppFooter />
     </Box>
   );
 }
