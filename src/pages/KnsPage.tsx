@@ -108,9 +108,9 @@ export default function TilPage(): JSX.Element {
       <AppHeader />
       <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
         <Paragraph>
-          These are things I have learned working on projects reduced to little
-          knowledge nuggets. My future self will probably be looking for these
-          pieces of code but maybe it also helps other people.
+          For my future self and anyone interested: These are little details you
+          usually don't come across in hello-world tutorials. Always be aware of
+          the expiration date.
         </Paragraph>
         <Filter
           search={search}

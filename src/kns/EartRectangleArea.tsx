@@ -54,13 +54,13 @@ export default function Page(): JSX.Element {
 
       <Paragraph>
         I don't know how to properly calculate this area but if you don't need
-        high precision you can use the approximation below. I found it to be ok
-        for areas of below a hundred thousand nautical miles for anything from
-        70°N to 70°S. In the function below <code>lats</code> and{" "}
-        <code>lngs</code> describe the coordinate at the south-western border
-        and the north-eastern border of the rectangle. Basically, the average
-        latitude is used to calculate the average distance between the bounding
-        meridians. Then, the shape is treated as a planar rectangle.
+        high precision you can use the approximation below. Try it out. It gives
+        you reasonable areas for anything from 70°N to 70°S. In the function
+        below <code>lats</code> and <code>lngs</code> describe the coordinate at
+        the south-western border and the north-eastern border of the rectangle.
+        Basically, the average latitude is used to calculate the average
+        distance between the bounding meridians. Then, the shape is treated as a
+        (planar) rectangle.
       </Paragraph>
       <SyntaxHighlighter language="typescript" style={docco}>
         {rect2areaDef}

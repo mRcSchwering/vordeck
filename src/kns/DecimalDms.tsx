@@ -1,5 +1,5 @@
 import React from "react";
-import { Paragraph, Anchor } from "grommet";
+import { Paragraph, Anchor, Heading } from "grommet";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
@@ -76,6 +76,7 @@ export default function Page(): JSX.Element {
       <SyntaxHighlighter language="typescript" style={docco}>
         {toDegreesMinutesAndSecondsDef}
       </SyntaxHighlighter>
+      <Heading level="3">Weird coordinates</Heading>
       <Paragraph>
         Now comes another tricky part. If you work with libraries like{" "}
         {leafletLink} you also need to consider longitudes higher than 180 and

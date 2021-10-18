@@ -57,9 +57,11 @@ function Page(props: PageProps): JSX.Element {
     <Box fill>
       <AppHeader />
       <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
-        <Heading level="2">{props.title}</Heading>
-        <Text color="dark-3">{props.description}</Text>
-        <Text color="dark-3">{props.date} by Marc Schwering</Text>
+        <Box flex align="center" margin="large">
+          <Heading level="2">{props.title}</Heading>
+          <Text color="dark-3">{props.description}</Text>
+          <Text color="dark-3">{props.date} by Marc Schwering</Text>
+        </Box>
         <React.Suspense fallback={<Spinner />}>
           <Content />
         </React.Suspense>

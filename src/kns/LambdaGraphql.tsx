@@ -3,6 +3,14 @@ import { Heading, Paragraph, Anchor } from "grommet";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
+const samLink = (
+  <Anchor
+    href="https://aws.amazon.com/de/serverless/sam/"
+    label="SAM framework (aws.amazon.com)"
+    target="_blank"
+  />
+);
+
 const gqlPlaygroundLink = (
   <Anchor
     href="https://github.com/prisma/graphql-playground"
@@ -13,6 +21,15 @@ const gqlPlaygroundLink = (
 const ariadneLink = (
   <Anchor href="https://ariadnegraphql.org/" label="Ariadne" target="_blank" />
 );
+
+const ariadneIntroLink = (
+  <Anchor
+    href="https://ariadnegraphql.org/docs/intro"
+    label="introduction"
+    target="_blank"
+  />
+);
+
 const uvicornLink = (
   <Anchor href="https://www.uvicorn.org/" label="Uvicorn" target="_blank" />
 );
@@ -71,6 +88,12 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Paragraph>
+        Creating a serverless API using AWS Lambda with API Gateway is pretty
+        neat. There are tools such as the {samLink} with tutorials on how to set
+        up a REST API. However, I found that setting up a GraphQL API like this
+        is usually much better. Here is a little summary:
+      </Paragraph>
+      <Paragraph>
         <b>good</b>
         <ul>
           <li>
@@ -113,8 +136,8 @@ export default function Page(): JSX.Element {
         What you can do on top of that is to add a GET endpoint on{" "}
         <code> / </code>
         as well. This is not strictly necessary for your API to work, but it
-        makes it easier to develop. You can serve {gqlPlaygroundLink}
-        there which gives you a tool play with your API and develop queries.
+        makes it easier to develop. You can serve {gqlPlaygroundLink} there
+        which gives you a tool play with your API and develop queries.
       </Paragraph>
       <Heading level="3">Ariadne for Python GraphQL</Heading>
       <Paragraph>
@@ -123,9 +146,10 @@ export default function Page(): JSX.Element {
         resolvers for it. The resolvers are just normal python functions. The
         code below shows a simple app. Here, <code> queries </code> is a list
         that contains all the resolver functions, and <code> schema_def </code>{" "}
-        is the schema definition from the <code> .graohql </code> file. Both of
+        is the schema definition from the <code> .graphql </code> file. Both of
         them are combined into an ASGI app which you could serve with{" "}
-        {uvicornLink}.
+        {uvicornLink}. For more information on how Ariadne works see their{" "}
+        {ariadneIntroLink}. This is how a simple ASGI app could look like:
       </Paragraph>
       <SyntaxHighlighter language="python" style={docco}>
         {starletteGql}
@@ -135,7 +159,7 @@ export default function Page(): JSX.Element {
         Ariadne also has a <code> graphql_sync </code> function which lets you
         execute a single query synchronously (without the ASGI app). This is
         what I use in the lambda handler of the <code> /graphql </code> POST
-        endpoint.
+        endpoint. Below is an example. Here,{" "}
         <code> Event, Context, form_output </code> are just helpers to make the
         request and response dictionaries a little easier to handle. For details
         see the backend code of one webapp {backendLink}.
@@ -144,18 +168,20 @@ export default function Page(): JSX.Element {
         {lambdaHandler}
       </SyntaxHighlighter>
       <Paragraph>
-        Now you might wonder how inefficient this setup is. On every request,
+        Now you might wonder, how inefficient is this setup? On every request,
         the schema definition and resolvers are initialized before the actual
-        query is handled. That's true. In fact, this setup is about 10x to 100x
-        slower than having the Ariadne app running on a EC2 instance.
-        Nevertheless, it is fast enough for me. I found this setup to have an
-        overhead of roughly 150ms (on top of the actual query execution) in a
-        hot lambda function. A nice side-effect of this setup is, that it is
+        query is handled. In short test sessions testing _hello-world_
+        endpoints, this setup turned out to be about 10x to 100x slower than
+        having the Ariadne app running on a EC2 instance. Nevertheless, it is
+        fast enough for most of my use cases. I found this setup to have an
+        overhead of roughly 100-150ms (on top of the actual query execution) in
+        a hot lambda function. A nice side-effect of this setup is, that it is
         less likely for the Lambda function to be cold, since all requests
-        trigger the same lambda function. <i>E.g.</i>a frontend could trigger a
-        request on initialization, activating a possibly cold Lambda function.
-        Further, user-triggered requests would then be answered by an already
-        hot Lambda function.
+        trigger the same lambda function. <i>I.e.</i> your whole webapp will
+        probably use this endpoint. On top, you could make the frontend trigger
+        a request upon initialization, activating a possibly cold Lambda
+        function. This would ensure that user-triggered requests will always
+        reach a hot lambda function.
       </Paragraph>
     </>
   );

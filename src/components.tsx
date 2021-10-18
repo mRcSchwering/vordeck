@@ -85,6 +85,7 @@ export function AppHeader(): JSX.Element {
     >
       <HrefButton href="/" label="Home" />
       <HrefButton href="/about" label="About" />
+      <HrefButton href="/kns" label="Knowledge Nuggets" />
     </Box>
   );
 }
