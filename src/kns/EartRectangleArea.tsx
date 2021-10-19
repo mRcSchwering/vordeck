@@ -1,7 +1,5 @@
 import React from "react";
-import { Paragraph, Box, Image, Text, Anchor } from "grommet";
-import SyntaxHighlighter from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
+import { P, Link, BlockCode, Img } from "./components";
 
 const rect2areaDef = `
 type Tuple = [number, number];
@@ -17,42 +15,31 @@ export function rect2area(lats: Tuple, lngs: Tuple): string {
   return new Intl.NumberFormat().format(Math.round(u * v));
 }`;
 
-const leafletLink = (
-  <Anchor href="https://leafletjs.com/" label="leafletjs" target="_blank" />
-);
-
-const marcatorLink = (
-  <Anchor
-    href="https://en.wikipedia.org/wiki/Mercator_projection"
-    label="Mercator projection (wikipedia)"
-    target="_blank"
-  />
-);
-
 export default function Page(): JSX.Element {
   return (
     <>
-      <Paragraph>
-        Imagine you have a {leafletLink} app and a user can select a rectangle
-        on it. Top and bottom borders of the rectangle are parallel to the
-        equator, left and right borders are parallel the meridians. Calculating
-        the actual area of this spherical surface is actually quite hard. I'm
-        just guessing you work with a {marcatorLink} as well, so the rectangle
-        is in reality a trapezoid. And actually it's a trapezoid on an
-        ellipsoid.
-      </Paragraph>
-      <Box height="250px" width="medium">
-        <Image
-          style={{ borderRadius: "1vw" }}
-          fit="cover"
-          src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Mercator_projection_Square.JPG/480px-Mercator_projection_Square.JPG"
-        />
-        <Text size="small" color="dark-3" alignSelf="center">
-          Mercator projection (wikipedia)
-        </Text>
-      </Box>
+      <P>
+        Imagine you have a{" "}
+        <Link href="https://leafletjs.com/" label="leafletjs" /> app and a user
+        can select a rectangle on it. Top and bottom borders of the rectangle
+        are parallel to the equator, left and right borders are parallel the
+        meridians. Calculating the actual area of this spherical surface is
+        actually quite hard. I'm just guessing you work with a{" "}
+        <Link
+          href="https://en.wikipedia.org/wiki/Mercator_projection"
+          label="Mercator projection (wikipedia)"
+        />{" "}
+        as well, so the rectangle is in reality a trapezoid. And actually it's a
+        trapezoid on an ellipsoid.
+      </P>
+      <Img
+        height="250px"
+        src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Mercator_projection_Square.JPG/480px-Mercator_projection_Square.JPG"
+      >
+        Mercator projection (wikipedia)
+      </Img>
 
-      <Paragraph>
+      <P>
         I don't know how to properly calculate this area but if you don't need
         high precision you can use the approximation below. Try it out. It gives
         you reasonable areas for anything from 70°N to 70°S. In the function
@@ -61,10 +48,8 @@ export default function Page(): JSX.Element {
         Basically, the average latitude is used to calculate the average
         distance between the bounding meridians. Then, the shape is treated as a
         (planar) rectangle.
-      </Paragraph>
-      <SyntaxHighlighter language="typescript" style={docco}>
-        {rect2areaDef}
-      </SyntaxHighlighter>
+      </P>
+      <BlockCode lang="typescript" code={rect2areaDef} />
     </>
   );
 }

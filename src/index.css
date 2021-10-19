@@ -28,3 +28,7 @@ a {
   color: rgb(90, 90, 90);
   bottom: 25px;
 }
+
+code.inline-code {
+  background-color: #f8f8ff;
+}
