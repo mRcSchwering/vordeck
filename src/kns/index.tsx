@@ -41,12 +41,21 @@ export const registry: RegistryEntry[] = [
   },
   {
     path: "/kn/s3-cloudfront-cloudflare",
-    title: "Deploy SPA using S3, Cloudfront, Cloudflare",
+    title: "Deploy a SPA for free",
     description:
       "Deploy a single page application using AWS S3, AWS Cloudfront, and Cloudflare for free (almost).",
     tags: ["Cloudflare", "AWS S3", "AWS Cloudfront"],
     date: "2021-10-18",
     depends: () => import("./S3CloudfrontCloudflareDeploy"),
+  },
+  {
+    path: "/kn/api-gateway-cloudflare",
+    title: "API Gateway and Cloudflare",
+    description:
+      "Deploy a serverless backend using AWS API Gateway and Cloudflare for free (almost).",
+    tags: ["Cloudflare", "AWS API Gateway"],
+    date: "2021-10-19",
+    depends: () => import("./ApiGatewayCloudflareDeploy"),
   },
 ];
 
