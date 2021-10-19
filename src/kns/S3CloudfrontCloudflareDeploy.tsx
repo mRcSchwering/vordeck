@@ -71,22 +71,6 @@ const allowPublicPolicy = `{
   ]
 }`;
 
-/**
- *
- * there is a way to do this without cloudfront
- * in this case you create the S3 bucket with static website hosting
- * the S3 bucket needs to already have the name of your website (mywebsite.de)
- * then set Cloudflare to flexible and point CNAMEs to the static S3 website
- * to secure it, add an S3 policy to only allow Cloudflare IPs
- * This is a bit easier (no cloudfront, no custom certificate).
- * But if you have one encrypted resource under this domain, you need to use the above method.
- * This is because in cloudflare you can only set SSL/TLS for the whole domain.
- * You can't have flexible for one subdomain and strict for another.
- * So, E.g. if you have a API Gateway was backend with a custom domain name (because you dont want to randomly generated one)
- * you need to use a custom certificate (and cloudfront for the frontend)
- *
- */
-
 export default function Page(): JSX.Element {
   return (
     <>

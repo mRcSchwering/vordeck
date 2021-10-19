@@ -1,3 +1,4 @@
+/* eslint import/no-webpack-loader-syntax: off */
 import React from "react";
 import { AppHeader, AppFooter } from "../components";
 import { Box, Heading, Spinner, Text } from "grommet";
@@ -44,9 +45,12 @@ export const registry: RegistryEntry[] = [
     title: "Deploy SPA using S3, Cloudfront, Cloudflare",
     description:
       "Deploy a single page application using AWS S3, AWS Cloudfront, and Cloudflare for free (almost).",
-    tags: ["Cloudflare", "S3", "Cloudfront"],
+    tags: ["Cloudflare", "AWS S3", "AWS Cloudfront"],
     date: "2021-10-18",
-    depends: () => import("./S3CloudfrontCloudflareDeploy"),
+
+    depends: () =>
+      // @ts-ignore
+      import("!babel-loader!@mdx-js/loader!./S3CloudfrontCloudflareDeploy.mdx"),
   },
 ];
 
