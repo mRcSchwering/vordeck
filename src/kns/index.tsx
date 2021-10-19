@@ -66,6 +66,21 @@ export const registry: RegistryEntry[] = [
     date: "2021-10-19",
     depends: () => import("./VsCodeSetup"),
   },
+  {
+    path: "/kn/optuna-gpu-queue",
+    title: "Parallel HParam Search with 1 GPU per Trial",
+    description:
+      "Using Optuna to search a hyperparameter space in many trials where each trial grabs itself one unused GPU.",
+    tags: [
+      "Optuna",
+      "GPU",
+      "multiprocessing",
+      "hyperparameter",
+      "optimization",
+    ],
+    date: "2021-10-19",
+    depends: () => import("./OptunaGpuQueue"),
+  },
 ];
 
 type PageProps = {
