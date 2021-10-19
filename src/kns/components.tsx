@@ -30,7 +30,7 @@ export function Code(props: { children: React.ReactNode }): JSX.Element {
   return <code className="inline-code">{props.children}</code>;
 }
 
-export function BlockCode(props: { code: string; lang: string }): JSX.Element {
+export function BlockCode(props: { code: string; lang?: string }): JSX.Element {
   return (
     <SyntaxHighlighter language={props.lang} style={docco}>
       {props.code}

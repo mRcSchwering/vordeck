@@ -57,6 +57,15 @@ export const registry: RegistryEntry[] = [
     date: "2021-10-19",
     depends: () => import("./ApiGatewayCloudflareDeploy"),
   },
+  {
+    path: "/kn/vscode-setup",
+    title: "Proper VSCode Setup",
+    description:
+      "VSCode settings and configuration. A dump of settings that I usually need.",
+    tags: ["VSCode", "configuration"],
+    date: "2021-10-19",
+    depends: () => import("./VsCodeSetup"),
+  },
 ];
 
 type PageProps = {
