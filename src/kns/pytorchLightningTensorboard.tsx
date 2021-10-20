@@ -39,11 +39,10 @@ import torch
 import pytorch_lightning as pl
 
 
-class MyModule(pl.LightningModule):
+class MyBaseModule(pl.LightningModule):
     def __init__(self):
         super().__init__()
         self.best_val_loss = 999.9
-        self.prev_epoch_times = {"val": None, "train": None}
 
     def on_train_start(self):
         self.logger.log_hyperparams_metrics(
@@ -63,40 +62,28 @@ class MyModule(pl.LightningModule):
             (torch.stack([d["loss"] for d in steps]).sum() / len(targets)).cpu().numpy()
         )
 
-        log = {
-            f"metrics/{partition}_loss": loss,
-            f"stats/{partition}_epoch_s": self._update_epoch_time(partition),
-        }
+        log = {f"metrics/{partition}_loss": loss}
         if partition == "val":
-            log["metrics/best_val_loss"] = self._update_best_loss(loss)
+            if loss < self.best_val_loss:
+                self.best_val_loss = loss
+            log["metrics/best_val_loss"] = self.best_val_loss
+        
         for name, metric in self.metrics.items():
             log[f"metrics/{partition}_{name}"] = metric(targets, predictions)
 
-        return {f"{partition}_loss": loss, "log": log}
-
-    def _update_best_loss(self, loss: float):
-        if loss < self.best_val_loss:
-            self.best_val_loss = loss
-        return self.best_val_loss
-
-    def _update_epoch_time(self, partition: str):
-        now = time.time()
-        if self.prev_epoch_times[partition] is None:
-            self.prev_epoch_times[partition] = now
-        self.prev_epoch_times[partition] = now - self.prev_epoch_times[partition]
-        return self.prev_epoch_times[partition]`;
+        return {f"{partition}_loss": loss, "log": log}`;
 
 const modulePy = `from torch.utils.data import DataLoader
 import torch.nn.functional as F
 import torch.optim as optim
-from modules import MyModule
+from modules import MyBaseModule
 from dataloading import MyData
 from modeling import MyModel
 
 N_CPUS = 8
 
 
-class MyExperiment(MyModule):
+class MyModule(MyBaseModule):
     def __init__(self, hparams: dict, metrics: dict):
         super().__init__()
         self.hparams = hparams
@@ -141,13 +128,21 @@ class MyExperiment(MyModule):
 
 const trainerPy = `import random
 from pathlib import Path
+from sklearn.metrics import roc_auc_score
+import torch
 import pytorch_lightning as pl
 from pytorch_lightning import Trainer
-from metrics import RocAuc
-from loggers import MyTensorBoardLogger
-from e5_using_logkey.module import MyModule
+from logger import MyTensorBoardLogger
+from module import MyModule
 
 THIS_DIR = Path(__file__).parent.absolute()
+
+
+class RocAuc:
+    def __call__(self, targets: torch.Tensor, predictions: torch.Tensor):
+        return roc_auc_score(
+            targets.cpu().detach().numpy(), predictions[:, 1].cpu().detach().numpy()
+        )
 
 
 def main(hparams: dict, run_i: int):
@@ -186,19 +181,68 @@ if __name__ == "__main__":
 export default function Page(): JSX.Element {
   return (
     <>
-      <Link label="TensorBoard" href="https://www.tensorflow.org/tensorboard" />
-      <Link
-        label="pl.loggers.TensorBoardLogger"
-        href="https://pytorch-lightning.readthedocs.io/en/latest/extensions/generated/pytorch_lightning.loggers.TensorBoardLogger.html#pytorch_lightning.loggers.TensorBoardLogger"
-      />
-      <Link
-        label="PyTorch Lightning introduction"
-        href="https://pytorch-lightning.readthedocs.io/en/latest/starter/new-project.html"
-      />
+      <H4>PyTorch Lightning</H4>
+      <P>
+        I love <Link label="PyTorch" href="https://pytorch.org/" /> for it's
+        simplicity and transparency. I like the fact that it is mainly just
+        python. Tensors and tensor calculations have to be defined in a
+        NumPy-like fashion. But everything else is just python. However,
+        sometimes it is nice to avoid some rather engineery boilerplate code and
+        focus on the actual experiment. This is where{" "}
+        <Link
+          label="PyTorch Lightning"
+          href="https://www.pytorchlightning.ai/"
+        />{" "}
+        comes into play.
+      </P>
+
       <Img
-        src="https://www.tensorflow.org/tensorboard/images/hparams_table.png?raw=1"
-        height="700px"
-        width="800px"
+        height="600px"
+        width="900px"
+        src="https://github.com/PyTorchLightning/pytorch-lightning/raw/master/docs/source/_static/images/general/pl_quick_start_full_compressed.gif"
+      >
+        "Lightning disentangles PyTorch code to decouple the science from the
+        engineering"
+      </Img>
+      <P>
+        PyTorch Lightning basically tries to hide all the boilerplate and
+        engineering code while so that you can focus on the actual data science.
+        Here is a{" "}
+        <Link
+          label="PyTorch Lightning introduction"
+          href="https://pytorch-lightning.readthedocs.io/en/latest/starter/new-project.html"
+        />
+        . Basically you have to define a <Code>Module</Code> class where the
+        actual experiment with data loading, model definition, trainng step,
+        validation step, and so on is defined. Then, you initialize a{" "}
+        <Code>Trainer</Code> and give it your <Code>Model</Code>, as well as
+        training parameters like maximum epochs, early stopping, and so on. This
+        way PyTorch Lightning tries to retain you flexibility while removing
+        boilerplate code.
+      </P>
+      <H4>TensorBoard</H4>
+      <P>
+        Another super useful tool for training neural nets is{" "}
+        <Link
+          label="TensorBoard"
+          href="https://www.tensorflow.org/tensorboard"
+        />
+        . It's a UI tool that you can deploy to monitor your training runs. With
+        it you can track your train/val losses over epochs, custom metrics,
+        gradient and activation distributions, and more. It basically looks for
+        certain logging files in your directory and visualizes them. So if your
+        training runs regularly write these logging files, TensorBoard will
+        recognize them. One feature I particularly like is a{" "}
+        <Link
+          href="https://www.tensorflow.org/tensorboard/hyperparameter_tuning_with_hparams"
+          label="HPARAMS"
+        />{" "}
+        table.
+      </P>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/tensorboard_hparams_table.jpg"
+        height="400px"
+        width="900px"
       >
         Hyperparameter tuning with TensorBoard{" "}
         <Link
@@ -206,10 +250,102 @@ export default function Page(): JSX.Element {
           label="HPARAMS"
         />
       </Img>
-      <BlockCode code={loggerPy} lang="python" />
-      <BlockCode code={mymodulePy} lang="python" />
-      <BlockCode code={modulePy} lang="python" />
-      <BlockCode code={trainerPy} lang="python" />
+      <P>
+        If you do hyperparameter optimization you might start 20 training runs
+        with different sets of hyperparameters to find out which hyperparmeter
+        set performs best. Maybe you use the validation loss for this. So, the
+        set of hyperparameters which achieved the lowest validation loss during
+        training wins. With a parallel coordinates plots you can then also
+        easily see which hyperparameters have a large effect on performance and
+        which not.
+      </P>
+      <H4>PyTorch Lightning and TensorBoard</H4>
+      <P>
+        Generally, these two work together well. There is a logger class
+        <Link
+          label="pl.loggers.TensorBoardLogger"
+          href="https://pytorch-lightning.readthedocs.io/en/latest/extensions/generated/pytorch_lightning.loggers.TensorBoardLogger.html#pytorch_lightning.loggers.TensorBoardLogger"
+        />{" "}
+        which can be used. It is just initialized handed to the <i>Trainer</i>{" "}
+        that's it. TensorBoard conform logs will be written during training. The
+        whole thing works great except for one thing: the <i>HPARAMS</i> feature
+        in TensorBoard. The reason for that is somewhat technical. I
+        investigated the whole thing in{" "}
+        <Link
+          label="this issue"
+          href="https://github.com/PyTorchLightning/pytorch-lightning/issues/1228"
+        />
+        . What follows is just a summary of how you can make it work anyway.
+      </P>
+      <H4>Custom TensorBoardLogger</H4>
+      <P>
+        One part of the issue is that before starting, when no training has been
+        done yet, the PyTorch Lightning <i>Trainer</i> tells the{" "}
+        <i>TensorBoardLogger</i> to do a log. Before the very start when no
+        metrics have been recorded yet, this will lead to some hyperparameters
+        being deleted. The logging method is <Code>log_hyperparams</Code>. The
+        triggering happens somewhere deep in the <i>Trainer</i> orchestration.
+        Basically we want to turn the original <Code>log_hyperparams</Code> off
+        and place its functionality into a new method, say{" "}
+        <Code>log_hyperparams_metrics</Code>. This is the least invasive way of
+        switching it off.
+      </P>
+      <BlockCode code={loggerPy} lang="python" label="logger.py" />
+      <H4>TensorBoard logging during Training</H4>
+      <P>
+        Now we need to tell PyTorch Lightning's <i>Module</i> that it should use
+        this new <Code>log_hyperparams_metrics</Code> for logging. These modules
+        have different hooks for different stages during training. We want it to
+        log <Code>on_train_start</Code>, on <Code>validation_epoch_end</Code>,
+        and on <Code>training_epoch_end</Code>. Below is an example how a{" "}
+        <i>Base Module</i> could look like. The module remembers the best
+        validation loss and updates and logs it after every epoch.
+      </P>
+      <BlockCode code={mymodulePy} lang="python" label="modules.py" />
+      <P>
+        The return value of <Code>validation_epoch_end</Code> and{" "}
+        <Code>training_epoch_end</Code> is
+        <Code>{'{f"{partition}_loss": loss, "log": log}'}</Code>. These keys are
+        defaults and other parts of PyTorch Lightning will recognize and use
+        them.
+        <Code>self.metrics</Code> will be defined on the implemented{" "}
+        <i>Modul</i>. These are metrics which are recorded for both training and
+        validation. TensorBoard reads log keys such as <Code>metrics/loss</Code>{" "}
+        and interprets them. All metrics under <i>metrics/*</i> will go together
+        in one tab.
+      </P>
+      <H4>Implementation</H4>
+      <P>
+        The <i>Module</i> can then be implemented for the actual experiment.
+        This happens like in the{" "}
+        <Link
+          label="PyTorch Lightning tutorials"
+          href="https://pytorch-lightning.readthedocs.io/en/latest/starter/new-project.html"
+        />
+        . Here is an example.
+      </P>
+      <BlockCode code={modulePy} lang="python" label="mymodule.py" />
+      <P>
+        And here is a simple example for the <i>Trainer</i>.<Code>RocAuc</Code>{" "}
+        is some example metric. Of course you can feed it any made up metric you
+        want to. You just have to make sure the <Code>__call__</Code> signature
+        fits.
+      </P>
+      <BlockCode code={trainerPy} lang="python" label="mytrainer.py" />
+      <P>
+        Last comment. I tried around with different PyTorch Lightning setups in{" "}
+        <Link
+          label="this repo"
+          href="https://github.com/mRcSchwering/pytorch_lightning_test/"
+        />
+        . There is also one in combination with{" "}
+        <Link label="Optuna" href="https://optuna.org/" /> and one with{" "}
+        <Link
+          label="RAY[tune]"
+          href="https://docs.ray.io/en/latest/tune/index.html"
+        />
+        .
+      </P>
     </>
   );
 }

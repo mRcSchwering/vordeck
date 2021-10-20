@@ -83,15 +83,17 @@ export const registry: RegistryEntry[] = [
   },
   {
     path: "/kn/pytorch-lightning-tensorboard",
-    title: "Pytorch-lightning with Tensorboard",
+    title: "PyTorch Lightning with TensorBoard",
     description:
-      "How to set up pytorch-lightning with a tensorboard logger that track the performance of different hyperparameter sets.",
+      "How to set up PyTorch Lightning with a TensorBoard logger that tracks the performance of different hyperparameter sets.",
     tags: [
-      "pytorch-lightning",
-      "Tensorboard",
-      "pytorch",
+      "PyTorch Lightning",
+      "TensorBoard",
+      "PyTorch",
       "hyperparameter",
       "optimization",
+      "RAY[tune]",
+      "Optuna",
     ],
     date: "2021-10-20",
     depends: () => import("./pytorchLightningTensorboard"),
