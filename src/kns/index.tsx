@@ -81,6 +81,21 @@ export const registry: RegistryEntry[] = [
     date: "2021-10-19",
     depends: () => import("./OptunaGpuQueue"),
   },
+  {
+    path: "/kn/pytorch-lightning-tensorboard",
+    title: "Pytorch-lightning with Tensorboard",
+    description:
+      "How to set up pytorch-lightning with a tensorboard logger that track the performance of different hyperparameter sets.",
+    tags: [
+      "pytorch-lightning",
+      "Tensorboard",
+      "pytorch",
+      "hyperparameter",
+      "optimization",
+    ],
+    date: "2021-10-20",
+    depends: () => import("./pytorchLightningTensorboard"),
+  },
 ];
 
 type PageProps = {

@@ -32,7 +32,11 @@ export function Code(props: { children: React.ReactNode }): JSX.Element {
 
 export function BlockCode(props: { code: string; lang?: string }): JSX.Element {
   return (
-    <SyntaxHighlighter language={props.lang} style={docco}>
+    <SyntaxHighlighter
+      language={props.lang}
+      style={docco}
+      customStyle={{ maxWidth: 800 }}
+    >
       {props.code}
     </SyntaxHighlighter>
   );
