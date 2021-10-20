@@ -1,4 +1,4 @@
-import { P, H4, Link, Code, BlockCode, Ol } from "./components";
+import { P, Link, Code, BlockCode } from "./components";
 
 const yaml = `AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
