@@ -1,13 +1,5 @@
 import { P, H4, Link, Code, BlockCode, Img } from "./components";
 
-/**
- * pytorch with pytorch lightning intoduction
- * Tensorboard, show that tensorboard feature
- * Problem statement
- * Solution with code
- *
- */
-
 const loggerPy = `from typing import Dict
 from pytorch_lightning.loggers import TensorBoardLogger
 from pytorch_lightning.loggers.base import rank_zero_only
@@ -261,7 +253,7 @@ export default function Page(): JSX.Element {
       </P>
       <H4>PyTorch Lightning and TensorBoard</H4>
       <P>
-        Generally, these two work together well. There is a logger class
+        Generally, these two work together well. There is a logger class{" "}
         <Link
           label="pl.loggers.TensorBoardLogger"
           href="https://pytorch-lightning.readthedocs.io/en/latest/extensions/generated/pytorch_lightning.loggers.TensorBoardLogger.html#pytorch_lightning.loggers.TensorBoardLogger"

@@ -17,8 +17,8 @@ export const registry: RegistryEntry[] = [
     title: "AWS Lambda and GraphQL",
     description:
       "Deploying a GraphQL API using AWS API Gateway and Lambda with python Ariadne. More elegant than a normal REST API.",
-    tags: ["AWS Lambda", "AWS API Gateway", "GraphQL", "python Ariadne"],
-    date: "2020-12-22",
+    tags: ["AWS Lambda", "AWS API Gateway", "GraphQL", "python Ariadne", "SAM"],
+    date: "2020-12-27",
     depends: () => import("./LambdaGraphql"),
   },
   {
@@ -45,7 +45,7 @@ export const registry: RegistryEntry[] = [
     description:
       "Deploy a single page application using AWS S3, AWS Cloudfront, and Cloudflare for free (almost).",
     tags: ["Cloudflare", "AWS S3", "AWS Cloudfront"],
-    date: "2021-10-18",
+    date: "2021-03-07",
     depends: () => import("./S3CloudfrontCloudflareDeploy"),
   },
   {
@@ -54,7 +54,7 @@ export const registry: RegistryEntry[] = [
     description:
       "Deploy a serverless backend using AWS API Gateway and Cloudflare for free (almost).",
     tags: ["Cloudflare", "AWS API Gateway"],
-    date: "2021-10-19",
+    date: "2021-03-28",
     depends: () => import("./ApiGatewayCloudflareDeploy"),
   },
   {
@@ -63,7 +63,7 @@ export const registry: RegistryEntry[] = [
     description:
       "VSCode settings and configuration. A dump of settings that I usually need.",
     tags: ["VSCode", "configuration"],
-    date: "2021-10-19",
+    date: "2021-08-22",
     depends: () => import("./VsCodeSetup"),
   },
   {
@@ -78,7 +78,7 @@ export const registry: RegistryEntry[] = [
       "hyperparameter",
       "optimization",
     ],
-    date: "2021-10-19",
+    date: "2021-07-18",
     depends: () => import("./OptunaGpuQueue"),
   },
   {
@@ -95,8 +95,17 @@ export const registry: RegistryEntry[] = [
       "RAY[tune]",
       "Optuna",
     ],
-    date: "2021-10-20",
+    date: "2021-06-13",
     depends: () => import("./pytorchLightningTensorboard"),
+  },
+  {
+    path: "/kn/serverless-rds-sam",
+    title: "AWS Serverless RDS and SAM",
+    description:
+      "Using AWS RDS serverless with API Gateway & Lambda orchestrated by SAM. Or how to attach a Lambda function to a VPC using SAM.",
+    tags: ["AWS RDS", "AWS Lambda", "AWS API Gateway", "SAM"],
+    date: "2021-08-15",
+    depends: () => import("./SamServerlessRds"),
   },
 ];
 
