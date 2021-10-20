@@ -107,6 +107,15 @@ export const registry: RegistryEntry[] = [
     date: "2021-08-15",
     depends: () => import("./SamServerlessRds"),
   },
+  {
+    path: "/kn/sam-authorizer",
+    title: "AWS API Gateway Authorizer and SAM",
+    description:
+      "How to make a GraphQL API secured by a Cognito authorizer work using SAM.",
+    tags: ["AWS Cognito", "AWS Lambda", "AWS API Gateway", "SAM"],
+    date: "2021-08-29",
+    depends: () => import("./SamAuthorizer"),
+  },
 ];
 
 type PageProps = {
