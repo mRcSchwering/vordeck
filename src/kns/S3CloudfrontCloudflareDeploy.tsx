@@ -34,8 +34,8 @@ export default function Page(): JSX.Element {
         you need a{" "}
         <Link href="https://www.cloudflare.com/" label="Cloudflare" /> (free
         tier) and an <Link href="https://aws.amazon.com/" label="AWS" />{" "}
-        account. In order to use your domain with Cloudflare, you need to
-        transfer it from your registrar to Cloudflare.{" "}
+        account. Your domain needs to be transferred from you current registrar
+        to Cloudflare.{" "}
         <Link
           href="https://developers.cloudflare.com/registrar/get-started/transfer-domain-to-cloudflare"
           label="Here"
@@ -43,7 +43,12 @@ export default function Page(): JSX.Element {
         are some instructions on how to do that. Finally, you need an SPA / some
         static files you want to host as a website.
       </P>
-      <H4>S3 Bucket</H4>
+      <H4>Create SPA S3 Bucket</H4>
+      <P>
+        The website lives in an S3 bucket. Once we connect Cloudfront to it, all
+        files in the S3 bucket will be served as website. A (re)deploy will just
+        be the process of uploading new files to the S3 bucket.
+      </P>
       <Ol>
         <Dli label="Create S3 bucket">
           In the AWS console, open S3 and create a bucket. You could name it{" "}
@@ -66,19 +71,44 @@ export default function Page(): JSX.Element {
         </Dli>
       </Ol>
       <P>
-        With the policy below everyone is able to download all objects within
-        your bucket. Replace the name <Code>mywebsite-frontend</Code> with the
-        name of your S3 bucket.
+        With the policy below everyone has read access to your bucket. Replace
+        the name <Code>mywebsite-frontend</Code> with the name of your S3
+        bucket.
       </P>
       <BlockCode code={allowPublicPolicy} lang="json" />
-      <H4>Certificate Manager</H4>
+      <H4>Create a certificate</H4>
       <P>
-        In AWS console open Certificate Manager and create a{" "}
-        <b>custom AWS-managed certificate</b>. As domains add your domain as
-        CNAME. It's convenient to also add a CNAME for all subdomains.
-        <i>E.g.</i> <Code>mywebsite.de</Code> and <Code>*.mywebsite.de</Code>.
+        We need to create a custom AWS-managed certificate for your domain. In
+        AWS this is done in the AWS certificate manager. This must be done in{" "}
+        <b>us-east-1</b> (
+        <Link
+          label="AWS dev guide"
+          href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html"
+        />
+        ). Even if the rest of your infrastructure is in say <i>eu-central-1</i>
+        . The certificate should be in <i>us-east-1</i>.
       </P>
-      <H4>Cloudfront Distribution</H4>
+      <Ol>
+        <Dli label="Request certificate">
+          In the AWS console open AWS Certificate Manager in <i>us-east-1</i>{" "}
+          and click on <i>Request certificate</i>. Request a public certificate.
+        </Dli>
+        <Dli label="Define domain name">
+          Add your domain name like <Code>mywebsite.de</Code>. Also add a name
+          for subdomains like <Code>*.mywebsite.de</Code>
+        </Dli>
+        <Dli label="Validate certificate">
+          I would recommend DNS validation. AWS will give you a few TXT records
+          that you have to enter in your domain's DNS records on Cloudflare. It
+          can take a few minutes for AWS to recognize the records.
+        </Dli>
+      </Ol>
+      <H4>Create Cloudfront Distribution</H4>
+      <P>
+        Cloudfront is AWS' content delivery network. Here, we use it get TLS/SSL
+        for our S3 bucket SPA. This way we can establish a secure <i>HTTPS</i>{" "}
+        connection to our website.
+      </P>
       <Ol>
         <Dli label="Create a Cloudfront distribution">
           In AWS console open Cloudfront and create a new distribution.
@@ -103,6 +133,11 @@ export default function Page(): JSX.Element {
         </Dli>
       </Ol>
       <H4>Cloudflare Setup</H4>
+      <P>
+        Finally, we need to do some DNS configuration in Cloudflare. Cloudflare
+        should direct <i>mywebsite.de</i> requests to the Cloudfront
+        distribution.
+      </P>
       <Ol>
         <Dli label="Select your domain">
           After your domain was transferred to Cloudflare you should be able to

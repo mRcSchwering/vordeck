@@ -54,10 +54,12 @@ export default function Page(): JSX.Element {
       <P>
         You need a domain. Let's say you own <b>mywebsite.de</b>. Additionally,
         you need a{" "}
-        <Link href="https://www.cloudflare.com/" label="Cloudflare" /> and an{" "}
-        <Link href="https://aws.amazon.com/" label="AWS" /> account. In order to
-        use your domain with Cloudflare, you need to transfer it from your
-        registrar to Cloudflare.{" "}
+        <Link
+          href="https://www.cloudflare.com/"
+          label="Cloudflare (free tier)"
+        />{" "}
+        and an <Link href="https://aws.amazon.com/" label="AWS" /> account. Your
+        domain needs to be transferred from you current registrar to Cloudflare.{" "}
         <Link
           href="https://developers.cloudflare.com/registrar/get-started/transfer-domain-to-cloudflare"
           label="Here"
