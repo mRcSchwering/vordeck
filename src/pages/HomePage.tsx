@@ -32,10 +32,10 @@ interface CardProps {
 function Card(props: CardProps): JSX.Element {
   return (
     <Box
-      width="250px"
-      height="250px"
+      width="260px"
+      height="260px"
       elevation="small"
-      round="250px"
+      round="260px"
       margin="small"
       align="center"
       justify="center"
@@ -76,7 +76,7 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
         background="brand"
       >
         <Box
-          pad={{ horizontal: "medium", top: "60px" }}
+          pad={{ horizontal: "medium", top: "70px" }}
           gap="small"
           justify="start"
           fill
@@ -92,9 +92,9 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
       <Card onClick={handleClick} onMouseLeave={() => handleHover(false)}>
         <Text
           textAlign="center"
-          margin="small"
+          margin={{ horizontal: "10px" }}
           size="small"
-          style={{ width: "180px" }}
+          style={{ width: "200px" }}
         >
           {props.text}
         </Text>
