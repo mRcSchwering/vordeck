@@ -1,4 +1,4 @@
-import { P, H4, Link, Code, BlockCode, Ol, Dli } from "./components";
+import { P, H4, Link, Code, BlockCode, Ol, Dli, Img } from "./components";
 
 const allowPublicPolicy = `{
   "Version": "2012-10-17",
@@ -15,6 +15,11 @@ const allowPublicPolicy = `{
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/cloudflare_cloudfront__lambda_s3.jpg"
+        width="800px"
+        height="150px"
+      />
       <P>
         <Link href="https://aws.amazon.com/free/" label="AWS' free tier" /> and{" "}
         <Link

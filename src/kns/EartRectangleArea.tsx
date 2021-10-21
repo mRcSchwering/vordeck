@@ -1,4 +1,3 @@
-import React from "react";
 import { P, Link, BlockCode, Img } from "./components";
 
 const rect2areaDef = `
@@ -18,6 +17,11 @@ export function rect2area(lats: Tuple, lngs: Tuple): string {
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/homer_math.jpg"
+        width="800px"
+        height="300px"
+      />
       <P>
         Imagine you have a{" "}
         <Link href="https://leafletjs.com/" label="leafletjs" /> app and a user

@@ -1,4 +1,4 @@
-import { P, Link, Code, BlockCode } from "./components";
+import { P, Link, Code, BlockCode, Img } from "./components";
 
 const yaml = `AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
@@ -78,6 +78,11 @@ const handler = `def lambda_handler(*_):
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/gateway_cognito_graphql.jpg"
+        width="400px"
+        height="100px"
+      />
       <P>
         This nugget builds up on the{" "}
         <Link

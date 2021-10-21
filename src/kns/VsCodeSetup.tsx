@@ -1,4 +1,4 @@
-import { P, H4, Link, Code, BlockCode, Ol } from "./components";
+import { P, H4, Link, Code, BlockCode, Ol, Img } from "./components";
 
 const treeOut = `$ tree -L 1
 .
@@ -88,6 +88,11 @@ const jupyterSettings = `{
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/chosen_one_vscode.jpg"
+        width="700px"
+        height="300px"
+      />
       <P>
         This is for all the times I have struggled finding any information on
         why my VSCode doesn't work properly anymore. First things first, I think{" "}

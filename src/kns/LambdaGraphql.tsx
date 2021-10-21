@@ -1,5 +1,5 @@
 import { Box, Text } from "grommet";
-import { P, H4, Link, BlockCode, Code } from "./components";
+import { P, H4, Link, BlockCode, Code, Img } from "./components";
 
 const yamlDef = `Resources:
   GqlPostFunction:
@@ -44,6 +44,11 @@ def lambda_handler(event_dict: dict, _: Context):
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/gateway_lambda_graphql.jpg"
+        width="500px"
+        height="150px"
+      />
       <P>
         Creating a serverless API using AWS Lambda with API Gateway is pretty
         neat. There are tools such as the{" "}

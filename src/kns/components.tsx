@@ -63,7 +63,7 @@ export function Img(props: {
   src: string;
   height: string;
   width?: string;
-  children: React.ReactNode;
+  children?: React.ReactNode;
 }): JSX.Element {
   return (
     <Box height={props.height} width={props.width}>

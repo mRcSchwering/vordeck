@@ -1,4 +1,4 @@
-import { P, Link, Code, BlockCode } from "./components";
+import { P, Link, Code, BlockCode, Img } from "./components";
 
 const yaml = `AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
@@ -40,6 +40,11 @@ Resources:
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/aurora_lambda.jpg"
+        width="300px"
+        height="120px"
+      />
       <P>
         This took me longer than I thought, so I'm writing it down. AWS offers a{" "}
         <Link

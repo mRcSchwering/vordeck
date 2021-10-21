@@ -173,6 +173,11 @@ if __name__ == "__main__":
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/tensorboard_scalars.jpg"
+        width="800px"
+        height="250px"
+      />
       <H4>PyTorch Lightning</H4>
       <P>
         I love <Link label="PyTorch" href="https://pytorch.org/" /> for it's

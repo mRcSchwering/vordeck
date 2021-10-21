@@ -1,4 +1,4 @@
-import { P, H4, Link, BlockCode, Code } from "./components";
+import { P, H4, Link, BlockCode, Code, Img } from "./components";
 
 const toDegreesMinutesAndSecondsDef = `export function toDMS(coordinate: number): string {
   const absolute = Math.abs(coordinate);
@@ -41,6 +41,11 @@ const fixLngDegreesDef = `def fix_lng_degrees(lng: float) -> float:
 export default function Page(): JSX.Element {
   return (
     <>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/dms.jpg"
+        width="300px"
+        height="80px"
+      />
       <P>
         When working with geographic coordinates you will probably be using
         decimal coordinates (<i>e.g.</i> <Code>-23.91, 15.35</Code>). But you
