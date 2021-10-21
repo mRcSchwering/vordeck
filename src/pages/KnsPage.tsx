@@ -11,6 +11,7 @@ import {
   CardFooter,
 } from "grommet";
 import { Search } from "grommet-icons";
+import { useHistory } from "react-router-dom";
 import { AppHeader, AppFooter } from "../components";
 import { registry } from "../kns";
 
@@ -51,6 +52,7 @@ type TilCardProps = {
   tags: string[];
   date: string;
   description: string;
+  onClick: (path: string) => void;
 };
 
 function TilCard(props: TilCardProps): JSX.Element {
@@ -61,12 +63,18 @@ function TilCard(props: TilCardProps): JSX.Element {
   ));
 
   return (
-    <Card width="450px">
-      <CardHeader pad="small" background="light-1" direction="row">
+    <Card
+      width="medium"
+      margin="small"
+      onClick={() => props.onClick(props.path)}
+    >
+      <CardHeader pad="small" background="light-4" direction="row">
         <Text size="small" color="dark-2">
           {props.date}
         </Text>
-        <Anchor href={props.path} label={props.title} />
+        <Text margin={{ horizontal: "xsmall" }} color="brand" weight="bold">
+          {props.title}
+        </Text>
       </CardHeader>
       <CardBody pad="small">
         <Text>{props.description}</Text>
@@ -87,6 +95,7 @@ function TilCard(props: TilCardProps): JSX.Element {
 
 export default function TilPage(): JSX.Element {
   const [search, setSearch] = React.useState("");
+  let history = useHistory();
 
   let data = registry.sort((a, b) =>
     new Date(a.date) < new Date(b.date) ? 1 : -1
@@ -118,15 +127,16 @@ export default function TilPage(): JSX.Element {
         />
         <Box
           flex
-          align="center"
+          direction="row"
+          justify="center"
+          align="start"
           pad="medium"
           overflow={{ horizontal: "hidden" }}
+          wrap={true}
         >
-          <Box gap="medium">
-            {data.map((d) => (
-              <TilCard {...d} key={d.path} />
-            ))}
-          </Box>
+          {data.map((d) => (
+            <TilCard {...d} key={d.path} onClick={(d) => history.push(d)} />
+          ))}
         </Box>
       </Box>
       <AppFooter />
