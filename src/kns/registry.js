@@ -1,4 +1,9 @@
-export default [
+/**
+ * Should stay as .js without any imports
+ * because this is needed by pre-deploy script to generate sitemap
+ */
+
+const registry = [
   {
     path: "/kn/lambda-graphql",
     title: "AWS Lambda and GraphQL",
@@ -104,3 +109,5 @@ export default [
     depends: () => import("./SamAuthorizer"),
   },
 ];
+
+export default registry;

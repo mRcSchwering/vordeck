@@ -6,4 +6,4 @@ const generator = new Generator("https://www.vordeck.de", Router(), {
   changefreq: "monthly",
   priority: 0.8,
 });
-generator.save("./sitemap.xml");
+generator.save("./public/sitemap.xml");
