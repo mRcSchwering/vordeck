@@ -1,10 +1,9 @@
 import React from "react";
-import { Grommet, Spinner } from "grommet";
+import { Spinner } from "grommet";
 import { BrowserRouter as Router, Route } from "react-router-dom";
-import { pages } from "./kns";
-import theme from "./theme.json";
+import registry from "./kns/registry";
 
-function SuspendedHomePage(): JSX.Element {
+function SuspendedHomePage() {
   const Page = React.lazy(() => import("./pages/HomePage"));
   return (
     <React.Suspense fallback={<Spinner />}>
@@ -13,7 +12,7 @@ function SuspendedHomePage(): JSX.Element {
   );
 }
 
-function SuspendedAboutPage(): JSX.Element {
+function SuspendedAboutPage() {
   const Page = React.lazy(() => import("./pages/AboutPage"));
   return (
     <React.Suspense fallback={<Spinner />}>
@@ -22,7 +21,7 @@ function SuspendedAboutPage(): JSX.Element {
   );
 }
 
-function SuspendedKnsPage(): JSX.Element {
+function SuspendedKnsPage() {
   const Page = React.lazy(() => import("./pages/KnsPage"));
   return (
     <React.Suspense fallback={<Spinner />}>
@@ -31,7 +30,7 @@ function SuspendedKnsPage(): JSX.Element {
   );
 }
 
-function SuspendedLegalNoticePage(): JSX.Element {
+function SuspendedLegalNoticePage() {
   const Page = React.lazy(() => import("./pages/LegalNoticePage"));
   return (
     <React.Suspense fallback={<Spinner />}>
@@ -40,7 +39,7 @@ function SuspendedLegalNoticePage(): JSX.Element {
   );
 }
 
-function SuspendedCookiePolicyPage(): JSX.Element {
+function SuspendedCookiePolicyPage() {
   const Page = React.lazy(() => import("./pages/CookiePolicyPage"));
   return (
     <React.Suspense fallback={<Spinner />}>
@@ -49,7 +48,7 @@ function SuspendedCookiePolicyPage(): JSX.Element {
   );
 }
 
-export function MyRouter(): JSX.Element {
+export default function MyRouter() {
   return (
     <Router>
       <Route key="home" path="/" exact component={SuspendedHomePage} />
@@ -57,19 +56,9 @@ export function MyRouter(): JSX.Element {
       <Route key="kns" path="/kns" exact component={SuspendedKnsPage} />
       <Route key="ln" path="/ln" exact component={SuspendedLegalNoticePage} />
       <Route key="cp" path="/cp" exact component={SuspendedCookiePolicyPage} />
-      {pages.map((d) => (
+      {registry.map((d) => (
         <Route key={d.path} path={d.path} exact component={d.page} />
       ))}
     </Router>
   );
 }
-
-function App() {
-  return (
-    <Grommet theme={theme}>
-      <MyRouter />
-    </Grommet>
-  );
-}
-
-export default App;
