@@ -12,7 +12,7 @@ import {
 import { Search } from "grommet-icons";
 import { useHistory } from "react-router-dom";
 import { AppHeader, AppFooter } from "../components";
-import registry from "../kns/registry";
+import { registry } from "../kns";
 
 type FilterProps = {
   search: string;
