@@ -25,6 +25,7 @@ export function HrefButton(props: HrefButtonProps): JSX.Element {
       href={props.href}
       plain
       target={props.href.startsWith("http") ? "_blank" : "_self"}
+      margin={{ horizontal: "xsmall" }}
     />
   );
 }
