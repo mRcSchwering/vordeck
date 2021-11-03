@@ -6,7 +6,7 @@ const toDegreesMinutesAndSecondsDef = `export function toDMS(coordinate: number)
   const mins = (absolute - degrees) * 60;
   const minsFlrd = Math.floor(mins);
   const seconds = Math.floor((mins - minsFlrd) * 60);
-  return degrees + "° " + mins + "' " + seconds + "''";
+  return degrees + "° " + minsFlrd + "' " + seconds + "''";
 }
 
 export function convertLatDMS(lng: number): string {
