@@ -6,19 +6,18 @@ const toDegreesMinutesAndSecondsDef = `export function toDMS(coordinate: number)
   const mins = (absolute - degrees) * 60;
   const minsFlrd = Math.floor(mins);
   const seconds = Math.floor((mins - minsFlrd) * 60);
-  return degrees + "° " + minutes + "' " + seconds + "''";
+  return degrees + "° " + mins + "' " + seconds + "''";
 }
 
 export function convertLatDMS(lng: number): string {
-  const val = toDMS(lat);
-  const card = lat >= 0 ? "N" : "S";
+  const val = toDMS(lng);
+  const card = lng >= 0 ? "N" : "S";
   return val + " " + card;
 }
 
 export function convertLngDMS(lng: number): string {
-  let lngAdj = adjustLng(lng);
-  const val = toDMS(lngAdj);
-  const card = lngAdj >= 0 ? "E" : "W";
+  const val = toDMS(lng);
+  const card = lng >= 0 ? "E" : "W";
   return val + " " + card;
 }`;
 
