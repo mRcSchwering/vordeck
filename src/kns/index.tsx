@@ -116,18 +116,15 @@ export const registry: RegistryEntry[] = [
     date: "2021-08-29",
     depends: () => import("./SamAuthorizer"),
   },
-];
-
-/*
-{
+  {
     path: "/kn/rn-scrollselect",
-    title: "React Native Scroll Select",
-    description: "How to make a scrollable selection input with React Native",
-    tags: ["React Native", "Expo", "Android"],
+    title: "React Native Scroll Selection",
+    description: "How to make a scrollable select input with React Native",
+    tags: ["Typescript", "React Native", "Expo", "Android"],
     date: "2021-11-11",
     depends: () => import("./ReactNativeScrollSelect"),
   },
-  */
+];
 
 type PageProps = {
   title: string;
