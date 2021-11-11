@@ -118,6 +118,17 @@ export const registry: RegistryEntry[] = [
   },
 ];
 
+/*
+{
+    path: "/kn/rn-scrollselect",
+    title: "React Native Scroll Select",
+    description: "How to make a scrollable selection input with React Native",
+    tags: ["React Native", "Expo", "Android"],
+    date: "2021-11-11",
+    depends: () => import("./ReactNativeScrollSelect"),
+  },
+  */
+
 type PageProps = {
   title: string;
   description: string;
