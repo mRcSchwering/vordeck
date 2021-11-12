@@ -135,7 +135,7 @@ export const registry: RegistryEntry[] = [
       "Expo",
       "Android",
       "Background service",
-      "Observer pattern",
+      "subscription",
     ],
     date: "2021-11-12",
     depends: () => import("./BackgroundServiceObserver"),
