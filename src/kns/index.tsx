@@ -124,6 +124,22 @@ export const registry: RegistryEntry[] = [
     date: "2021-11-11",
     depends: () => import("./ReactNativeScrollSelect"),
   },
+  {
+    path: "/kn/bkgservice-observer",
+    title: "Background Service Observer",
+    description:
+      "Using an sub-pub pattern to get background location updates in a React Native app",
+    tags: [
+      "Typescript",
+      "React Native",
+      "Expo",
+      "Android",
+      "Background service",
+      "Observer pattern",
+    ],
+    date: "2021-11-12",
+    depends: () => import("./BackgroundServiceObserver"),
+  },
 ];
 
 type PageProps = {
