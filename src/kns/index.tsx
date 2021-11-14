@@ -26,7 +26,7 @@ export const registry: RegistryEntry[] = [
     title: "Converting between decimal and DMS coordinates",
     description:
       "Converting decimal coordinates to degrees/minutes/seconds with cardinal directions when working with leaflet.",
-    tags: ["Typescript", "longitude", "latitude", "leaflet"],
+    tags: ["Typescript", "Longitude", "Latitude", "leaflet", "Geolocation"],
     date: "2021-03-11",
     depends: () => import("./DecimalDms"),
   },
@@ -35,7 +35,14 @@ export const registry: RegistryEntry[] = [
     title: "Area on earth from geographic coordinates",
     description:
       "Approximate area of a reasonably small rectangle on a Mercator projection given by 2 bounding geographic coordinates.",
-    tags: ["Typescript", "longitude", "latitude", "leaflet", "Mercator"],
+    tags: [
+      "Typescript",
+      "Longitude",
+      "Latitude",
+      "leaflet",
+      "Mercator",
+      "Geolocation",
+    ],
     date: "2021-03-12",
     depends: () => import("./EartRectangleArea"),
   },
@@ -139,6 +146,23 @@ export const registry: RegistryEntry[] = [
     ],
     date: "2021-11-12",
     depends: () => import("./BackgroundServiceObserver"),
+  },
+  {
+    path: "/kn/great-circle-calcs",
+    title: "Great Circle Calculations",
+    description:
+      "Some useful functions for calculating with geolocations, distances, and bearings",
+    tags: [
+      "Typescript",
+      "Geolocation",
+      "Longitude",
+      "Latitude",
+      "Bearing",
+      "Haversine",
+      "Orthodrome",
+    ],
+    date: "2021-11-14",
+    depends: () => import("./GreatCircleCalcs"),
   },
 ];
 
