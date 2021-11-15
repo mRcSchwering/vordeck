@@ -164,6 +164,21 @@ export const registry: RegistryEntry[] = [
     date: "2021-11-14",
     depends: () => import("./GreatCircleCalcs"),
   },
+  {
+    path: "/kn/foreground-loc-service",
+    title: "Forground Location Service",
+    description:
+      "A way to create a background location service on Android without the need for background location access",
+    tags: [
+      "Typescript",
+      "Geolocation",
+      "Android",
+      "ACCESS_BACKGROUND_LOCATION",
+      "Expo",
+    ],
+    date: "2021-11-15",
+    depends: () => import("./ForegroundLocationService"),
+  },
 ];
 
 type PageProps = {
