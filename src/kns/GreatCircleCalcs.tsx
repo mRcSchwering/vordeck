@@ -18,6 +18,12 @@ const code1 = `export function getDistanceFromLatLonInM(
 const code2 = `const R_EARTH = 6371.01; // Earth's average radius in km
 const EPS = 0.000001; // threshold for floating-point equality
 
+function floatNull(d: number): boolean {
+  if (d == 0) return true;
+  if (Math.abs(d) < EPS) return true;
+  return false;
+}
+
 export function deg2rad(deg: number): number {
   return deg * (Math.PI / 180);
 }
