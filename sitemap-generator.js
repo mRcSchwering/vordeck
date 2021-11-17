@@ -8,7 +8,7 @@
  */
 const fs = require("fs");
 
-const outfile = "public/sitemap.xml";
+const outfile = "build/sitemap.xml";
 const url = "https://vordeck.de";
 const files = ["./src/App.tsx", "./src/kns/index.tsx"];
 const date = new Date().toJSON().slice(0, 10);
@@ -47,6 +47,7 @@ let paths = [];
 for (const file of files) {
   paths.push(...findPaths(file));
 }
+console.log(`...writing ${paths.length} paths to sitemap...`);
 
 xml = toXml(paths);
 fs.writeFileSync(outfile, xml.join("\n"));
