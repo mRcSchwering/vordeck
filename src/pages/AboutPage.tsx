@@ -34,6 +34,19 @@ const preferredTechStack = [
 ];
 
 const projects = [
+  <CarouselEntry title="Android App: Ankerwache">
+    <Paragraph>
+      I built an anchor watch app (
+      <Link
+        href="https://github.com/mRcSchwering/ankerwache"
+        label="Ankerwache"
+      />
+      ) for Android using React Native and Expo. This is a tool to help you
+      sleep better while on a boat at anchor. Set your anchor position, define a
+      radius, and start the anchor watch. If your phone is persistently outside
+      the defined radius it will start to ring loudly.
+    </Paragraph>
+  </CarouselEntry>,
   <CarouselEntry title="Pharmacometrics IT Landscape">
     <Paragraph>
       As part of a DevOps team I was building a GxP-validated Pharmacometrics IT
