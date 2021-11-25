@@ -23,7 +23,12 @@ const vscodeSettings = `{
   "terminal.integrated.env.osx": {
       "PYTHONPATH": "\${workspaceFolder}/src"
   },
-  "terminal.integrated.shellArgs.linux": ["-c", "export \`cat vscode.env\`; bash"]
+  "terminal.integrated.profiles.linux": {
+    "mybash": {
+      "path": "sh",
+      "args": ["-c", "export \`cat vscode.env\`; bash"]
+    }
+  }
 }`;
 
 const lintSettings = `{
