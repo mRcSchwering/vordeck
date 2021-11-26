@@ -18,7 +18,7 @@ const vscodeSettings = `{
   "python.formatting.provider": "black",
   "python.linting.mypyEnabled": true,
   "editor.formatOnSave": true,
-  "terminal.integrated.shellArgs.linux": ["-c", "echo hi && export \`cat vscode.env\`; bash"]
+  "terminal.integrated.shellArgs.linux": ["-c", "export \`cat vscode.env\`; bash"]
 }`;
 
 const lintSettings = `{
