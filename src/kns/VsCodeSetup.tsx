@@ -14,21 +14,11 @@ const treeOut = `$ tree -L 1
 └── vscode.env`;
 
 const vscodeSettings = `{
-  "python.pythonPath": "/Users/marc/opt/anaconda3/envs/myenv/bin/python",
+  "python.pythonPath": "/home/marc/anaconda3/envs/findata_data/bin/python",
   "python.envFile": "\${workspaceFolder}/vscode.env",
-  "terminal.integrated.inheritEnv": false,
   "python.formatting.provider": "black",
   "python.linting.mypyEnabled": true,
   "editor.formatOnSave": true,
-  "terminal.integrated.env.osx": {
-      "PYTHONPATH": "\${workspaceFolder}/src"
-  },
-  "terminal.integrated.profiles.linux": {
-    "mybash": {
-      "path": "sh",
-      "args": ["-c", "export \`cat vscode.env\`; bash"]
-    }
-  }
 }`;
 
 const lintSettings = `{
