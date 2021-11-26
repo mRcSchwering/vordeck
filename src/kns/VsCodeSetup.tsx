@@ -14,11 +14,11 @@ const treeOut = `$ tree -L 1
 └── vscode.env`;
 
 const vscodeSettings = `{
-  "python.pythonPath": "/home/marc/anaconda3/envs/findata_data/bin/python",
-  "python.envFile": "\${workspaceFolder}/vscode.env",
+  "python.pythonPath": "/home/marc/anaconda3/envs/myenv/bin/python",
   "python.formatting.provider": "black",
   "python.linting.mypyEnabled": true,
   "editor.formatOnSave": true,
+  "terminal.integrated.shellArgs.linux": ["-c", "echo hi && export \`cat vscode.env\`; bash"]
 }`;
 
 const lintSettings = `{
