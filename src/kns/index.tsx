@@ -179,6 +179,15 @@ export const registry: RegistryEntry[] = [
     date: "2021-11-15",
     depends: () => import("./ForegroundLocationService"),
   },
+  {
+    path: "/kn/retry-timeouts",
+    title: "Retry-Timeout Sessions",
+    description:
+      "Making requests and other functions more robust by adding timeouts, retries, and backoffs.",
+    tags: ["Python", "requests", "timeout", "retry", "backoff"],
+    date: "2021-12-03",
+    depends: () => import("./TimeoutRetry"),
+  },
 ];
 
 type PageProps = {
