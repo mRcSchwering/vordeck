@@ -20,15 +20,6 @@ export default function LegalNoticePage(): JSX.Element {
       <Section>
         <Heading level="2">Impressum</Heading>
         <Paragraph>
-          <H6 text="Daten gemäß Abschnitt 5 TMG" />
-          (vordeck)
-          <br />
-          Marc Schwering
-          <br />
-          Groninger Straße 32
-          <br />
-          13347 Berlin
-          <br />
           <H6 text="Kontakt" />
           E-Mail: info@vordeck.de
           <br />
@@ -38,7 +29,7 @@ export default function LegalNoticePage(): JSX.Element {
           <br />
           <H6 text="Umsatzsteuer-ID" />
           Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-          (kommt noch) <br />
+          (ich warte noch darauf) <br />
           <H6 text="Verbraucher­streit­beilegung/Universal­schlichtungs­stelle" />
           Wir sind nicht bereit oder verpflichtet, an Streitbeile-
           gungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
