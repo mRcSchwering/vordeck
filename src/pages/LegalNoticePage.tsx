@@ -29,8 +29,8 @@ export default function LegalNoticePage(): JSX.Element {
           <br />
           <H6 text="Umsatzsteuer-ID" />
           Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-          (ich warte noch darauf) <br />
-          <H6 text="Verbraucher­streit­beilegung/Universal­schlichtungs­stelle" />
+          DE348811421 <br />
+          <H6 text="Verbraucherstreitbeilegung/Universalschlichtungsstelle" />
           Wir sind nicht bereit oder verpflichtet, an Streitbeile-
           gungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
           <br />
