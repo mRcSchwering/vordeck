@@ -110,7 +110,7 @@ export default function HomePage(): JSX.Element {
     {
       svg: dnaSvg,
       title: "Domain Knowledge",
-      text: "No PowerPoint karaoke about genes and proteins, or the drug discovery and development process. Get to the point on day one.",
+      text: "No PowerPoint karaoke about genes, proteins, drug discovery and development. Get to the point on day one.",
     },
     {
       svg: tachometerSvg,
@@ -120,7 +120,7 @@ export default function HomePage(): JSX.Element {
     {
       svg: cloudSvg,
       title: "Modern Architecture",
-      text: "Serverless over self-hosted wherever possible. Minimize maintenance effort. Reduce costs. Have a product that scales seamlessly.",
+      text: "Serverless over self-hosted where possible. Minimize maintenance. Reduce costs. Have a product that scales seamlessly.",
     },
     {
       svg: cogwheelSvg,

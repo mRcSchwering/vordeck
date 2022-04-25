@@ -34,6 +34,20 @@ const preferredTechStack = [
 ];
 
 const projects = [
+  <CarouselEntry title="CO2 AI: AI for Sustainability">
+    <Paragraph>
+      As part of a team at BCG GAMMA I developed an app to fight climate change.{" "}
+      <Link
+        href="https://www.bcg.com/beyond-consulting/bcg-gamma/co2-ai-for-sustainability"
+        label="CO2 AI"
+      />{" "}
+      is a platform that enables organizations to get their CO2 emissions under
+      control. From the organization's activities CO2 AI can derive the actual
+      current carbon footprint. This footprint can be explored in detail and
+      initiatives to reduce it can be visualized. Finally, these initiatives and
+      their progress can be tracked.
+    </Paragraph>
+  </CarouselEntry>,
   <CarouselEntry title="Android App: Ankerwache">
     <Paragraph>
       I built an anchor watch app (

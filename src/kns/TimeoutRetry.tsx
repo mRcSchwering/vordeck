@@ -1,4 +1,4 @@
-import { P, H4, Link, BlockCode, Code, Img } from "./components";
+import { P, Link, BlockCode, Code, Img } from "./components";
 
 const retrySession = `from typing import List
 import requests

@@ -19,7 +19,7 @@ const vscodeSettings = `{
   "python.linting.mypyEnabled": true,
   "editor.formatOnSave": true,
   "terminal.integrated.shellArgs.linux": ["-c", "export \`cat vscode.env\`; bash"],
-  "jupyter.notebookFileRoot": \"\${workspaceFolder}\",
+  "jupyter.notebookFileRoot": "\${workspaceFolder}",
 }`;
 
 const lintSettings = `{
