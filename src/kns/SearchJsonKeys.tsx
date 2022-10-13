@@ -50,9 +50,9 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Img
-        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/onetime_location_perm.png"
-        width="420px"
-        height="290px"
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/nested_json.png"
+        width="500px"
+        height="250px"
       />
       <P>
         The amount of time I spend looking through JSON objects is ridiculous.
