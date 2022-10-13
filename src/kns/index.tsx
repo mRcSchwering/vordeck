@@ -188,6 +188,15 @@ export const registry: RegistryEntry[] = [
     date: "2021-12-03",
     depends: () => import("./TimeoutRetry"),
   },
+  {
+    path: "/kn/search-json-keys",
+    title: "Search Through JSON Objects",
+    description:
+      "Tools that help searching through deeply nested JSON objects.",
+    tags: ["JSON", "Util", "Python"],
+    date: "2022-10-13",
+    depends: () => import("./SearchJsonKeys"),
+  },
 ];
 
 type PageProps = {
