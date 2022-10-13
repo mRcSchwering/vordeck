@@ -73,16 +73,8 @@ export default function Page(): JSX.Element {
         Note, this is for JSON. You might think you can use this for dicts in
         general... don't. Whereas in JSON object keys are strings and list
         indices are integers, a plain python dict can contain non-string keys,
-        tuples, and any object basically.
-      </P>
-      <P>
-        The user will have the options <i>Deny</i>, <i>Only this time</i>,{" "}
-        <i>While using the app</i>. The task continues to run even with the app
-        in the background and the phone locked.
-      </P>
-      <P>
-        Finally, for all the people as paranoid as me. Here, are some tests for
-        this function.
+        tuples, and any object basically. Finally, for all the people as
+        paranoid as me. Here, are some tests for this function.
       </P>
       <BlockCode code={tests} lang="python" />
     </>
