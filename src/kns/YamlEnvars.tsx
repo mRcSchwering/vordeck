@@ -1,32 +1,44 @@
 import { P, Link, BlockCode, Img } from "./components";
 
-const funDef = `def find_key_in_json(key: str, parsed_json: Union[dict, list]) -> List[Union[str, int]]:
-    key_path: List[Union[str, int]] = []
+const funDef = `#!/usr/bin/env bash
+# generate a .yml file from one of the *tmplt.yml files
+# by replacing the \`\${my_envar}\`s with the respective
+# environment variable values
+# (so you have to export the environment variables first)
+#
+# Export all envars, then use with tmplt yml path:
+#
+#   bash k8s/get_env_yml.sh k8s/stage_values.tmlpt.yaml
+#
+echo "Generating $1..."
+ymlfile="\${1/.tmplt/}"
+cp "$1" "$ymlfile"
 
-    def recursive_find(obj: Any) -> bool:
-        if isinstance(obj, dict):
-            if key in obj:
-                key_path.append(key)
-                return True
-            for k, v in obj.items():
-                key_path.append(k)
-                found = recursive_find(obj=v)
-                if found:
-                    return True
-                del key_path[-1]
-            return False
-        if isinstance(obj, list):
-            for i, d in enumerate(obj):
-                key_path.append(i)
-                found = recursive_find(obj=d)
-                if found:
-                    return True
-                del key_path[-1]
-            return False
-        return False
+# globally capture regex groups
+# Use: global_rematch mystring myregex
+global_rematch() { 
+    local s=$1 regex=$2 
+    while [[ $s =~ $regex ]]; do 
+        echo "\${BASH_REMATCH[1]}"
+        s=\${s#*"\${BASH_REMATCH[1]}"}
+    done
+}
 
-    _ = recursive_find(obj=parsed_json)
-    return key_path`;
+regex='\\$\\{([a-zA-Z0-9_]*)\\}'
+ymlfile_content=$(<"$ymlfile")
+mapfile -t matches < <( global_rematch "$ymlfile_content" "$regex" )
+envars=($(tr ' ' '\\n' <<< "\${matches[@]}" | sort -u | tr '\\n' ' '))
+echo "Found environment variables:"
+printf "%s " "\${envars[@]}"
+echo ""
+
+for envar in "\${envars[@]}"; do
+    enval="\${!envar}"
+    sed -i.bak 's|\${'"$envar"'}|'"$enval"'|g' "$ymlfile"
+done
+
+rm -f "$ymlfile.bak"
+`;
 
 const example = `>>> d = {"a": {"b": [1, {"c": "asd"}]}}
 >>> find_key_in_json("c", d)
@@ -63,7 +75,7 @@ export default function Page(): JSX.Element {
         But usually I am in python and just need one particular key. Thus, I
         have this snippet:
       </P>
-      <BlockCode code={funDef} lang="python" />
+      <BlockCode code={funDef} lang="bash" />
       <P>
         It's a breadth-first-search that returns the first occurence of that key
         as a list of keys and list indices that lead to this key. Like this:

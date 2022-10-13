@@ -197,6 +197,14 @@ export const registry: RegistryEntry[] = [
     date: "2022-10-13",
     depends: () => import("./SearchJsonKeys"),
   },
+  {
+    path: "/kn/yaml-envars",
+    title: "YAML Files with Environment Variable",
+    description: "Script for adding environment variables to YAML files.",
+    tags: ["environments", "deployment", "YAML", "bash"],
+    date: "2022-10-14",
+    depends: () => import("./YamlEnvars"),
+  },
 ];
 
 type PageProps = {
