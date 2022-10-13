@@ -54,8 +54,8 @@ export default function Page(): JSX.Element {
     <>
       <Img
         src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/onetime_location_perm.png"
-        width="300px"
-        height="300px"
+        width="420px"
+        height="290px"
       />
       <P>
         I was developing a{" "}
