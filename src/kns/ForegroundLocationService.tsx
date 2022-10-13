@@ -53,7 +53,7 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Img
-        src="https://developer.android.com/about/versions/11/images/one-time-perm-prompt.svg"
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/onetime_location_perm.png"
         width="300px"
         height="300px"
       />
