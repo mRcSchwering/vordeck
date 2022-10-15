@@ -44,9 +44,9 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Img
-        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/nested_json.png"
+        src="https://s34378.pcdn.co/wp-content/uploads/2021/01/meme_template_yaml.jpg"
         width="500px"
-        height="250px"
+        height="500px"
       />
       <P>
         It has become quite common to declare app configurations in YAML files.
@@ -63,7 +63,7 @@ export default function Page(): JSX.Element {
       <P>
         You write a YAML template (say <Code>config.tmplt.yaml</Code>) as usual
         using the bash syntax for resolving environment variables (
-        <Code>{"${my_envar}"}</Code>). Then you export your environment
+        <Code>{`\${my_envar}`}</Code>). Then you export your environment
         variables and use the above script to generate the proper YAML file (
         <Code>bash get_env_yml.sh config.tmplt.yaml</Code>). In the resulting{" "}
         <Code>config.tmplt.yaml</Code> the environment variables were resolved.
