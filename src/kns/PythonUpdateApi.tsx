@@ -68,18 +68,18 @@ export default function Page(): JSX.Element {
         I noticed that building APIs in a completely frontend-driven way is
         usually a mistake. The resulting API quickly collects tens of
         hyper-specific endpoints and becomes completely unusable to anyone who
-        hasn't studied the intricacies of each endpoint in detail. However the
+        hasn't studied the intricacies of each endpoint in detail. Whatever the
         frontend demands might look like, I always try to keep the API organized
-        by its domain and each endpoint flexible. For each resource there are
-        usually endpoints for querying, creating, and updating. Endpoints for
-        updating a resource are more powerful if they distinguish between{" "}
-        <i>undefined</i> and <i>null</i>. A key will be updated if it is defined
-        in the payload. If it is defined as <i>null</i> the key of the resource
-        will be updated to <i>null</i>. Keys which are not defined in the
-        payload will not be updated on the resoruce. This setup gives the
-        frontend most flexibility. It covers all possible updates, and it
-        doesn't force the frontend to know the whole object to be updated. Here
-        is one way of achieving this in Python.
+        by its domain and each endpoint as flexible as possible. Usually there
+        are query, create, and update endpoints for each resource. Update
+        endpoints are more powerful if they distinguish between <i>undefined</i>{" "}
+        and <i>null</i>. A key of a resource will be updated as defined in the
+        payload. If it is defined as <i>null</i> the key of that resource will
+        be updated to <i>null</i>. Keys which are not defined in the payload
+        will not be updated. This setup gives the frontend most flexibility. It
+        covers all possible update scenarios, and it doesn't force the frontend
+        to know the whole resource object before updating it. Here is one way of
+        achieving this in Python.
       </P>
       <H4>Undefined in Python</H4>
       <P>
