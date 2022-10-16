@@ -205,6 +205,24 @@ export const registry: RegistryEntry[] = [
     date: "2022-10-14",
     depends: () => import("./YamlEnvars"),
   },
+  {
+    path: "/kn/python-update-api",
+    title: "Better Update Endpoints in Python APIs",
+    description:
+      "Building more flexible APIs in python by distinguishing between undefined and null.",
+    tags: [
+      "Ariadne",
+      "pydantic",
+      "REST",
+      "GraphQL",
+      "python",
+      "null",
+      "undefined",
+      "typing",
+    ],
+    date: "2022-10-16",
+    depends: () => import("./PythonUpdateApi"),
+  },
 ];
 
 type PageProps = {
