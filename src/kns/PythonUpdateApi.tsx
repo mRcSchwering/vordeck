@@ -81,7 +81,7 @@ export default function Page(): JSX.Element {
         to know the whole resource object before updating it. Here is one way of
         achieving this in Python.
       </P>
-      <H4>Undefined in Python</H4>
+      <H4>Null vs Undefined in Python</H4>
       <P>
         Languages like JavaScript have properties for <i>null</i> and{" "}
         <i>undefined</i>. In Python however there is just the <Code>None</Code>{" "}
