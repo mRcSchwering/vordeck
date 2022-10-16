@@ -54,10 +54,10 @@ export default function Page(): JSX.Element {
         YAML file which each describe a slightly different environment,{" "}
         <i>e.g.</i> develop and production. This can be nicely solved by using
         environment variables. However, there is no standard for defining
-        environment variables in YAML. Some technologies like docker, gitlab-ci,
-        k8s already have mechanisms for handling environment variables in place.
-        But if you are not using any of these, you need to come up with your own
-        mechanism. Here, is mine:
+        environment variables in YAML. Some technologies like docker and
+        gitlab-ci already have mechanisms for handling environment variables in
+        place. But if you are not using any of these, you need to come up with
+        your own mechanism. Here, is mine:
       </P>
       <BlockCode code={funDef} lang="bash" label="get_env_yml.sh" />
       <P>

@@ -73,7 +73,7 @@ export default function Page(): JSX.Element {
         Note, this is for JSON. You might think you can use this for dicts in
         general... don't. Whereas in JSON object keys are strings and list
         indices are integers, a plain python dict can contain non-string keys,
-        tuples, and any object basically. Finally, for all the people as
+        tuples, and basically any object. Finally, for all the people as
         paranoid as me, here are some tests for this function.
       </P>
       <BlockCode code={tests} lang="python" />
