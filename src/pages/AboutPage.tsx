@@ -34,18 +34,20 @@ const preferredTechStack = [
 ];
 
 const projects = [
-  <CarouselEntry title="CO2 AI: AI for Sustainability">
+  <CarouselEntry title="CO2AI: AI for Sustainability">
     <Paragraph>
-      As part of a team at BCG GAMMA I developed an app to fight climate change.{" "}
+      As part of a team at BCG GAMMA I developed CO2AI, an app to reduce carbon
+      emissions.{" "}
       <Link
         href="https://www.bcg.com/beyond-consulting/bcg-gamma/co2-ai-for-sustainability"
-        label="CO2 AI"
+        label="CO2AI"
       />{" "}
-      is a platform that enables organizations to get their CO2 emissions under
-      control. From the organization's activities CO2 AI can derive the actual
-      current carbon footprint. This footprint can be explored in detail and
-      initiatives to reduce it can be visualized. Finally, these initiatives and
-      their progress can be tracked.
+      is a carbon accounting and simulation platform for companies. It
+      integrates large, curated libraries of emission factors to create accurate
+      and detailed predictions based on simulations and business forecasts. As
+      of now, it is the most widely used and feature-rich carbon accounting app
+      on the market. As a full-stack developer I created several new features,
+      and helped in refactoring, increasing performance, and security.
     </Paragraph>
   </CarouselEntry>,
   <CarouselEntry title="Android App: Ankerwache">
