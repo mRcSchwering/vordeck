@@ -89,77 +89,72 @@ export default function Page(): JSX.Element {
         height="300px"
       />
       <P>
-        When building an API around some resources, there are usually endpoints
-        for querying, creating, and updating. Update endpoints are most powerful
-        if they can distinguish between <i>undefined</i> and <i>null</i> in the
-        payload. Keys for a resource will be updated as defined in the payload.
-        If it is defined as <i>null</i> the key of that resource will be updated
-        to <i>null</i>. Keys which are not defined in the payload will be left
-        untouched. This setup gives the client most flexibility. It covers all
-        possible update scenarios, and it doesn't force the client to know all
-        keys of a resource, only to update one. Here is one way of achieving
-        this in Python.
+        Nowadays, almost all of my apps use some AWS service (usually S3) via{" "}
+        <Link
+          label="boto3"
+          href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html"
+        />
+        . However, for local development and testing I usually do not want to
+        use the real AWS service. This is a short recipe on how to mock AWS
+        services with{" "}
+        <Link label="Moto" href="http://docs.getmoto.org/en/latest/" />. So far
+        I have used Moto in projects mocking S3 and SES and it works great.
+        There are just a few things to take care of to avoid accidentally using
+        a real AWS service.
       </P>
-      <H4>Null vs Undefined in Python</H4>
+      <H4>Test Suite</H4>
       <P>
-        Languages like JavaScript have properties for <i>null</i> and{" "}
-        <i>undefined</i>. In Python however there is just the <Code>None</Code>{" "}
-        object which is supposed to represent a missing value. There is no
-        build-in distinction between <i>undefined</i> and <i>null</i>. So, we
-        need to define an object for that. This usually comes into play in a
-        CRUD module, where we define how a database entry is updated. Here, we
-        would like to make the distinction between whether a value should be
-        updated with a new value, whether it should be updated with an empty
-        value, or whether it should not be updated at all.
+        One obvious place to mock AWS resources is in tests. Below is an example
+        of the configuration file of a{" "}
+        <Link label="pytest" href="https://docs.pytest.org/" /> test suite. Moto
+        has a context manager for every AWS resource to be mocked. In the
+        example below I am mocking S3 with <Code>mock_s3</Code>. I place this
+        context into a fixture for easy usage in tests. Additionally, a function{" "}
+        <Code>fake_s3_setup</Code> is called to create the S3 bucket I am using.
+        Moto doesn't know which buckets you actually have, so it thinks you have
+        no resources at all. This means before accessing a bucket in your tests,
+        you must first create it. This function is also a nice place for adding
+        any test data.
       </P>
       <BlockCode code={conftestCode} lang="python" label="conftest.py" />
       <P>
-        Here we create singleton <Code>_undef</Code> that represents{" "}
-        <i>undefined</i> and for convenience we create a type{" "}
-        <Code>_UndefOr</Code> with a type variable. Now we can use this
-        singleton and this new type to define the arguments of our CRUD
-        functions. The default value of every argument is <Code>_undef</Code>{" "}
-        and the type of it is wrapped in <Code>_UndefOr</Code>. <i>E.g.</i> in
-        the code above if <Code>department</Code> is not supplied, it will be{" "}
-        <Code>_undef</Code>. If it is supplied, it must be either a string or{" "}
-        <Code>None</Code>. Thus, in this one argument we can choose to update{" "}
-        <Code>department</Code> with a new value, update it but set its value to{" "}
-        <Code>None</Code>, or not update it at all.
+        Note, that there are some checks to make sure that the mock is really
+        working. It could be expensive to run thousands of tests, falsely
+        thinking that all S3 requests are being mocked. If the mock is not
+        working properly and boto3 accidentally picks up a real AWS
+        configuration it will make actual requests to AWS (possibly creating and
+        deleting buckets and objects). As recommended by the{" "}
+        <Link
+          label="Moto documentation"
+          href="http://docs.getmoto.org/en/latest/docs/getting_started.html#recommended-usage"
+        />{" "}
+        I am overriding all AWS-related environment variables with nonsense
+        values. This is to ensure that first <i>.aws/credentials</i> is not read
+        by boto3. And second that if mocking fails boto3 will have a nonsense
+        configuration and fail. I also added 2 tests before and after the fake
+        bucket creation to ensure that the mocked account is indeed empty at
+        first.
       </P>
+      <H4>Boto3</H4>
       <P>
-        Note, that this singleton is an instance of class <Code>_Undef</Code>{" "}
-        which is a subclass of <Code>Enum</Code>. This is important because by
-        deriving this class from <Code>Enum</Code> <i>mypy</i> knows that there
-        is only one instance of this class. Thus, performing the check{" "}
-        <Code>if department is not _undef</Code> is enough to make sure that{" "}
-        <Code>department</Code> is defined and must now be either a string or{" "}
-        <Code>None</Code>.
-      </P>
-      <H4>GraphQL and Ariadne</H4>
-      <P>
-        If you build a GraphQL API with something like{" "}
-        <Link label="Ariadne" href="https://ariadnegraphql.org/" /> you can use
-        this CRUD function like below. In the schema all fields except for{" "}
-        <Code>id</Code> are optional. Here, all inputs are combined in one
-        argument called <i>payload</i>. They can be accessed under the same name
-        in python as a dictionary. This dictionary will only contain the keys
-        which were defined in the actual POST payload. Calling the CRUD function
-        with <Code>**payload</Code> will only unpack existing keys of{" "}
-        <i>payload</i>. Thus, all other keys are <i>undefined</i>.
+        The context manager <Code>mock_s3</Code> mocks all s3 resources,
+        clients, and sessions from boto3. So, the actual boto3 code can stay
+        largely the same. There is one important thing to note. Any
+        client/resource/session must be instantiated after the mock context was
+        entered, not before. In my case this is achieved by instantiating these
+        objects within the calling functions. Another option would be to have a
+        singleton that is initialized only after the mock context has been
+        entered.
       </P>
       <BlockCode code={s3Code} lang="python" label="s3.py" />
-      <H4>REST and Pydantic</H4>
+      <H4>Development Environment</H4>
       <P>
-        If you build a REST API with something like{" "}
-        <Link label="fastAPI" href="https://fastapi.tiangolo.com/" /> you will
-        have some additional marshalling in the middle. This is usually done
-        with{" "}
-        <Link label="Pydantic" href="https://pydantic-docs.helpmanual.io/" />.
-        Here, you just need to make sure that you only parse keys which were
-        actually in the POST payload. So, you define you Pydantic payload with
-        all optional keys. Then, when you convert the Pydantic model to a
-        dictionary you need to add <Code>exclude_unset=True</Code>. With that
-        all keys which were not in the POST payload will be <i>undefined</i>.
+        Finally, the same mocking can be done with the development environment.
+        In the example below, I am reusing the S3 mock and setup before starting
+        an ASGI server. In this particular case it is running a GraphQL API with{" "}
+        <Link label="Ariadne" href="https://ariadnegraphql.org/" />. But this
+        could also be any other app. Again, the AWS environment variables are
+        overridden to make sure no real AWS config accidentally is picked up.
       </P>
       <BlockCode code={appCode} lang="python" label="app.py" />
     </>
