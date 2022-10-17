@@ -223,6 +223,24 @@ export const registry: RegistryEntry[] = [
     date: "2022-10-16",
     depends: () => import("./PythonUpdateApi"),
   },
+  {
+    path: "/kn/moto-backend",
+    title: "Mock AWS Services with Moto in Backend",
+    description:
+      "Recipe for mocking AWS S3 and other services via moto in a python backend.",
+    tags: [
+      "boto3",
+      "moto",
+      "REST",
+      "GraphQL",
+      "python",
+      "mocking",
+      "testing",
+      "AWS",
+    ],
+    date: "2022-10-17",
+    depends: () => import("./MotoBackend"),
+  },
 ];
 
 type PageProps = {

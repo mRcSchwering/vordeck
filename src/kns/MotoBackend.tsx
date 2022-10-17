@@ -1,60 +1,84 @@
 import { P, BlockCode, Img, Code, H4, Link } from "./components";
 
-const crudCode = `from enum import Enum
-from typing import Any, Optional, TypeVar, Union
-import db.model as dbmodel
+const conftestCode = `import os
+import pytest
+from moto import mock_s3
+import boto3
+import src.s3 as s3
+from src.config import CONTENT_BUCKET_NAME
 
-class _Undef(Enum):
-    DUMMY = 0
+# ensure boto3 doesnt use .aws credentials
+os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+os.environ["AWS_SECURITY_TOKEN"] = "testing"
+os.environ["AWS_SESSION_TOKEN"] = "testing"
+os.environ["AWS_DEFAULT_REGION"] = "eu-central-1"
 
-_undef = _Undef.DUMMY
-_Tv = TypeVar("_Tv")
-_UndefOr = Union[_Tv, _Undef]
 
-def update_user(
-    user: dbmodel.User,
-    email: _UndefOr[str] = _undef,
-    is_active: _UndefOr[bool] = _undef,
-    department: _UndefOr[Optional[str]] = _undef,
-    **_: Any,
-) -> dbmodel.User:
-    if email is not _undef:
-        user.email = email
-    if is_active is not _undef:
-        user.is_active = is_active
-    if department is not _undef:
-        user.department = department
-    # write object to db...`;
+def fake_s3_setup():
+    assert len(s3.list_buckets()) == 0, "S3 mocking not working"
+    resource = boto3.resource("s3", region_name="us-east-1")
+    resource.create_bucket(Bucket=CONTENT_BUCKET_NAME)
+    bucket_names = [d["Name"] for d in s3.list_buckets()]
+    assert bucket_names == [CONTENT_BUCKET_NAME], "S3 mocking not working"
 
-const gqlCode = `from ariadne import MutationType
-import db.crud as db
+    # optionally add test data...
 
-_mutation = MutationType()
 
-@_mutation.field("updateUser")
-def update_user(*_, **kwargs):
-    payload = kwargs["payload"]
+@pytest.fixture(scope="function")
+def mocked_s3():
+    with mock_s3():
+        fake_s3_setup()
+        yield`;
 
-    user = db.get_user(by_id=payload["id"])
-    if user is None:
-        raise ValueError("User not found")
+const s3Code = `from typing import Any
+import boto3
+from botocore.exceptions import ClientError
+from src.config import CONTENT_BUCKET_NAME, AWS_REGION
 
-    user = db.update_user(user=user, **payload)
-    return user.dict()`;
 
-const restCode = `from fastapi import FastAPI
-import db.crud as db
+def list_buckets() -> list[dict[str, Any]]:
+    client = boto3.client("s3", region_name=AWS_REGION)
+    return client.list_buckets()["Buckets"]
 
-app = FastAPI()
 
-@app.post("/users/{user_id}", response_model=schemas.User)
-def update_user(user_id: int, payload: schemas.UpdateUser):
-    
-    user = db.get_user(by_id=user_id)
-    if user is None:
-        raise ValueError("User not found")
-    
-    return db.update_user(user=user, **payload.dict(exclude_unset=True))`;
+def get_obj(key: str) -> dict[str, Any]:
+    try:
+        resource = boto3.resource("s3", region_name=AWS_REGION)
+        bkt_obj = resource.Bucket(CONTENT_BUCKET_NAME).Object(key).get()
+    except ClientError as err:
+        if err.response["Error"]["Code"] == "NoSuchKey":
+            raise FileNotFoundError from err
+        raise err
+    return bkt_obj["Body"].read()`;
+
+const appCode = `import os
+import uvicorn
+from ariadne.asgi import GraphQL
+from starlette.middleware.cors import CORSMiddleware
+from moto import mock_s3
+from graphql_post import schema
+from tests.conftest import fake_s3_setup
+
+# ensure boto3 doesnt use .aws credentials
+os.environ["AWS_ACCESS_KEY_ID"] = "testing"
+os.environ["AWS_SECRET_ACCESS_KEY"] = "testing"
+os.environ["AWS_SECURITY_TOKEN"] = "testing"
+os.environ["AWS_SESSION_TOKEN"] = "testing"
+os.environ["AWS_DEFAULT_REGION"] = "eu-central-1"
+
+app = CORSMiddleware(
+    GraphQL(schema),
+    allow_origins=["*"],
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
+if __name__ == "__main__":
+    with mock_s3():
+        fake_s3_setup()
+        uvicorn.run("app:app", port=8000)`;
 
 export default function Page(): JSX.Element {
   return (
@@ -88,7 +112,7 @@ export default function Page(): JSX.Element {
         updated with a new value, whether it should be updated with an empty
         value, or whether it should not be updated at all.
       </P>
-      <BlockCode code={crudCode} lang="python" label="crud.py" />
+      <BlockCode code={conftestCode} lang="python" label="conftest.py" />
       <P>
         Here we create singleton <Code>_undef</Code> that represents{" "}
         <i>undefined</i> and for convenience we create a type{" "}
@@ -108,14 +132,14 @@ export default function Page(): JSX.Element {
         deriving this class from <Code>Enum</Code> <i>mypy</i> knows that there
         is only one instance of this class. Thus, performing the check{" "}
         <Code>if department is not _undef</Code> is enough to make sure that{" "}
-        <Code>department</Code> is defined and must therefore be either a string
-        or <Code>None</Code>.
+        <Code>department</Code> is defined and must now be either a string or{" "}
+        <Code>None</Code>.
       </P>
       <H4>GraphQL and Ariadne</H4>
       <P>
         If you build a GraphQL API with something like{" "}
         <Link label="Ariadne" href="https://ariadnegraphql.org/" /> you can use
-        that CRUD function like below. In the schema all fields except for{" "}
+        this CRUD function like below. In the schema all fields except for{" "}
         <Code>id</Code> are optional. Here, all inputs are combined in one
         argument called <i>payload</i>. They can be accessed under the same name
         in python as a dictionary. This dictionary will only contain the keys
@@ -123,7 +147,7 @@ export default function Page(): JSX.Element {
         with <Code>**payload</Code> will only unpack existing keys of{" "}
         <i>payload</i>. Thus, all other keys are <i>undefined</i>.
       </P>
-      <BlockCode code={gqlCode} lang="python" />
+      <BlockCode code={s3Code} lang="python" label="s3.py" />
       <H4>REST and Pydantic</H4>
       <P>
         If you build a REST API with something like{" "}
@@ -137,7 +161,7 @@ export default function Page(): JSX.Element {
         dictionary you need to add <Code>exclude_unset=True</Code>. With that
         all keys which were not in the POST payload will be <i>undefined</i>.
       </P>
-      <BlockCode code={restCode} lang="python" />
+      <BlockCode code={appCode} lang="python" label="app.py" />
     </>
   );
 }
