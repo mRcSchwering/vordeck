@@ -84,9 +84,9 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Img
-        src="https://pbs.twimg.com/media/DusCOfyXcAA9_F7.jpg:large"
-        width="450px"
-        height="150px"
+        src="https://media.defense.gov/2004/Aug/09/2000590026/2000/2000/0/040809-F-0000C-001.JPG"
+        width="500px"
+        height="300px"
       />
       <P>
         When building an API around some resources, there are usually endpoints
