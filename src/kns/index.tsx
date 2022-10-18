@@ -241,6 +241,22 @@ export const registry: RegistryEntry[] = [
     date: "2022-10-17",
     depends: () => import("./MotoBackend"),
   },
+  /*{
+    path: "/kn/logged-in-context",
+    title: "Logged-in Context in React",
+    description:
+      "A plain React logged-in context with login, logout, refreshs, and automatic logouts.",
+    tags: [
+      "Typescript",
+      "React",
+      "context.Provider",
+      "localStorage",
+      "JWT",
+      "hooks",
+    ],
+    date: "2022-10-18",
+    depends: () => import("./LoggedInContext"),
+  },*/
 ];
 
 type PageProps = {
