@@ -1,10 +1,9 @@
-import React, { MouseEventHandler } from "react";
+import React from "react";
 import {
   Box,
   Heading,
   Container,
   Text,
-  Image,
   useMediaQuery,
   Flex,
 } from "@chakra-ui/react";
@@ -16,11 +15,11 @@ import {
   Section,
 } from "../components";
 import ReactCardFlip from "react-card-flip";
-import logoSvg from "../assets/logo.svg";
-import cloudSvg from "../assets/cloud-icon.svg";
-import cogwheelSvg from "../assets/cogwheel-icon.svg";
-import dnaSvg from "../assets/dna-icon.svg";
-import tachometerSvg from "../assets/tachometer-icon.svg";
+import LogoSvg from "../assets/logo.jsx";
+import CloudSvg from "../assets/cloudIcon.jsx";
+import CogwheelSvg from "../assets/cogwheelIcon.jsx";
+import DnaSvg from "../assets/dnaIcon.jsx";
+import TachometerSvg from "../assets/tachometerIcon.jsx";
 
 interface CardProps {
   background?: string;
@@ -52,7 +51,7 @@ function Card(props: CardProps): JSX.Element {
 
 interface ValuePropBoxProps {
   title: string;
-  svg: string;
+  svg: () => JSX.Element;
   text: string;
   isSmall: boolean;
 }
@@ -83,7 +82,7 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
           width="100%"
         >
           <Box height="70px">
-            <Image src={props.svg} alt={props.title} fit="contain" />
+            <props.svg />
           </Box>
           <Text fontWeight="bold" size="medium" textAlign="center">
             {props.title}
@@ -109,22 +108,22 @@ export default function HomePage(): JSX.Element {
 
   const valueProps = [
     {
-      svg: dnaSvg,
+      svg: DnaSvg,
       title: "Domain Knowledge",
       text: "No PowerPoint karaoke about genes, proteins, drug discovery and development. Get to the point on day one.",
     },
     {
-      svg: tachometerSvg,
+      svg: TachometerSvg,
       title: "MVP-driven",
       text: "Deploy a minimum viable product as soon as possible. See production pitfalls immediately. Get users involved early on.",
     },
     {
-      svg: cloudSvg,
+      svg: CloudSvg,
       title: "Modern Architecture",
       text: "Serverless over self-hosted where possible. Minimize maintenance. Reduce costs. Have a product that scales seamlessly.",
     },
     {
-      svg: cogwheelSvg,
+      svg: CogwheelSvg,
       title: "API-first",
       text: "The system will change over time. Focus on well-defined APIs. Build products on top. Integrate legacy systems. Enable data scientists.",
     },
@@ -137,12 +136,9 @@ export default function HomePage(): JSX.Element {
         <Section style={{ marginTop: "20vh" }}>
           <Heading as="h1" color="dark-5">
             vordeck
-            <Image
-              src={logoSvg}
-              alt="logo"
-              width="35px"
-              margin={{ horizontal: "small" }}
-            />
+            <Box width="35px" margin={{ horizontal: "small" }}>
+              <LogoSvg />
+            </Box>
           </Heading>
           <Text textAlign="center" size="large" margin="medium">
             Heaving software for Biotech and Pharma

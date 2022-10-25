@@ -5,8 +5,10 @@ import {
   CSSReset,
   Spinner,
 } from "@chakra-ui/react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { pages } from "./kns";
+
+// TODO: svg usage is super ugly
 
 // TODO: check final import size
 
@@ -60,16 +62,18 @@ function SuspendedCookiePolicyPage(): JSX.Element {
 
 function App() {
   return (
-    <Router>
-      {pages.map((d) => (
-        <Route key={d.path} path={d.path} element={<d.page />} />
-      ))}
-      <Route key="about" path="/about" element={<SuspendedAboutPage />} />
-      <Route key="ln" path="/ln" element={<SuspendedLegalNoticePage />} />
-      <Route key="cp" path="/cp" element={<SuspendedCookiePolicyPage />} />
-      <Route key="kns" path="/kns" element={<SuspendedKnsPage />} />
-      <Route key="home" path="/" element={<SuspendedHomePage />} />
-    </Router>
+    <BrowserRouter>
+      <Routes>
+        {pages.map((d) => (
+          <Route key={d.path} path={d.path} element={<d.page />} />
+        ))}
+        <Route key="about" path="/about" element={<SuspendedAboutPage />} />
+        <Route key="ln" path="/ln" element={<SuspendedLegalNoticePage />} />
+        <Route key="cp" path="/cp" element={<SuspendedCookiePolicyPage />} />
+        <Route key="kns" path="/kns" element={<SuspendedKnsPage />} />
+        <Route key="home" path="/" element={<SuspendedHomePage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

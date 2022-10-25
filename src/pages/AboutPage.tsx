@@ -19,9 +19,9 @@ import {
   githubButton,
   mailButton,
 } from "../components";
-import BiotechSvg from "../assets/biotech.svg";
-import DataSvg from "../assets/data.svg";
-import SoftwareSvg from "../assets/software.svg";
+import BiotechSvg from "../assets/biotech.jsx";
+import DataSvg from "../assets/data.jsx";
+import SoftwareSvg from "../assets/software.jsx";
 
 const preferredTechStack = [
   {
@@ -279,10 +279,14 @@ export default function HomePage(): JSX.Element {
             current state of Biohacking.
           </Container>
         </Box>
-        <Image src={BiotechSvg} alt="biotech icon" width="200px" />
+        <Box width="200px">
+          <BiotechSvg />
+        </Box>
       </PhaseSection>
       <PhaseSection background="#d3e8eb">
-        <Image src={DataSvg} alt="data science icon" width="230px" />
+        <Box width="230px">
+          <DataSvg />
+        </Box>
         <Box margin="small">
           <Heading as="h3" margin={{ vertical: "small" }}>
             Data Science
@@ -312,11 +316,9 @@ export default function HomePage(): JSX.Element {
             with legacy systems as well as build serverless applications on AWS.
           </Container>
         </Box>
-        <Image
-          src={SoftwareSvg}
-          alt="software engineering icon"
-          width="200px"
-        />
+        <Box width="200px">
+          <SoftwareSvg />
+        </Box>
       </PhaseSection>
       <Section style={dottedBackground}>
         <Heading as="h3">Previous Projects</Heading>
