@@ -1,4 +1,4 @@
-import { Box, Text } from "grommet";
+import { Flex, Text, Box } from "@chakra-ui/react";
 import { P, H4, Link, BlockCode, Code, Img } from "./components";
 
 const yamlDef = `Resources:
@@ -60,9 +60,9 @@ export default function Page(): JSX.Element {
         setting up a GraphQL API like this is usually much better. Here is a
         little summary:
       </P>
-      <Box width="large" flex direction="row" justify="center">
+      <Flex width="large" direction="row" justify="center">
         <Box>
-          <Text weight="bold" color="neutral-1">
+          <Text fontWeight="bold" color="neutral-1">
             good
           </Text>
           <ul>
@@ -82,7 +82,7 @@ export default function Page(): JSX.Element {
           </ul>
         </Box>
         <Box>
-          <Text weight="bold" color="neutral-4">
+          <Text fontWeight="bold" color="neutral-4">
             bad
           </Text>
           <ul>
@@ -93,7 +93,7 @@ export default function Page(): JSX.Element {
             </li>
           </ul>
         </Box>
-      </Box>
+      </Flex>
       <H4>Setup Endpoint in template.yaml</H4>
       <P>
         You only need one endpoint to answer POST requests. So, the SAM{" "}

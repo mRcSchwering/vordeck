@@ -1,6 +1,14 @@
 import React from "react";
-import { Heading, Paragraph, Box, Image, Text, List, Anchor } from "grommet";
 import Slider from "react-slick";
+import {
+  Container,
+  Link as Anchor,
+  Box,
+  Flex,
+  Heading,
+  Text,
+  Image,
+} from "@chakra-ui/react";
 import {
   AppHeader,
   AppFooter,
@@ -33,9 +41,23 @@ const preferredTechStack = [
   },
 ];
 
+function TechTable(props: {
+  data: { name: string; text: string }[];
+}): JSX.Element {
+  const rows = props.data.map((d) => {
+    return (
+      <Flex direction="row" justify="space-between">
+        <Text fontWeight="bold">{d.name}</Text>
+        <Text>{d.text}</Text>
+      </Flex>
+    );
+  });
+  return <Flex direction="column">{rows}</Flex>;
+}
+
 const projects = [
   <CarouselEntry title="CO2AI: AI for Sustainability">
-    <Paragraph>
+    <Container>
       As part of a team at BCG GAMMA I developed CO2AI, an app to reduce carbon
       emissions.{" "}
       <Link
@@ -48,10 +70,10 @@ const projects = [
       of now, it is the most widely used and feature-rich carbon accounting app
       on the market. As a full-stack developer I created several new features,
       and helped in refactoring, increasing performance, and security.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="Android App: Ankerwache">
-    <Paragraph>
+    <Container>
       I built an anchor watch app (
       <Link
         href="https://github.com/mRcSchwering/ankerwache"
@@ -61,19 +83,19 @@ const projects = [
       sleep better while on a boat at anchor. Set your anchor position, define a
       radius, and start the anchor watch. If your phone is persistently outside
       the defined radius it will start to ring loudly.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="Pharmacometrics IT Landscape">
-    <Paragraph>
+    <Container>
       As part of a DevOps team I was building a GxP-validated Pharmacometrics IT
       landscape. The old one had to be replaced. Instead of just re-creating all
       its parts we wanted to design it to be more efficient and flexible. Thus,
       apart from developing the landscape itself, a lot of time was put into
       understanding users, business processes, and regulatory requirements.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="prevailing-winds.de">
-    <Paragraph>
+    <Container>
       <Link href="https://prevailing-winds.de" label="prevailing-winds.de" /> is
       a side-project I did on the weekend. It's an interactive pilot chart for
       surfers, pilots, sailors, paragliders, and anyone else interested in wind
@@ -82,10 +104,10 @@ const projects = [
       current winds with short-term predictions. However, I didn't find anything
       with historic wind data passage planning. Over time I added more weather
       and sea state data. Now it is basically a holiday planner.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="Antibody BERT">
-    <Paragraph>
+    <Container>
       In a machine learning research group I created a transformer wich predicts
       antibody characteristics. I re-designed a{" "}
       <Link label="BERT" href="https://arxiv.org/abs/1810.04805" /> - a
@@ -93,19 +115,19 @@ const projects = [
       antibodies. Then, I pre-trained this transformer on hundreds of millions
       of antibodies and fine-tuned it to specific problems in the drug discovery
       and development pipeline.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="Digital Beehive">
-    <Paragraph>
+    <Container>
       <Link href="https://github.com/mRcSchwering/beehive" label="beehive" />{" "}
       was a little side-project I did to help beekeepers. I developed and
       trained a model which can detect the content of a honeycomb photo. E.g. it
       can count the number of cells with larvae, pollen, nectar and so on. You
       can use this to get an accurate estimate of your beehive's health.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="Visual Analytics Platforms">
-    <Paragraph>
+    <Container>
       As part of a DevOps team I developed, deployed, and maintained 2 visual
       analytics platforms: one for genes, one for diseases. These platforms
       combined multiple data sources of each entity and represented them in
@@ -113,10 +135,10 @@ const projects = [
       clear, useful, and scientificly accurate ways of representing the data.
       Another interesting aspect was the harmonization of data and curation of
       ontologies.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="Biotop Community Lab e.V.">
-    <Paragraph>
+    <Container>
       I co-founded and supported{" "}
       <Link
         href="https://www.biotop-heidelberg.de/"
@@ -129,10 +151,10 @@ const projects = [
       environment to the lay public. We believe that biology is technology and
       we want to put citizens in the conditions to make use of it, as any other
       common technology.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
   <CarouselEntry title="CRISPR AnalyzeR">
-    <Paragraph>
+    <Container>
       <Link
         href="https://www.biorxiv.org/content/10.1101/109967v1"
         label="CRISPR AnalyzeR"
@@ -142,12 +164,16 @@ const projects = [
       repetitive. This tool does all the pre-processing, data quality checks,
       and differential distribution calculations. Years later I noticed this
       tool was used by several Pharma companies.
-    </Paragraph>
+    </Container>
   </CarouselEntry>,
 ];
 
 function Link(props: { href: string; label: string }): JSX.Element {
-  return <Anchor href={props.href} label={props.label} target="_blank" />;
+  return (
+    <Anchor href={props.href} isExternal>
+      {props.label}
+    </Anchor>
+  );
 }
 
 interface CarouselEntryProps {
@@ -157,11 +183,11 @@ interface CarouselEntryProps {
 
 function CarouselEntry(props: CarouselEntryProps): JSX.Element {
   return (
-    <Box pad="medium" align="center">
-      <Heading margin="small" level="4">
+    <Box p="medium" alignContent="center">
+      <Heading margin="small" as="h4">
         {props.title}
       </Heading>
-      <Paragraph>{props.children}</Paragraph>
+      <Container>{props.children}</Container>
     </Box>
   );
 }
@@ -174,9 +200,15 @@ interface PhaseSectionProps {
 function PhaseSection(props: PhaseSectionProps): JSX.Element {
   return (
     <Box background={props.background}>
-      <Box direction="row" justify="center" pad="xlarge" gap="xsmall" wrap>
+      <Flex
+        direction="row"
+        justify="center"
+        p="xlarge"
+        gap="xsmall"
+        flexWrap="wrap"
+      >
         {props.children}
-      </Box>
+      </Flex>
     </Box>
   );
 }
@@ -192,8 +224,8 @@ export default function HomePage(): JSX.Element {
       <AppHeader />
       <Section>
         <Text
-          size="large"
-          weight="bold"
+          fontSize="large"
+          fontWeight="bold"
           style={{ maxWidth: "800px" }}
           margin="large"
         >
@@ -201,7 +233,13 @@ export default function HomePage(): JSX.Element {
           the developer team. Domain knowledge is key to creating useful
           software. This is especially true in research and development.
         </Text>
-        <Box direction="row" justify="center" pad="medium" gap="small" wrap>
+        <Flex
+          direction="row"
+          justify="center"
+          p="medium"
+          gap="small"
+          flexWrap="wrap"
+        >
           <Image
             src="avatar.jpg"
             alt="avatar"
@@ -210,28 +248,28 @@ export default function HomePage(): JSX.Element {
             style={{ borderRadius: "50%", margin: "30px" }}
           />
           <Box margin="auto">
-            <Paragraph size="large">
+            <Container size="large">
               Hi, my name is Marc Schwering. My original background is Molecular
               Biotechnology. Throughout my career I have changed from wetlab, to
               data science, to software development. The past years I have built
               software for Bayer's Pharma R&D. Now I am working as a freelancer.
-            </Paragraph>
-            <Box direction="row" gap="small">
+            </Container>
+            <Flex direction="row" gap="small">
               {mailButton}
               {linkedinButton}
               {twitterButton}
               {soButton}
               {githubButton}
-            </Box>
+            </Flex>
           </Box>
-        </Box>
+        </Flex>
       </Section>
       <PhaseSection background="#edfadd">
         <Box margin="small">
-          <Heading level="3" margin={{ vertical: "small" }}>
+          <Heading as="h3" margin={{ vertical: "small" }}>
             Biotechnology
           </Heading>
-          <Paragraph size="large">
+          <Container size="large">
             I studied Molecular Biotechnology in Heidelberg and worked at the
             German Cancer Research Center for a while. My big fascinations were
             synthetic biology and biophysics. I believe that biotechnology can
@@ -239,32 +277,32 @@ export default function HomePage(): JSX.Element {
             officially left the wetlab for now, I never lost interest. I am
             continuously trying to stay up to date with latest methods and the
             current state of Biohacking.
-          </Paragraph>
+          </Container>
         </Box>
         <Image src={BiotechSvg} alt="biotech icon" width="200px" />
       </PhaseSection>
       <PhaseSection background="#d3e8eb">
         <Image src={DataSvg} alt="data science icon" width="230px" />
         <Box margin="small">
-          <Heading level="3" margin={{ vertical: "small" }}>
+          <Heading as="h3" margin={{ vertical: "small" }}>
             Data Science
           </Heading>
-          <Paragraph size="large">
+          <Container size="large">
             Towards to end of my studies I drifted from pure wetlab work to
             bioinformatics. At first I worked with traditional sequencing and
             imaging methods, later with machine learning. My theses were in
             spatial modeling and simulations, and single cell RNA sequencing.
             During my time at Bayer I had the chance to stay up to date by
             having several machine learning research projects on the side.
-          </Paragraph>
+          </Container>
         </Box>
       </PhaseSection>
       <PhaseSection background="#fff1e8">
         <Box margin="small">
-          <Heading level="3" margin={{ vertical: "small" }}>
+          <Heading as="h3" margin={{ vertical: "small" }}>
             Software Engineering
           </Heading>
-          <Paragraph size="large">
+          <Container size="large">
             When I naively joined Bayer as a former bioinformatician I realized
             how complex software development can be. I was fortunate enough to
             be part of an amazing DevOps team of senior developers. We were
@@ -272,7 +310,7 @@ export default function HomePage(): JSX.Element {
             over development and deployment, to maintainance. I helped the
             organization move services into the cloud, and learned how to deal
             with legacy systems as well as build serverless applications on AWS.
-          </Paragraph>
+          </Container>
         </Box>
         <Image
           src={SoftwareSvg}
@@ -281,7 +319,7 @@ export default function HomePage(): JSX.Element {
         />
       </PhaseSection>
       <Section style={dottedBackground}>
-        <Heading level="3">Previous Projects</Heading>
+        <Heading as="h3">Previous Projects</Heading>
         <Box width="large" overflow="hidden">
           <Slider dots={true} arrows={true}>
             {projects}
@@ -289,8 +327,8 @@ export default function HomePage(): JSX.Element {
         </Box>
       </Section>
       <Section>
-        <Heading level="3">Preferred Techstack</Heading>
-        <List primaryKey="name" secondaryKey="text" data={preferredTechStack} />
+        <Heading as="h3">Preferred Techstack</Heading>
+        <TechTable data={preferredTechStack} />
       </Section>
       <AppFooter />
     </>

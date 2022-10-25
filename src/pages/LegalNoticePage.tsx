@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Paragraph, Box, Anchor } from "grommet";
+import { Heading, Container, Box, Link } from "@chakra-ui/react";
 import { AppHeader, Section, AppFooter } from "../components";
 
 function H6(props: { text: string }): JSX.Element {
@@ -18,8 +18,8 @@ export default function LegalNoticePage(): JSX.Element {
     <Box>
       <AppHeader />
       <Section>
-        <Heading level="2">Impressum</Heading>
-        <Paragraph>
+        <Heading as="h2">Impressum</Heading>
+        <Container>
           <H6 text="Kontakt" />
           E-Mail: info@vordeck.de
           <br />
@@ -34,10 +34,12 @@ export default function LegalNoticePage(): JSX.Element {
           Wir sind nicht bereit oder verpflichtet, an Streitbeile-
           gungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
           <br />
-          <Anchor
+          <Link
             href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=DE"
-            label="Online -Streitbeilegungsplattform"
-          />
+            isExternal
+          >
+            Online -Streitbeilegungsplattform
+          </Link>
           <br />
           <H6 text="Haftung für Inhalte" />
           Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte
@@ -86,7 +88,7 @@ export default function LegalNoticePage(): JSX.Element {
           entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen
           werden wir derartige Inhalte umgehend entfernen.
           <br />
-        </Paragraph>
+        </Container>
       </Section>
       <AppFooter />
     </Box>

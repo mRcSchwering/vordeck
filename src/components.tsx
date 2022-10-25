@@ -1,53 +1,68 @@
 import React from "react";
-import { Box, Button } from "grommet";
+import { Icon, Box, Flex, Link } from "@chakra-ui/react";
 import {
-  LinkedinOption,
-  StackOverflow,
-  Twitter,
-  Github,
-  MailOption,
-} from "grommet-icons";
+  FaLinkedinIn,
+  FaEnvelope,
+  FaTwitter,
+  FaGithub,
+  FaStackOverflow,
+} from "react-icons/fa";
 
 export const mailToHref =
   "mailto:info@vordeck.de?subject=Contact%20from%20vordeck.de";
 
-interface HrefButtonProps {
-  icon?: JSX.Element;
-  label?: string;
-  href: string;
-}
-
-export function HrefButton(props: HrefButtonProps): JSX.Element {
+export function LinkIcon(props: { icon: any; href: string }): JSX.Element {
   return (
-    <Button
-      icon={props.icon}
-      label={props.label}
+    <Link
+      fontSize="xl"
+      fontWeight={500}
+      fontFamily="heading"
+      color="brand.black"
+      my={5}
       href={props.href}
-      plain
-      target={props.href.startsWith("http") ? "_blank" : "_self"}
-      margin={{ horizontal: "xsmall" }}
-    />
+      isExternal
+    >
+      {<Icon as={props.icon} />}
+    </Link>
   );
 }
 
-export const mailButton = (
-  <HrefButton icon={<MailOption />} href={mailToHref} />
-);
+export function Redirect(props: {
+  label: string;
+  href: string;
+  isExt?: boolean;
+}): JSX.Element {
+  return (
+    <Link
+      fontSize="xl"
+      fontWeight={500}
+      fontFamily="heading"
+      color="brand.black"
+      my={5}
+      href={props.href}
+      isExternal={props.isExt}
+    >
+      {props.label}
+    </Link>
+  );
+}
+
+export const mailButton = <LinkIcon icon={FaEnvelope} href={mailToHref} />;
 export const linkedinButton = (
-  <HrefButton
-    icon={<LinkedinOption />}
+  <LinkIcon
+    icon={FaLinkedinIn}
     href="https://www.linkedin.com/in/marc-schwering-139914103/"
   />
 );
 export const twitterButton = (
-  <HrefButton icon={<Twitter />} href="https://twitter.com/schweringMarc" />
+  <LinkIcon icon={FaTwitter} href="https://twitter.com/schweringMarc" />
 );
 export const githubButton = (
-  <HrefButton icon={<Github />} href="https://github.com/mRcSchwering" />
+  <LinkIcon icon={FaGithub} href="https://github.com/mRcSchwering" />
 );
 export const soButton = (
-  <HrefButton
-    icon={<StackOverflow />}
+  <LinkIcon
+    icon={FaStackOverflow}
     href="https://stackoverflow.com/users/5562431/mrcschwering"
   />
 );
@@ -60,10 +75,10 @@ interface SectionProps {
 export function Section(props: SectionProps): JSX.Element {
   return (
     <Box
-      pad="medium"
+      p="md"
       gap="small"
       margin="large"
-      align="center"
+      alignContent="center"
       style={props.style}
     >
       {props.children}
@@ -73,53 +88,52 @@ export function Section(props: SectionProps): JSX.Element {
 
 export function AppHeader(): JSX.Element {
   return (
-    <Box
-      tag="header"
+    <Flex
+      as="header"
       direction="row"
       align="center"
       justify="start"
       background="transparent"
-      pad={{ horizontal: "medium", vertical: "xsmall" }}
+      p={{ horizontal: "medium", vertical: "xsmall" }}
       gap="small"
-      elevation="none"
       margin="none"
     >
-      <HrefButton href="/" label="Home" />
-      <HrefButton href="/about" label="About" />
-      <HrefButton href="/kns" label="Knowledge Nuggets" />
-    </Box>
+      <Redirect href="/" label="Home" />
+      <Redirect href="/about" label="About" />
+      <Redirect href="/kns" label="Knowledge Nuggets" />
+    </Flex>
   );
 }
 
 export function AppFooter(): JSX.Element {
   return (
-    <Box
-      tag="footer"
+    <Flex
+      as="footer"
       direction="row"
       align="center"
       justify="between"
       background="transparent"
-      pad="small"
-      elevation="none"
+      p="small"
       width="large"
       margin={{ horizontal: "auto", top: "20vh" }}
-      wrap
+      wrap="wrap"
     >
-      <Box direction="row" gap="small">
-        <HrefButton label="legal notice" href="/ln" />
-        <HrefButton label="cookie policy" href="/cp" />
-        <HrefButton
+      <Flex direction="row" gap="small">
+        <Redirect label="legal notice" href="/ln" />
+        <Redirect label="cookie policy" href="/cp" />
+        <Redirect
           label="page source"
           href="https://github.com/mRcSchwering/vordeck"
+          isExt
         />
-      </Box>
-      <Box direction="row" gap="small">
+      </Flex>
+      <Flex direction="row" gap="small">
         {mailButton}
         {linkedinButton}
         {twitterButton}
         {githubButton}
         {soButton}
-      </Box>
-    </Box>
+      </Flex>
+    </Flex>
   );
 }

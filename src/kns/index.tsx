@@ -1,6 +1,6 @@
 import React from "react";
 import { AppHeader, AppFooter } from "../components";
-import { Box, Heading, Spinner, Text } from "grommet";
+import { Box, Heading, Spinner, Text, Flex } from "@chakra-ui/react";
 
 type RegistryEntry = {
   title: string;
@@ -241,22 +241,6 @@ export const registry: RegistryEntry[] = [
     date: "2022-10-17",
     depends: () => import("./MotoBackend"),
   },
-  /*{
-    path: "/kn/logged-in-context",
-    title: "Logged-in Context in React",
-    description:
-      "A plain React logged-in context with login, logout, refreshs, and automatic logouts.",
-    tags: [
-      "Typescript",
-      "React",
-      "context.Provider",
-      "localStorage",
-      "JWT",
-      "hooks",
-    ],
-    date: "2022-10-18",
-    depends: () => import("./LoggedInContext"),
-  },*/
 ];
 
 type PageProps = {
@@ -272,18 +256,18 @@ type PageProps = {
 function Page(props: PageProps): JSX.Element {
   const Content = React.lazy(props.depends);
   return (
-    <Box fill>
+    <Box width="100%">
       <AppHeader />
-      <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
-        <Box flex align="center" margin="large">
-          <Heading level="2">{props.title}</Heading>
+      <Flex align="center" p="medium" overflow={{ horizontal: "hidden" }}>
+        <Flex align="center" margin="large">
+          <Heading as="h2">{props.title}</Heading>
           <Text color="dark-3">{props.description}</Text>
           <Text color="dark-3">{props.date} by Marc Schwering</Text>
-        </Box>
+        </Flex>
         <React.Suspense fallback={<Spinner />}>
           <Content />
         </React.Suspense>
-      </Box>
+      </Flex>
       <AppFooter />
     </Box>
   );

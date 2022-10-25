@@ -1,18 +1,11 @@
 import React from "react";
-import {
-  Text,
-  Box,
-  TextInput,
-  Paragraph,
-  Card,
-  CardBody,
-  CardHeader,
-  CardFooter,
-} from "grommet";
-import { Search } from "grommet-icons";
-import { useHistory } from "react-router-dom";
+import { Text, Box, Input, Container, Flex, Icon } from "@chakra-ui/react";
+import { FaSearch } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 import { AppHeader, AppFooter } from "../components";
 import { registry } from "../kns";
+
+// TODO: Link instead of useNavigate
 
 type FilterProps = {
   search: string;
@@ -21,27 +14,26 @@ type FilterProps = {
 
 function Filter(props: FilterProps): JSX.Element {
   return (
-    <Box
+    <Flex
       width="medium"
       height="50px"
       direction="row"
       align="center"
-      pad={{ horizontal: "small", vertical: "xsmall" }}
-      round="small"
+      p={{ horizontal: "small", vertical: "xsmall" }}
+      rounded="small"
       border={{
         side: "all",
         color: "border",
       }}
     >
-      <Search color="brand" />
-      <TextInput
-        plain
-        style={{ height: "40px" }}
+      <Icon as={FaSearch} color="brand" />
+      <Input
+        size="md"
         placeholder="filter for keywords..."
         value={props.search}
         onChange={props.onChange}
       />
-    </Box>
+    </Flex>
   );
 }
 
@@ -60,8 +52,8 @@ function TilCard(props: TilCardProps): JSX.Element {
       key={d}
       border={{ color: "brand", size: "small" }}
       margin="3px"
-      pad="4px"
-      round="small"
+      p="4px"
+      rounded="small"
     >
       <Text size="xsmall" color="brand">
         {d}
@@ -70,39 +62,42 @@ function TilCard(props: TilCardProps): JSX.Element {
   ));
 
   return (
-    <Card
+    <Box
       width="medium"
       margin="small"
       onClick={() => props.onClick(props.path)}
+      boxShadow={"2xl"}
+      rounded={"md"}
+      overflow={"hidden"}
     >
-      <CardHeader pad="small" background="light-4" direction="row">
+      <Flex p="small" background="light-4" direction="row">
         <Text size="small" color="dark-2">
           {props.date}
         </Text>
-        <Text margin={{ horizontal: "xsmall" }} color="brand" weight="bold">
+        <Text margin={{ horizontal: "xsmall" }} color="brand" fontWeight="bold">
           {props.title}
         </Text>
-      </CardHeader>
-      <CardBody pad="small">
+      </Flex>
+      <Box p="small">
         <Text>{props.description}</Text>
-      </CardBody>
-      <CardFooter
+      </Box>
+      <Flex
         direction="row"
-        wrap={true}
+        flexWrap="wrap"
         align="start"
         justify="start"
         gap="none"
-        pad="small"
+        p="small"
       >
         {tags}
-      </CardFooter>
-    </Card>
+      </Flex>
+    </Box>
   );
 }
 
 export default function TilPage(): JSX.Element {
   const [search, setSearch] = React.useState("");
-  let history = useHistory();
+  let navigate = useNavigate();
 
   let data = registry.sort((a, b) =>
     new Date(a.date) < new Date(b.date) ? 1 : -1
@@ -120,32 +115,31 @@ export default function TilPage(): JSX.Element {
   }
 
   return (
-    <Box fill>
+    <Box width="100%">
       <AppHeader />
-      <Box flex align="center" pad="medium" overflow={{ horizontal: "hidden" }}>
-        <Paragraph>
+      <Flex align="center" p="medium" overflow={{ horizontal: "hidden" }}>
+        <Container>
           For my future self and anyone interested: These are little details you
           usually don't come across in hello-world tutorials. Always be aware of
           the expiration date.
-        </Paragraph>
+        </Container>
         <Filter
           search={search}
           onChange={(event) => setSearch(event.target.value)}
         />
-        <Box
-          flex
+        <Flex
           direction="row"
           justify="center"
           align="start"
-          pad="medium"
+          p="medium"
           overflow={{ horizontal: "hidden" }}
-          wrap={true}
+          flexWrap="wrap"
         >
           {data.map((d) => (
-            <TilCard {...d} key={d.path} onClick={(d) => history.push(d)} />
+            <TilCard {...d} key={d.path} onClick={(d) => navigate(d)} />
           ))}
-        </Box>
-      </Box>
+        </Flex>
+      </Flex>
       <AppFooter />
     </Box>
   );

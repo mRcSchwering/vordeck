@@ -1,17 +1,18 @@
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import {
   Box,
   Heading,
-  Paragraph,
+  Container,
   Text,
   Image,
-  ResponsiveContext,
-} from "grommet";
+  useMediaQuery,
+  Flex,
+} from "@chakra-ui/react";
 import {
   AppHeader,
   AppFooter,
   mailToHref,
-  HrefButton,
+  Redirect,
   Section,
 } from "../components";
 import ReactCardFlip from "react-card-flip";
@@ -26,7 +27,7 @@ interface CardProps {
   children?: React.ReactNode;
   onMouseEnter?: () => void;
   onMouseLeave?: () => void;
-  onClick?: (e: MouseEvent) => void;
+  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
 }
 
 function Card(props: CardProps): JSX.Element {
@@ -34,11 +35,11 @@ function Card(props: CardProps): JSX.Element {
     <Box
       width="260px"
       height="260px"
-      elevation="small"
-      round="260px"
+      boxShadow="sm"
+      borderRadius="260px"
       margin="small"
-      align="center"
-      justify="center"
+      alignContent="center"
+      justifyContent="center"
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
@@ -53,19 +54,19 @@ interface ValuePropBoxProps {
   title: string;
   svg: string;
   text: string;
-  size: string;
+  isSmall: boolean;
 }
 
 function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
   const [isFlipped, setIsFlipped] = React.useState(false);
 
-  function handleClick(e: MouseEvent) {
+  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
     e.preventDefault();
     setIsFlipped((prev) => !prev);
   }
 
   function handleHover(d: boolean) {
-    props.size === "small" || setIsFlipped(d);
+    props.isSmall || setIsFlipped(d);
   }
 
   return (
@@ -75,19 +76,19 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
         onMouseEnter={() => handleHover(true)}
         background="brand"
       >
-        <Box
-          pad={{ horizontal: "medium", top: "70px" }}
+        <Flex
+          p={{ horizontal: "medium", top: "70px" }}
           gap="small"
           justify="start"
-          fill
+          width="100%"
         >
           <Box height="70px">
             <Image src={props.svg} alt={props.title} fit="contain" />
           </Box>
-          <Text weight="bold" size="medium" textAlign="center">
+          <Text fontWeight="bold" size="medium" textAlign="center">
             {props.title}
           </Text>
-        </Box>
+        </Flex>
       </Card>
       <Card onClick={handleClick} onMouseLeave={() => handleHover(false)}>
         <Text
@@ -104,7 +105,7 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
 }
 
 export default function HomePage(): JSX.Element {
-  const size = React.useContext(ResponsiveContext);
+  const [isSmall] = useMediaQuery("(min-width: 768px)");
 
   const valueProps = [
     {
@@ -134,7 +135,7 @@ export default function HomePage(): JSX.Element {
       <Box background="brand" height="100vh">
         <AppHeader />
         <Section style={{ marginTop: "20vh" }}>
-          <Heading level="1" color="dark-5">
+          <Heading as="h1" color="dark-5">
             vordeck
             <Image
               src={logoSvg}
@@ -149,26 +150,26 @@ export default function HomePage(): JSX.Element {
         </Section>
       </Box>
       <Section style={{ marginBottom: "20vh", marginTop: "20vh" }}>
-        <Paragraph size="large">
+        <Container size="large">
           I am Marc. My background is Molecular Biotechnology but for the past
           years I have worked as a Software Developer in Pharma R&D. Another
           career jumper? Yes, but with experience. Do you need help realizing
           some ideas? Let's have a chat.
-        </Paragraph>
-        <Box
+        </Container>
+        <Flex
           direction="row"
-          wrap
+          flexWrap="wrap"
           justify="center"
           margin={{ vertical: "large" }}
         >
           {valueProps.map((d) => (
-            <ValuePropBox key={d.title} size={size} {...d} />
+            <ValuePropBox key={d.title} isSmall={isSmall} {...d} />
           ))}
-        </Box>
-        <Paragraph textAlign="center" size="large">
-          <HrefButton label="Contact" href={mailToHref} /> |{" "}
-          <HrefButton label="About" href="/about" />
-        </Paragraph>
+        </Flex>
+        <Container textAlign="center" size="large">
+          <Redirect label="Contact" href={mailToHref} /> |{" "}
+          <Redirect label="About" href="/about" />
+        </Container>
       </Section>
       <AppFooter />
     </>

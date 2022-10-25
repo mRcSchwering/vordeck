@@ -1,10 +1,21 @@
 import React from "react";
-import { Paragraph, Anchor, Heading, Box, Image, Text } from "grommet";
+import {
+  Container,
+  Link as Anchor,
+  Heading,
+  Box,
+  Image,
+  Text,
+} from "@chakra-ui/react";
 import SyntaxHighlighter from "react-syntax-highlighter";
 import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 export function Link(props: { href: string; label: string }): JSX.Element {
-  return <Anchor href={props.href} label={props.label} target="_blank" />;
+  return (
+    <Anchor href={props.href} isExternal>
+      {props.label}
+    </Anchor>
+  );
 }
 
 export function Ol(props: { children: React.ReactNode }): JSX.Element {
@@ -37,7 +48,7 @@ export function BlockCode(props: {
 }): JSX.Element {
   return (
     <Box>
-      <Text weight="bold" color="dark-1" style={{ marginBottom: -15 }}>
+      <Text fontWeight="bold" color="dark-1" style={{ marginBottom: -15 }}>
         {props.label}
       </Text>
       <SyntaxHighlighter
@@ -52,11 +63,11 @@ export function BlockCode(props: {
 }
 
 export function H4(props: { children: React.ReactNode }): JSX.Element {
-  return <Heading level="4">{props.children}</Heading>;
+  return <Heading as="h4">{props.children}</Heading>;
 }
 
 export function P(props: { children: React.ReactNode }): JSX.Element {
-  return <Paragraph>{props.children}</Paragraph>;
+  return <Container>{props.children}</Container>;
 }
 
 export function Img(props: {
