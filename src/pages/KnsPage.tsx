@@ -7,13 +7,12 @@ import {
   Icon,
   InputGroup,
   InputLeftElement,
+  LinkBox,
+  LinkOverlay,
 } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 import { AppHeader, AppFooter, P, Section } from "../components";
 import { registry } from "../kns";
-
-// TODO: Link instead of useNavigate
 
 type FilterProps = {
   search: string;
@@ -22,7 +21,7 @@ type FilterProps = {
 
 function Filter(props: FilterProps): JSX.Element {
   return (
-    <InputGroup width="100%" maxWidth="450px">
+    <InputGroup width="100%" maxWidth="md">
       <InputLeftElement
         pointerEvents="none"
         children={<Icon as={FaSearch} color="primary" mt="5px" />}
@@ -45,61 +44,63 @@ type TilCardProps = {
   tags: string[];
   date: string;
   description: string;
-  onClick: (path: string) => void;
 };
 
 function TilCard(props: TilCardProps): JSX.Element {
   const tags = props.tags.map((d) => (
     <Box
       key={d}
-      border={{ color: "brand", size: "small" }}
+      borderWidth="2px"
+      borderColor="primary"
       margin="3px"
-      p="4px"
-      rounded="small"
+      p="0.2rem"
+      rounded="lg"
     >
-      <Text size="xsmall" color="brand">
+      <Text fontSize="md" color="primary">
         {d}
       </Text>
     </Box>
   ));
 
   return (
-    <Box
-      width="sm"
-      margin="1rem"
-      onClick={() => props.onClick(props.path)}
-      boxShadow={"2xl"}
-      rounded={"md"}
-      overflow={"hidden"}
+    <LinkBox
+      as="article"
+      width="md"
+      margin={["0.5rem", "1rem"]}
+      boxShadow="md"
+      rounded="lg"
+      borderWidth="1px"
+      borderColor="gray.100"
     >
-      <Flex p="small" background="light-4" direction="row">
-        <Text size="small" color="dark-2">
-          {props.date}
-        </Text>
-        <Text margin={{ horizontal: "xsmall" }} color="brand" fontWeight="bold">
+      <Flex p="0.5rem" background="gray.100" direction="row" gap="1rem">
+        <LinkOverlay href={props.path}>
+          <Text fontSize="md" color="gray.700" width="6rem">
+            {props.date}
+          </Text>
+        </LinkOverlay>
+        <Text fontSize="lg" color="primary" fontWeight="bold">
           {props.title}
         </Text>
       </Flex>
-      <Box p="small">
-        <Text>{props.description}</Text>
+      <Box p="0.5rem">
+        <Text fontSize="lg">{props.description}</Text>
       </Box>
       <Flex
         direction="row"
-        flexWrap="wrap"
+        wrap="wrap"
         align="start"
         justify="start"
         gap="none"
-        p="small"
+        p="0.5rem"
       >
         {tags}
       </Flex>
-    </Box>
+    </LinkBox>
   );
 }
 
 export default function TilPage(): JSX.Element {
   const [search, setSearch] = React.useState("");
-  let navigate = useNavigate();
 
   let data = registry.sort((a, b) =>
     new Date(a.date) < new Date(b.date) ? 1 : -1
@@ -141,7 +142,7 @@ export default function TilPage(): JSX.Element {
           wrap="wrap"
         >
           {data.map((d) => (
-            <TilCard {...d} key={d.path} onClick={(d) => navigate(d)} />
+            <TilCard {...d} key={d.path} />
           ))}
         </Flex>
       </Flex>
