@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon, Box, Flex, Link } from "@chakra-ui/react";
+import { Icon, Container, Flex, Link, Box } from "@chakra-ui/react";
 import {
   FaLinkedinIn,
   FaEnvelope,
@@ -15,12 +15,11 @@ export function LinkIcon(props: { icon: any; href: string }): JSX.Element {
   return (
     <Link
       fontSize="xl"
-      fontWeight={500}
-      fontFamily="heading"
-      color="brand.black"
-      my={5}
+      color="gray.600"
+      mx={2}
       href={props.href}
       isExternal
+      pt="4px"
     >
       {<Icon as={props.icon} />}
     </Link>
@@ -35,10 +34,9 @@ export function Redirect(props: {
   return (
     <Link
       fontSize="xl"
-      fontWeight={500}
-      fontFamily="heading"
-      color="brand.black"
-      my={5}
+      color="gray.700"
+      mx={2}
+      style={{ textDecoration: "none" }}
       href={props.href}
       isExternal={props.isExt}
     >
@@ -74,14 +72,10 @@ interface SectionProps {
 
 export function Section(props: SectionProps): JSX.Element {
   return (
-    <Box
-      p="md"
-      gap="small"
-      margin="large"
-      alignContent="center"
-      style={props.style}
-    >
-      {props.children}
+    <Box mt={10} style={props.style}>
+      <Container maxWidth="xl" centerContent>
+        {props.children}
+      </Container>
     </Box>
   );
 }
@@ -94,9 +88,10 @@ export function AppHeader(): JSX.Element {
       align="center"
       justify="start"
       background="transparent"
-      p={{ horizontal: "medium", vertical: "xsmall" }}
-      gap="small"
-      margin="none"
+      px={7}
+      py={1}
+      gap={4}
+      margin={0}
     >
       <Redirect href="/" label="Home" />
       <Redirect href="/about" label="About" />
@@ -110,15 +105,17 @@ export function AppFooter(): JSX.Element {
     <Flex
       as="footer"
       direction="row"
-      align="center"
-      justify="between"
+      justify="space-between"
       background="transparent"
-      p="small"
-      width="large"
-      margin={{ horizontal: "auto", top: "20vh" }}
+      maxWidth="100%"
+      width={800}
+      p={3}
+      alignItems="center"
+      mt="10vh"
+      mx="auto"
       wrap="wrap"
     >
-      <Flex direction="row" gap="small">
+      <Flex direction="row" gap={2}>
         <Redirect label="legal notice" href="/ln" />
         <Redirect label="cookie policy" href="/cp" />
         <Redirect
@@ -127,7 +124,7 @@ export function AppFooter(): JSX.Element {
           isExt
         />
       </Flex>
-      <Flex direction="row" gap="small">
+      <Flex direction="row" gap={2}>
         {mailButton}
         {linkedinButton}
         {twitterButton}
