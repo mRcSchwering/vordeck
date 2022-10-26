@@ -1,5 +1,13 @@
 import React from "react";
-import { Icon, Container, Flex, Link, Box } from "@chakra-ui/react";
+import {
+  Icon,
+  Container,
+  Flex,
+  Link,
+  Box,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import {
   FaLinkedinIn,
   FaEnvelope,
@@ -10,6 +18,38 @@ import {
 
 export const mailToHref =
   "mailto:info@vordeck.de?subject=Contact%20from%20vordeck.de";
+
+export function H2(props: { text: string }): JSX.Element {
+  return (
+    <Heading as="h2" my={["1rem", "2rem"]} color="gray.700" fontSize="3rem">
+      {props.text}
+    </Heading>
+  );
+}
+
+export function H6(props: { text: string }): JSX.Element {
+  return (
+    <Heading as="h6" my={["0.5rem", "1rem"]} color="gray.700" fontSize="1rem">
+      {props.text}
+    </Heading>
+  );
+}
+
+export function P(props: { children: React.ReactNode }): JSX.Element {
+  return (
+    <Text as="p" my="1rem" fontSize="1.3rem">
+      {props.children}
+    </Text>
+  );
+}
+
+export function A(props: { href: string; label: string }): JSX.Element {
+  return (
+    <Link href={props.href} isExternal color="secondary" fontWeight="semibold">
+      {props.label}
+    </Link>
+  );
+}
 
 export function LinkIcon(props: { icon: any; href: string }): JSX.Element {
   return (
