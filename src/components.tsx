@@ -7,6 +7,7 @@ import {
   Box,
   Heading,
   Text,
+  Image,
 } from "@chakra-ui/react";
 import {
   FaLinkedinIn,
@@ -15,13 +16,27 @@ import {
   FaGithub,
   FaStackOverflow,
 } from "react-icons/fa";
+import SyntaxHighlighter from "react-syntax-highlighter";
+import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 export const mailToHref =
   "mailto:info@vordeck.de?subject=Contact%20from%20vordeck.de";
 
+// TODO: add header/footer to page contaienr with align center around content?
+
+export function PageContainer(props: {
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <Flex direction="column" minHeight="100vh">
+      {props.children}
+    </Flex>
+  );
+}
+
 export function H2(props: { text: string }): JSX.Element {
   return (
-    <Heading as="h2" my={["1rem", "2rem"]} color="gray.700" fontSize="3rem">
+    <Heading as="h2" my={["1rem", "2rem"]} color="gray.700" fontSize="5xl">
       {props.text}
     </Heading>
   );
@@ -29,17 +44,24 @@ export function H2(props: { text: string }): JSX.Element {
 
 export function H6(props: { text: string }): JSX.Element {
   return (
-    <Heading as="h6" my={["0.5rem", "1rem"]} color="gray.700" fontSize="1rem">
+    <Heading as="h6" my={["0.5rem", "1rem"]} color="gray.700" fontSize="md">
       {props.text}
     </Heading>
   );
 }
 
-export function P(props: { children: React.ReactNode }): JSX.Element {
+export function P(props: {
+  children: React.ReactNode;
+  style?: React.CSSProperties;
+}): JSX.Element {
   return (
-    <Text as="p" my="1rem" fontSize="1.3rem">
-      {props.children}
-    </Text>
+    <Box my={["1rem", "2rem"]} style={props.style}>
+      <Container maxWidth="xl" centerContent>
+        <Text as="p" my="1rem">
+          {props.children}
+        </Text>
+      </Container>
+    </Box>
   );
 }
 
@@ -48,6 +70,48 @@ export function A(props: { href: string; label: string }): JSX.Element {
     <Link href={props.href} isExternal color="secondary" fontWeight="semibold">
       {props.label}
     </Link>
+  );
+}
+
+export function Img(props: {
+  src: string;
+  height?: string;
+  width?: string;
+}): JSX.Element {
+  return (
+    <Image
+      style={{ borderRadius: "1vw" }}
+      align="center"
+      fit="cover"
+      src={props.src}
+      height={props.height}
+      width={props.width}
+    />
+  );
+}
+
+export function Code(props: { children: React.ReactNode }): JSX.Element {
+  return <code className="inline-code">{props.children}</code>;
+}
+
+export function BlockCode(props: {
+  code: string;
+  lang?: string;
+  label?: string;
+}): JSX.Element {
+  return (
+    <Box>
+      <Text fontWeight="bold" color="gray.600" m={["0.25rem", "0.5rem"]}>
+        {props.label}
+      </Text>
+      <SyntaxHighlighter
+        language={props.lang}
+        style={docco}
+        customStyle={{ maxWidth: 800 }}
+      >
+        {props.code}
+      </SyntaxHighlighter>
+    </Box>
   );
 }
 
@@ -104,21 +168,6 @@ export const soButton = (
     href="https://stackoverflow.com/users/5562431/mrcschwering"
   />
 );
-
-interface SectionProps {
-  children?: React.ReactNode;
-  style?: React.CSSProperties;
-}
-
-export function Section(props: SectionProps): JSX.Element {
-  return (
-    <Box mt={["1rem", "2rem"]} style={props.style}>
-      <Container maxWidth="xl" centerContent>
-        {props.children}
-      </Container>
-    </Box>
-  );
-}
 
 export function AppHeader(): JSX.Element {
   return (

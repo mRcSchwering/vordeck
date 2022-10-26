@@ -1,6 +1,6 @@
 import React from "react";
-import { AppHeader, AppFooter } from "../components";
-import { Box, Heading, Spinner, Text, Flex } from "@chakra-ui/react";
+import { Spinner, Text, Flex } from "@chakra-ui/react";
+import { AppHeader, AppFooter, PageContainer, H2 } from "../components";
 
 type RegistryEntry = {
   title: string;
@@ -256,20 +256,20 @@ type PageProps = {
 function Page(props: PageProps): JSX.Element {
   const Content = React.lazy(props.depends);
   return (
-    <Box width="100%">
+    <PageContainer>
       <AppHeader />
-      <Flex align="center" p="medium" overflow={{ horizontal: "hidden" }}>
-        <Flex align="center" margin="large">
-          <Heading as="h2">{props.title}</Heading>
-          <Text color="dark-3">{props.description}</Text>
-          <Text color="dark-3">{props.date} by Marc Schwering</Text>
+      <Flex direction="column" align="center" p="2rem">
+        <Flex direction="column" align="center" m="4rem">
+          <H2 text={props.title} />
+          <Text color="gray.500">{props.description}</Text>
+          <Text color="gray.500">{props.date} by Marc Schwering</Text>
         </Flex>
         <React.Suspense fallback={<Spinner />}>
           <Content />
         </React.Suspense>
       </Flex>
       <AppFooter />
-    </Box>
+    </PageContainer>
   );
 }
 

@@ -12,7 +12,6 @@ import {
 import {
   AppHeader,
   AppFooter,
-  Section,
   linkedinButton,
   twitterButton,
   soButton,
@@ -222,7 +221,7 @@ export default function HomePage(): JSX.Element {
   return (
     <>
       <AppHeader />
-      <Section>
+      <Box>
         <Text
           fontSize="large"
           fontWeight="bold"
@@ -263,7 +262,7 @@ export default function HomePage(): JSX.Element {
             </Flex>
           </Box>
         </Flex>
-      </Section>
+      </Box>
       <PhaseSection background="#edfadd">
         <Box margin="small">
           <Heading as="h3" margin={{ vertical: "small" }}>
@@ -320,18 +319,18 @@ export default function HomePage(): JSX.Element {
           <SoftwareSvg />
         </Box>
       </PhaseSection>
-      <Section style={dottedBackground}>
+      <Box style={dottedBackground}>
         <Heading as="h3">Previous Projects</Heading>
         <Box width="large" overflow="hidden">
           <Slider dots={true} arrows={true}>
             {projects}
           </Slider>
         </Box>
-      </Section>
-      <Section>
+      </Box>
+      <Box>
         <Heading as="h3">Preferred Techstack</Heading>
         <TechTable data={preferredTechStack} />
-      </Section>
+      </Box>
       <AppFooter />
     </>
   );

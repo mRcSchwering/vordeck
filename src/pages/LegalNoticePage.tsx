@@ -1,11 +1,19 @@
 import { Flex } from "@chakra-ui/react";
-import { AppHeader, Section, AppFooter, H2, H6, P, A } from "../components";
+import {
+  AppHeader,
+  AppFooter,
+  PageContainer,
+  H2,
+  H6,
+  P,
+  A,
+} from "../components";
 
 export default function LegalNoticePage(): JSX.Element {
   return (
-    <Flex direction="column" minHeight="100vh">
+    <PageContainer>
       <AppHeader />
-      <Section>
+      <Flex direction="column" align="center">
         <H2 text="Impressum" />
         <P>
           <H6 text="Kontakt" />
@@ -75,8 +83,8 @@ export default function LegalNoticePage(): JSX.Element {
           werden wir derartige Inhalte umgehend entfernen.
           <br />
         </P>
-      </Section>
+      </Flex>
       <AppFooter />
-    </Flex>
+    </PageContainer>
   );
 }

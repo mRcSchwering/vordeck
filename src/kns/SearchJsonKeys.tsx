@@ -1,4 +1,4 @@
-import { P, Link, BlockCode, Img } from "./components";
+import { P, A, Img, BlockCode } from "../components";
 
 const funDef = `def find_key_in_json(key: str, parsed_json: Union[dict, list]) -> List[Union[str, int]]:
     key_path: List[Union[str, int]] = []
@@ -59,9 +59,9 @@ export default function Page(): JSX.Element {
         Usually it's some API response with different levels of metadata, nodes,
         cursors and so on... and actually you just need one value. First of all,
         there are gists like{" "}
-        <Link label="this one" href="https://gist.github.com/iwek/3924925" />.
-        But usually I am in python and just need one particular key. Thus, I
-        have this snippet:
+        <A label="this one" href="https://gist.github.com/iwek/3924925" />. But
+        usually I am in python and just need one particular key. Thus, I have
+        this snippet:
       </P>
       <BlockCode code={funDef} lang="python" />
       <P>

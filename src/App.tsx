@@ -25,6 +25,13 @@ function ThemedApp(): JSX.Element {
       primary: "#0c555d",
       secondary: "#c77933",
     },
+    components: {
+      Text: {
+        baseStyle: {
+          fontSize: "xl",
+        },
+      },
+    },
   });
 
   return (

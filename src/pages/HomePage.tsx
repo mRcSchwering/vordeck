@@ -7,13 +7,7 @@ import {
   useMediaQuery,
   Flex,
 } from "@chakra-ui/react";
-import {
-  AppHeader,
-  AppFooter,
-  mailToHref,
-  Redirect,
-  Section,
-} from "../components";
+import { AppHeader, AppFooter, mailToHref, Redirect } from "../components";
 import ReactCardFlip from "react-card-flip";
 import LogoSvg from "../assets/logo.jsx";
 import CloudSvg from "../assets/cloudIcon.jsx";
@@ -133,7 +127,7 @@ export default function HomePage(): JSX.Element {
     <>
       <Box background="brand" height="100vh">
         <AppHeader />
-        <Section style={{ marginTop: "20vh" }}>
+        <Box style={{ marginTop: "20vh" }}>
           <Heading as="h1" color="dark-5">
             vordeck
             <Box width="35px" margin={{ horizontal: "small" }}>
@@ -143,9 +137,9 @@ export default function HomePage(): JSX.Element {
           <Text textAlign="center" size="large" margin="medium">
             Heaving software for Biotech and Pharma
           </Text>
-        </Section>
+        </Box>
       </Box>
-      <Section style={{ marginBottom: "20vh", marginTop: "20vh" }}>
+      <Box style={{ marginBottom: "20vh", marginTop: "20vh" }}>
         <Container size="large">
           I am Marc. My background is Molecular Biotechnology but for the past
           years I have worked as a Software Developer in Pharma R&D. Another
@@ -166,7 +160,7 @@ export default function HomePage(): JSX.Element {
           <Redirect label="Contact" href={mailToHref} /> |{" "}
           <Redirect label="About" href="/about" />
         </Container>
-      </Section>
+      </Box>
       <AppFooter />
     </>
   );

@@ -11,7 +11,7 @@ import {
   LinkOverlay,
 } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
-import { AppHeader, AppFooter, P, Section } from "../components";
+import { AppHeader, AppFooter, P, PageContainer } from "../components";
 import { registry } from "../kns";
 
 type FilterProps = {
@@ -118,16 +118,14 @@ export default function TilPage(): JSX.Element {
   }
 
   return (
-    <Flex direction="column" minHeight="100vh">
+    <PageContainer>
       <AppHeader />
       <Flex direction="column" align="center" m={["1rem", "2rem"]} mb="4rem">
-        <Section>
-          <P>
-            For my future self and anyone interested: These are little details
-            you usually don't come across in hello-world tutorials. Always be
-            aware of the expiration date.
-          </P>
-        </Section>
+        <P>
+          For my future self and anyone interested: These are little details you
+          usually don't come across in hello-world tutorials. Always be aware of
+          the expiration date.
+        </P>
         <Filter
           search={search}
           onChange={(event) => setSearch(event.target.value)}
@@ -147,6 +145,6 @@ export default function TilPage(): JSX.Element {
         </Flex>
       </Flex>
       <AppFooter />
-    </Flex>
+    </PageContainer>
   );
 }
