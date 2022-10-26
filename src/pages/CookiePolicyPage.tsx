@@ -2,13 +2,23 @@ import { Heading, Text, Flex, Link } from "@chakra-ui/react";
 import { AppHeader, Section, AppFooter } from "../components";
 
 const gdprLink = (
-  <Link href="https://gdpr.eu/cookies/" isExternal>
+  <Link
+    href="https://gdpr.eu/cookies/"
+    isExternal
+    color="secondary"
+    fontWeight="semibold"
+  >
     gdpr.eu
   </Link>
 );
 
 const cloudflareLink = (
-  <Link href="https://www.cloudflare.com/" isExternal>
+  <Link
+    href="https://www.cloudflare.com/"
+    isExternal
+    color="secondary"
+    fontWeight="semibold"
+  >
     Cloudflare
   </Link>
 );
@@ -17,7 +27,7 @@ export default function CookiePolicyPage(): JSX.Element {
   return (
     <Flex direction="column" style={{ height: "100vh" }}>
       <AppHeader />
-      <Section style={{ marginBottom: "30vh" }}>
+      <Section>
         <Heading as="h2" my={10} color="gray.700" fontSize={50}>
           Cookie Policy
         </Heading>

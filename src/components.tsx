@@ -16,7 +16,7 @@ export function LinkIcon(props: { icon: any; href: string }): JSX.Element {
     <Link
       fontSize="xl"
       color="gray.600"
-      mx={2}
+      mx={["0.25rem", "0.5rem"]}
       href={props.href}
       isExternal
       pt="4px"
@@ -35,7 +35,7 @@ export function Redirect(props: {
     <Link
       fontSize="xl"
       color="gray.700"
-      mx={2}
+      mx={["0.25rem", "0.5rem"]}
       style={{ textDecoration: "none" }}
       href={props.href}
       isExternal={props.isExt}
@@ -72,7 +72,7 @@ interface SectionProps {
 
 export function Section(props: SectionProps): JSX.Element {
   return (
-    <Box mt={10} style={props.style}>
+    <Box mt={["1rem", "2rem"]} style={props.style}>
       <Container maxWidth="xl" centerContent>
         {props.children}
       </Container>
@@ -88,9 +88,9 @@ export function AppHeader(): JSX.Element {
       align="center"
       justify="start"
       background="transparent"
-      px={7}
-      py={1}
-      gap={4}
+      px={["1rem", "2rem"]}
+      py={["0.12rem", "0.25rem"]}
+      gap={["0.5rem", "1rem"]}
       margin={0}
     >
       <Redirect href="/" label="Home" />
@@ -108,10 +108,10 @@ export function AppFooter(): JSX.Element {
       justify="space-between"
       background="transparent"
       maxWidth="100%"
-      width={800}
-      p={3}
+      width="50rem"
+      p={["0.12rem", "0.25rem"]}
       alignItems="center"
-      mt="10vh"
+      mt="auto"
       mx="auto"
       wrap="wrap"
     >
