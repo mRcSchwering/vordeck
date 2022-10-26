@@ -1,8 +1,16 @@
 import React from "react";
-import { Text, Box, Input, Container, Flex, Icon } from "@chakra-ui/react";
+import {
+  Text,
+  Box,
+  Input,
+  Flex,
+  Icon,
+  InputGroup,
+  InputLeftElement,
+} from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import { AppHeader, AppFooter } from "../components";
+import { AppHeader, AppFooter, P, Section } from "../components";
 import { registry } from "../kns";
 
 // TODO: Link instead of useNavigate
@@ -14,26 +22,20 @@ type FilterProps = {
 
 function Filter(props: FilterProps): JSX.Element {
   return (
-    <Flex
-      width="medium"
-      height="50px"
-      direction="row"
-      align="center"
-      p={{ horizontal: "small", vertical: "xsmall" }}
-      rounded="small"
-      border={{
-        side: "all",
-        color: "border",
-      }}
-    >
-      <Icon as={FaSearch} color="brand" />
+    <InputGroup width="100%" maxWidth="450px">
+      <InputLeftElement
+        pointerEvents="none"
+        children={<Icon as={FaSearch} color="primary" mt="5px" />}
+      />
       <Input
-        size="md"
+        size="lg"
+        rounded="xl"
+        borderColor="gray.300"
         placeholder="filter for keywords..."
         value={props.search}
         onChange={props.onChange}
       />
-    </Flex>
+    </InputGroup>
   );
 }
 
@@ -63,8 +65,8 @@ function TilCard(props: TilCardProps): JSX.Element {
 
   return (
     <Box
-      width="medium"
-      margin="small"
+      width="sm"
+      margin="1rem"
       onClick={() => props.onClick(props.path)}
       boxShadow={"2xl"}
       rounded={"md"}
@@ -115,14 +117,16 @@ export default function TilPage(): JSX.Element {
   }
 
   return (
-    <Box width="100%">
+    <Flex direction="column" minHeight="100vh">
       <AppHeader />
-      <Flex align="center" p="medium" overflow={{ horizontal: "hidden" }}>
-        <Container>
-          For my future self and anyone interested: These are little details you
-          usually don't come across in hello-world tutorials. Always be aware of
-          the expiration date.
-        </Container>
+      <Flex direction="column" align="center" m={["1rem", "2rem"]} mb="4rem">
+        <Section>
+          <P>
+            For my future self and anyone interested: These are little details
+            you usually don't come across in hello-world tutorials. Always be
+            aware of the expiration date.
+          </P>
+        </Section>
         <Filter
           search={search}
           onChange={(event) => setSearch(event.target.value)}
@@ -131,9 +135,10 @@ export default function TilPage(): JSX.Element {
           direction="row"
           justify="center"
           align="start"
-          p="medium"
-          overflow={{ horizontal: "hidden" }}
-          flexWrap="wrap"
+          m={["1rem", "2rem"]}
+          width="100%"
+          maxWidth={1500}
+          wrap="wrap"
         >
           {data.map((d) => (
             <TilCard {...d} key={d.path} onClick={(d) => navigate(d)} />
@@ -141,6 +146,6 @@ export default function TilPage(): JSX.Element {
         </Flex>
       </Flex>
       <AppFooter />
-    </Box>
+    </Flex>
   );
 }
