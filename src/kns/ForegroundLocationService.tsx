@@ -1,4 +1,4 @@
-import { P, Link, BlockCode, Img, H4, Code } from "./components";
+import { P, A, BlockCode, Img, H4, Code } from "../components";
 
 const taskDef = `import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
@@ -59,10 +59,10 @@ export default function Page(): JSX.Element {
       />
       <P>
         I was developing a{" "}
-        <Link label="React Native" href="https://reactnative.dev/" /> app with{" "}
-        <Link label="Expo" href="https://expo.dev/" /> and needed background
+        <A label="React Native" href="https://reactnative.dev/" /> app with{" "}
+        <A label="Expo" href="https://expo.dev/" /> and needed background
         location updates. The app (
-        <Link
+        <A
           label="ankerwache (github)"
           href="https://github.com/mRcSchwering/ankerwache"
         />
@@ -72,12 +72,12 @@ export default function Page(): JSX.Element {
       <P>
         In Expo there are currently problems with the{" "}
         <i>ACCESS_BACKGROUND_LOCATION</i> permission (see e.g.{" "}
-        <Link
+        <A
           label="this github issue"
           href="https://github.com/expo/expo/issues/14774"
         />
         ). I actually wanted to use{" "}
-        <Link
+        <A
           label="geofencing"
           href="https://developer.android.com/training/location/geofencing"
         />{" "}
@@ -85,10 +85,10 @@ export default function Page(): JSX.Element {
         want to wait for this issue being fixed and so I had to look for
         alternatives.
       </P>
-      <H4>Android Foreground Services</H4>
+      <H4 text="Android Foreground Services" />
       <P>
         Fortunately, there is a thing called{" "}
-        <Link
+        <A
           label="foreground services on Android"
           href="https://developer.android.com/guide/components/foreground-services"
         />
@@ -107,7 +107,7 @@ export default function Page(): JSX.Element {
       <BlockCode code={taskDef} lang="typescript" label="bkgLocService.ts" />
       <P>
         Then, from within my React app I can start the task. Here, I am using{" "}
-        <Link
+        <A
           label="Location.startLocationUpdatesAsync"
           href="https://docs.expo.dev/versions/latest/sdk/location/#locationstartlocationupdatesasynctaskname-options"
         />

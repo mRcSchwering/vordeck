@@ -1,4 +1,4 @@
-import { P, H4, Link, BlockCode, Code, Img } from "./components";
+import { P, H4, A, BlockCode, Code, Img } from "../components";
 
 const toDegreesMinutesAndSecondsDef = `export function toDMS(coordinate: number): string {
   const absolute = Math.abs(coordinate);
@@ -57,24 +57,24 @@ export default function Page(): JSX.Element {
         the sign is straight forward. But for getting minutes and seconds you
         have to convert the ramainder of decimal degrees to base 60.
         Fortunately, I found{" "}
-        <Link
+        <A
           href="https://stackoverflow.com/questions/37893131/how-to-convert-lat-long-from-decimal-degrees-to-dms-format/37893239"
           label="this stackoverflow post"
         />{" "}
         where somebody has already done this. Below, is my version of it.
       </P>
       <BlockCode code={toDegreesMinutesAndSecondsDef} lang="typescript" />
-      <H4>Weird coordinates</H4>
+      <H4 text="Weird coordinates" />
       <P>
         Now comes another tricky part. If you work with libraries like{" "}
-        <Link href="https://leafletjs.com/" label="leafletjs" />; you also need
-        to consider longitudes higher than 180 and lower than -180. The
-        underlying map basically just repeats itself infinitely. So, if a user
-        looks at the eastern cost of New Zealand the longitude might be 177.
-        After dragging the map a little further eastwards, it might be 181. Now,
-        instead of displaying 181°E we should actually display 179°W. Of course,
-        the same goes the other way round. -190 should become 170E°, and 360
-        should be 0°E. Thus, we need some correction for the longitudes:
+        <A href="https://leafletjs.com/" label="leafletjs" />; you also need to
+        consider longitudes higher than 180 and lower than -180. The underlying
+        map basically just repeats itself infinitely. So, if a user looks at the
+        eastern cost of New Zealand the longitude might be 177. After dragging
+        the map a little further eastwards, it might be 181. Now, instead of
+        displaying 181°E we should actually display 179°W. Of course, the same
+        goes the other way round. -190 should become 170E°, and 360 should be
+        0°E. Thus, we need some correction for the longitudes:
       </P>
       <BlockCode code={adjustLngDef} lang="typescript" />
       <P>

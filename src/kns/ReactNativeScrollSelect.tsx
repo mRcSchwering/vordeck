@@ -1,4 +1,4 @@
-import { P, Link, Code, BlockCode, Img } from "./components";
+import { P, A, Code, BlockCode, Img } from "../components";
 
 const fullCode = `import React from "react";
 import {
@@ -195,9 +195,9 @@ export default function Page(): JSX.Element {
       />
       <P>
         I was working on a{" "}
-        <Link label="React Native" href="https://reactnative.dev/" /> app with{" "}
-        <Link label="Expo" href="https://expo.dev/" /> for Android. I wanted to
-        add a scrollable select input but I did not want to include any library
+        <A label="React Native" href="https://reactnative.dev/" /> app with{" "}
+        <A label="Expo" href="https://expo.dev/" /> for Android. I wanted to add
+        a scrollable select input but I did not want to include any library
         outside of Expo or RN. It turns out such a simple UI element actually
         takes a lot of work. First things first, here is the full code. The
         image above is what it looks like on my phone (light and dark themes).
@@ -205,15 +205,12 @@ export default function Page(): JSX.Element {
       <BlockCode code={fullCode} lang="typescript" />
       <P>
         Some explanation. This thing is basically a{" "}
-        <Link
-          label="ScrollView"
-          href="https://reactnative.dev/docs/scrollview"
-        />{" "}
+        <A label="ScrollView" href="https://reactnative.dev/docs/scrollview" />{" "}
         with two overlayed{" "}
-        <Link label="Views" href="https://reactnative.dev/docs/view" /> on top
-        of it. The <Code>ScrollView</Code> is the main component. More on that
+        <A label="Views" href="https://reactnative.dev/docs/view" /> on top of
+        it. The <Code>ScrollView</Code> is the main component. More on that
         later. The two <Code>View</Code>s are used with{" "}
-        <Link
+        <A
           label="LinearGradient"
           href="https://docs.expo.dev/versions/latest/sdk/linear-gradient/"
         />{" "}

@@ -1,4 +1,4 @@
-import { P, Link, BlockCode, Code, Img } from "./components";
+import { P, A, BlockCode, Code, Img } from "../components";
 
 const retrySession = `from typing import List
 import requests
@@ -108,7 +108,7 @@ export default function Page(): JSX.Element {
         to work perfectly fine suddenly returns a 500 status code. Most of the
         time this problem is immediately gone right after trying the request a
         second time. The code below is from{" "}
-        <Link
+        <A
           label="this SO post"
           href="https://stackoverflow.com/questions/15431044/can-i-set-max-retries-for-requests-request"
         />{" "}
@@ -135,10 +135,10 @@ export default function Page(): JSX.Element {
       <P>
         Finally, I usually want to have some tests for these things. Below are
         some pytests that make actual requests to{" "}
-        <Link href="http://httpstat.us/" label="httpstat.us" /> and wait for
-        them to time out. If you ever need to test your code against all kinds
-        of weird request responses{" "}
-        <Link href="http://httpstat.us/" label="httpstat.us" /> is perfect for
+        <A href="http://httpstat.us/" label="httpstat.us" /> and wait for them
+        to time out. If you ever need to test your code against all kinds of
+        weird request responses{" "}
+        <A href="http://httpstat.us/" label="httpstat.us" /> is perfect for
         that.
       </P>
       <BlockCode code={pytestCode} lang="python" />

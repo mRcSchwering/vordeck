@@ -1,5 +1,24 @@
-import { Flex, Text, Box } from "@chakra-ui/react";
-import { P, H4, Link, BlockCode, Code, Img } from "./components";
+import { ListItem, ListIcon } from "@chakra-ui/react";
+import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
+import { P, H4, A, BlockCode, Code, Img, Ul } from "../components";
+
+function GoodLi(props: { text: string }): JSX.Element {
+  return (
+    <ListItem>
+      <ListIcon as={FaThumbsUp} color="green.500" />
+      {props.text}
+    </ListItem>
+  );
+}
+
+function BadLi(props: { text: string }): JSX.Element {
+  return (
+    <ListItem>
+      <ListIcon as={FaThumbsDown} color="red.500" />
+      {props.text}
+    </ListItem>
+  );
+}
 
 const yamlDef = `Resources:
   GqlPostFunction:
@@ -52,7 +71,7 @@ export default function Page(): JSX.Element {
       <P>
         Creating a serverless API using AWS Lambda with API Gateway is pretty
         neat. There are tools such as the{" "}
-        <Link
+        <A
           href="https://aws.amazon.com/de/serverless/sam/"
           label="SAM framework (aws.amazon.com)"
         />{" "}
@@ -60,41 +79,17 @@ export default function Page(): JSX.Element {
         setting up a GraphQL API like this is usually much better. Here is a
         little summary:
       </P>
-      <Flex width="large" direction="row" justify="center">
-        <Box>
-          <Text fontWeight="bold" color="neutral-1">
-            good
-          </Text>
-          <ul>
-            <li>
-              GraphQL (well defined API, only one endpoint, enables client-side)
-            </li>
-            <li>
-              serverless (little maintainance, pay-per-use, highly available,
-              scalable)
-            </li>
-            <li>only one endpoint (Lambda function less likely to be cold)</li>
-            <li>only one endpoint (no 1k lines of template.yaml)</li>
-            <li>
-              no changes in template.yaml (once defined, development happens
-              solely in code)
-            </li>
-          </ul>
-        </Box>
-        <Box>
-          <Text fontWeight="bold" color="neutral-4">
-            bad
-          </Text>
-          <ul>
-            <li>technical limitations of AWS API Gateway + Lambda</li>
-            <li>Multipart file-upload sucks</li>
-            <li>
-              100-150ms overhead (10-100 times slower than a running server)
-            </li>
-          </ul>
-        </Box>
-      </Flex>
-      <H4>Setup Endpoint in template.yaml</H4>
+      <Ul>
+        <GoodLi text="GraphQL (well defined API, only one endpoint, enables client-side)" />
+        <GoodLi text="serverless (little maintainance, pay-per-use, highly available, scalable)" />
+        <GoodLi text="only one endpoint (Lambda function less likely to be cold)" />
+        <GoodLi text="only one endpoint (no 1k lines of template.yaml)" />
+        <GoodLi text="no changes in template.yaml (once defined, development happens solely in code)" />
+        <BadLi text="technical limitations of AWS API Gateway + Lambda" />
+        <BadLi text="Multipart file-upload sucks" />
+        <BadLi text="100-150ms overhead (10-100 times slower than a running server)" />
+      </Ul>
+      <H4 text="Setup Endpoint in template.yaml" />
       <P>
         You only need one endpoint to answer POST requests. So, the SAM{" "}
         <i>template.yaml</i> definition can be as little as the code below. I
@@ -110,15 +105,15 @@ export default function Page(): JSX.Element {
         <Code> / </Code>
         as well. This is not strictly necessary for your API to work, but it
         makes it easier to develop. You can serve{" "}
-        <Link
+        <A
           href="https://github.com/prisma/graphql-playground"
           label="graphql playground (github.com)"
         />{" "}
         there which gives you a tool play with your API and develop queries.
       </P>
-      <H4>Ariadne for Python GraphQL</H4>
+      <H4 text="Ariadne for Python GraphQL" />
       <P>
-        I'm using <Link href="https://ariadnegraphql.org/" label="Ariadne" /> to
+        I'm using <A href="https://ariadnegraphql.org/" label="Ariadne" /> to
         develop the API in python. You first define a schema (usually as a{" "}
         <Code> .graphql </Code>) file and then write resolvers for it. The
         resolvers are just normal python functions. The code below shows a
@@ -126,16 +121,13 @@ export default function Page(): JSX.Element {
         resolver functions, and <Code> schema_def </Code> is the schema
         definition from the <Code> .graphql </Code> file. Both of them are
         combined into an ASGI app which you could serve with{" "}
-        <Link href="https://www.uvicorn.org/" label="Uvicorn" />. For more
+        <A href="https://www.uvicorn.org/" label="Uvicorn" />. For more
         information on how Ariadne works see their{" "}
-        <Link
-          href="https://ariadnegraphql.org/docs/intro"
-          label="introduction"
-        />
-        . This is how a simple ASGI app could look like:
+        <A href="https://ariadnegraphql.org/docs/intro" label="introduction" />.
+        This is how a simple ASGI app could look like:
       </P>
       <BlockCode code={starletteGql} lang="python" />
-      <H4>Ariadne in Lambda</H4>
+      <H4 text="Ariadne in Lambda" />
       <P>
         Ariadne also has a <Code> graphql_sync </Code> function which lets you
         execute a single query synchronously (without the ASGI app). This is
@@ -144,7 +136,7 @@ export default function Page(): JSX.Element {
         <Code> Event, Context, form_output </Code> are just helpers to make the
         request and response dictionaries a little easier to handle. For details
         see the backend code of one webapp{" "}
-        <Link
+        <A
           href="https://github.com/mRcSchwering/prevailing-winds/tree/main/backend"
           label="prevailing-winds backend (github.com)"
         />

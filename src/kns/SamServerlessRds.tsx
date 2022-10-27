@@ -1,4 +1,4 @@
-import { P, Link, Code, BlockCode, Img } from "./components";
+import { P, A, Code, BlockCode, Img } from "../components";
 
 const yaml = `AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
@@ -47,7 +47,7 @@ export default function Page(): JSX.Element {
       />
       <P>
         This took me longer than I thought, so I'm writing it down. AWS offers a{" "}
-        <Link
+        <A
           label="serverless version of Aurora"
           href="https://aws.amazon.com/rds/aurora/serverless/"
         />
@@ -59,7 +59,7 @@ export default function Page(): JSX.Element {
       </P>
       <P>
         Anyway. I am usually using{" "}
-        <Link
+        <A
           href="https://aws.amazon.com/serverless/sam/"
           label="the SAM framework"
         />{" "}
@@ -69,7 +69,7 @@ export default function Page(): JSX.Element {
         private subnet group. For resources in the private subnet group you need
         a NAT gateway in order for them to talk to the internet. This is a
         common scenario (
-        <Link
+        <A
           href="https://docs.aws.amazon.com/vpc/latest/userguide/VPC_Scenario2.html"
           label="here is a description from AWS"
         />

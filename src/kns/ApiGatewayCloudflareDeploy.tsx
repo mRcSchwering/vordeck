@@ -1,4 +1,5 @@
-import { P, H4, Link, Code, BlockCode, Ol, Dli, Img } from "./components";
+import { ListItem } from "@chakra-ui/react";
+import { P, H4, A, Code, BlockCode, Ol, Dli, Img } from "../components";
 
 const templateYaml = `Resources:
 
@@ -34,49 +35,43 @@ export default function Page(): JSX.Element {
         height="100px"
       />
       <P>
-        <Link href="https://aws.amazon.com/free/" label="AWS' free tier" /> and{" "}
-        <Link
+        <A href="https://aws.amazon.com/free/" label="AWS' free tier" /> and{" "}
+        <A
           href="https://www.cloudflare.com/de-de/plans/"
           label="Cloudflare's free tier"
         />{" "}
         make a great combination. It basically allows you to deploy a serverless
         webapp (with backend and database) for free (almost). Here, I describe
         how to set up a backend using{" "}
-        <Link href="https://www.cloudflare.com/" label="Cloudflare" /> and{" "}
-        <Link
-          href="https://aws.amazon.com/api-gateway/"
-          label="AWS API Gateway"
-        />
+        <A href="https://www.cloudflare.com/" label="Cloudflare" /> and{" "}
+        <A href="https://aws.amazon.com/api-gateway/" label="AWS API Gateway" />
         . The backend is a GraphQL API served by a Lambda function behind the
         API Gateway. For describing the infrastructure on AWS I am using the{" "}
-        <Link
+        <A
           href="https://aws.amazon.com/serverless/sam/"
           label="SAM framework"
         />
         .
       </P>
-      <H4>Prerequisites</H4>
+      <H4 text="Prerequisites" />
       <P>
         You need a domain. Let's say you own <b>mywebsite.de</b>. Additionally,
         you need a{" "}
-        <Link
-          href="https://www.cloudflare.com/"
-          label="Cloudflare (free tier)"
-        />{" "}
-        and an <Link href="https://aws.amazon.com/" label="AWS" /> account. Your
+        <A href="https://www.cloudflare.com/" label="Cloudflare (free tier)" />{" "}
+        and an <A href="https://aws.amazon.com/" label="AWS" /> account. Your
         domain needs to be transferred from you current registrar to Cloudflare.{" "}
-        <Link
+        <A
           href="https://developers.cloudflare.com/registrar/get-started/transfer-domain-to-cloudflare"
           label="Here"
         />{" "}
         are some instructions on how to do that.
       </P>
-      <H4>Create a certificate</H4>
+      <H4 text="Create a certificate" />
       <P>
         We need to create a custom AWS-managed certificate for your domain. In
         AWS this is done in the AWS certificate manager. This must be done in{" "}
         <b>us-east-1</b> (
-        <Link
+        <A
           label="AWS dev guide"
           href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html"
         />
@@ -98,10 +93,10 @@ export default function Page(): JSX.Element {
           can take a few minutes for AWS to recognize the records.
         </Dli>
       </Ol>
-      <H4>Deploy backend with custom domain</H4>
+      <H4 text="Deploy backend with custom domain" />
       <P>
         Say you have a setup{" "}
-        <Link label="like this" href="https://vordeck.de/kn/lambda-graphql" />:
+        <A label="like this" href="https://vordeck.de/kn/lambda-graphql" />:
         Your backend is in Lambda functions behind an API Gateway, everything is
         orchestrated using SAM.
       </P>
@@ -128,7 +123,7 @@ export default function Page(): JSX.Element {
         </Dli>
       </Ol>
       <BlockCode code={templateYaml} lang="yaml" />
-      <H4>Cloudflare Setup</H4>
+      <H4 text="Cloudflare Setup" />
       <P>
         Now we just need to add a DNS record in Cloudflare. Login to Cloudflare
         and select your domain.

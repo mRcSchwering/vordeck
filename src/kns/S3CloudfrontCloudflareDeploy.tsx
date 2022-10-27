@@ -1,4 +1,4 @@
-import { P, H4, Link, Code, BlockCode, Ol, Dli, Img } from "./components";
+import { P, H4, A, Code, BlockCode, Ol, Dli, Img } from "../components";
 
 const allowPublicPolicy = `{
   "Version": "2012-10-17",
@@ -21,34 +21,33 @@ export default function Page(): JSX.Element {
         height="150px"
       />
       <P>
-        <Link href="https://aws.amazon.com/free/" label="AWS' free tier" /> and{" "}
-        <Link
+        <A href="https://aws.amazon.com/free/" label="AWS' free tier" /> and{" "}
+        <A
           href="https://www.cloudflare.com/de-de/plans/"
           label="Cloudflare's free tier"
         />{" "}
         make a great combination. It basically allows you to deploy a serverless
         webapp (with backend and database) for free (almost). Here, I describe
         how to set up an SPA with{" "}
-        <Link href="https://www.cloudflare.com/" label="Cloudflare" />,
-        <Link href="https://aws.amazon.com/s3/" label="S3" />, and{" "}
-        <Link href="https://aws.amazon.com/cloudfront/" label="Cloudfront" />.
+        <A href="https://www.cloudflare.com/" label="Cloudflare" />,
+        <A href="https://aws.amazon.com/s3/" label="S3" />, and{" "}
+        <A href="https://aws.amazon.com/cloudfront/" label="Cloudfront" />.
       </P>
-      <H4>Prerequisites</H4>
+      <H4 text="Prerequisites" />
       <P>
         You need a domain. Let's say you own <b>mywebsite.de</b>. Additionally,
-        you need a{" "}
-        <Link href="https://www.cloudflare.com/" label="Cloudflare" /> (free
-        tier) and an <Link href="https://aws.amazon.com/" label="AWS" />{" "}
+        you need a <A href="https://www.cloudflare.com/" label="Cloudflare" />{" "}
+        (free tier) and an <A href="https://aws.amazon.com/" label="AWS" />{" "}
         account. Your domain needs to be transferred from you current registrar
         to Cloudflare.{" "}
-        <Link
+        <A
           href="https://developers.cloudflare.com/registrar/get-started/transfer-domain-to-cloudflare"
           label="Here"
         />{" "}
         are some instructions on how to do that. Finally, you need an SPA / some
         static files you want to host as a website.
       </P>
-      <H4>Create SPA S3 Bucket</H4>
+      <H4 text="Create SPA S3 Bucket" />
       <P>
         The website lives in an S3 bucket. Once we connect Cloudfront to it, all
         files in the S3 bucket will be served as website. A (re)deploy will just
@@ -81,12 +80,12 @@ export default function Page(): JSX.Element {
         bucket.
       </P>
       <BlockCode code={allowPublicPolicy} lang="json" />
-      <H4>Create a certificate</H4>
+      <H4 text="Create a certificate" />
       <P>
         We need to create a custom AWS-managed certificate for your domain. In
         AWS this is done in the AWS certificate manager. This must be done in{" "}
         <b>us-east-1</b> (
-        <Link
+        <A
           label="AWS dev guide"
           href="https://docs.aws.amazon.com/AmazonCloudFront/latest/DeveloperGuide/cnames-and-https-requirements.html"
         />
@@ -108,7 +107,7 @@ export default function Page(): JSX.Element {
           can take a few minutes for AWS to recognize the records.
         </Dli>
       </Ol>
-      <H4>Create Cloudfront Distribution</H4>
+      <H4 text="Create Cloudfront Distribution" />
       <P>
         Cloudfront is AWS' content delivery network. Here, we use it get TLS/SSL
         for our S3 bucket SPA. This way we can establish a secure <i>HTTPS</i>{" "}
@@ -137,7 +136,7 @@ export default function Page(): JSX.Element {
           that looks like this <i>https://d1dyasvndfdski.cloudfront.net</i>).
         </Dli>
       </Ol>
-      <H4>Cloudflare Setup</H4>
+      <H4 text="Cloudflare Setup" />
       <P>
         Finally, we need to do some DNS configuration in Cloudflare. Cloudflare
         should direct <i>mywebsite.de</i> requests to the Cloudfront
@@ -169,7 +168,7 @@ export default function Page(): JSX.Element {
         <i>http://s3.amazonaws.com/mywebsite-frontend/</i>) the URL might not be
         active yet or the permissions are wrong.
       </P>
-      <H4>Without Cloudfront</H4>
+      <H4 text="Without Cloudfront" />
       <P>
         There is a way of setting this up without Cloudfront. This usually
         involves using the <i>website hosting</i> feature of S3 and then setting
@@ -177,7 +176,7 @@ export default function Page(): JSX.Element {
         needs to bear the domain name of your website (so the S3 bucket must be
         named <i>mywebsite.de</i> for example). There are many tutorials for
         this setup (
-        <Link
+        <A
           href="https://medium.com/@hranicka/hosting-a-static-website-amazon-s3-cloudflare-127b57a13461"
           label="here is one"
         />

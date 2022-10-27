@@ -8,6 +8,9 @@ import {
   Heading,
   Text,
   Image,
+  OrderedList,
+  ListItem,
+  List,
 } from "@chakra-ui/react";
 import {
   FaLinkedinIn,
@@ -37,6 +40,14 @@ export function PageContainer(props: {
 export function H2(props: { text: string }): JSX.Element {
   return (
     <Heading as="h2" my={["1rem", "2rem"]} color="gray.700" fontSize="5xl">
+      {props.text}
+    </Heading>
+  );
+}
+
+export function H4(props: { text: string }): JSX.Element {
+  return (
+    <Heading as="h4" my={["0.5rem", "1rem"]} color="gray.700" fontSize="xl">
       {props.text}
     </Heading>
   );
@@ -77,16 +88,22 @@ export function Img(props: {
   src: string;
   height?: string;
   width?: string;
+  label?: string;
 }): JSX.Element {
   return (
-    <Image
-      style={{ borderRadius: "1vw" }}
-      align="center"
-      fit="cover"
-      src={props.src}
-      height={props.height}
-      width={props.width}
-    />
+    <Flex direction="column" align="center">
+      <Image
+        style={{ borderRadius: "1vw" }}
+        align="center"
+        fit="cover"
+        src={props.src}
+        height={props.height}
+        width={props.width}
+      />
+      <Text fontSize="lg" color="gray.600" m={["0.25rem", "0.5rem"]}>
+        {props.label}
+      </Text>
+    </Flex>
   );
 }
 
@@ -101,7 +118,7 @@ export function BlockCode(props: {
 }): JSX.Element {
   return (
     <Box>
-      <Text fontWeight="bold" color="gray.600" m={["0.25rem", "0.5rem"]}>
+      <Text fontSize="lg" color="gray.600" m={["0.25rem", "0.5rem"]}>
         {props.label}
       </Text>
       <SyntaxHighlighter
@@ -146,6 +163,33 @@ export function Redirect(props: {
     >
       {props.label}
     </Link>
+  );
+}
+
+export function Ul(props: { children: React.ReactNode }): JSX.Element {
+  return (
+    <List mb={["2em", "4em"]} fontSize="lg" maxWidth="40rem">
+      {props.children}
+    </List>
+  );
+}
+
+export function Ol(props: { children: React.ReactNode }): JSX.Element {
+  return (
+    <OrderedList mb={["2em", "4em"]} fontSize="lg" maxWidth="40rem">
+      {props.children}
+    </OrderedList>
+  );
+}
+
+export function Dli(props: {
+  label: string;
+  children: React.ReactNode;
+}): JSX.Element {
+  return (
+    <ListItem>
+      <b>{props.label}</b> {props.children}
+    </ListItem>
   );
 }
 

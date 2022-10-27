@@ -1,4 +1,4 @@
-import { P, BlockCode, Img, Code, H4, Link } from "./components";
+import { P, BlockCode, Img, Code, H4, A } from "../components";
 
 const conftestCode = `import os
 import pytest
@@ -90,23 +90,23 @@ export default function Page(): JSX.Element {
       />
       <P>
         Nowadays, almost all of my apps use some AWS service (usually S3) via{" "}
-        <Link
+        <A
           label="boto3"
           href="https://boto3.amazonaws.com/v1/documentation/api/latest/index.html"
         />
         . However, for local development and testing I usually do not want to
         use the real AWS service. This is a short recipe on how to mock AWS
         services with{" "}
-        <Link label="Moto" href="http://docs.getmoto.org/en/latest/" />. So far
-        I have used Moto in projects mocking S3 and SES and it works great.
-        There are just a few things to take care of to avoid accidentally using
-        a real AWS service.
+        <A label="Moto" href="http://docs.getmoto.org/en/latest/" />. So far I
+        have used Moto in projects mocking S3 and SES and it works great. There
+        are just a few things to take care of to avoid accidentally using a real
+        AWS service.
       </P>
-      <H4>Test Suite</H4>
+      <H4 text="Test Suite" />
       <P>
         One obvious place to mock AWS resources is in tests. Below is an example
         of the configuration file of a{" "}
-        <Link label="pytest" href="https://docs.pytest.org/" /> test suite. Moto
+        <A label="pytest" href="https://docs.pytest.org/" /> test suite. Moto
         has a context manager for every AWS resource to be mocked. In the
         example below I am mocking S3 with <Code>mock_s3</Code>. I place this
         context into a fixture for easy usage in tests. Additionally, a function{" "}
@@ -124,7 +124,7 @@ export default function Page(): JSX.Element {
         working properly and boto3 accidentally picks up a real AWS
         configuration it will make actual requests to AWS (possibly creating and
         deleting buckets and objects). As recommended by the{" "}
-        <Link
+        <A
           label="Moto documentation"
           href="http://docs.getmoto.org/en/latest/docs/getting_started.html#recommended-usage"
         />{" "}
@@ -135,7 +135,7 @@ export default function Page(): JSX.Element {
         bucket creation to ensure that the mocked account is indeed empty at
         first.
       </P>
-      <H4>Boto3</H4>
+      <H4 text="Boto3" />
       <P>
         The context manager <Code>mock_s3</Code> mocks all s3 resources,
         clients, and sessions from boto3. So, the actual boto3 code can stay
@@ -147,13 +147,13 @@ export default function Page(): JSX.Element {
         entered.
       </P>
       <BlockCode code={s3Code} lang="python" label="s3.py" />
-      <H4>Development Environment</H4>
+      <H4 text="Development Environment" />
       <P>
         Finally, the same mocking can be done with the development environment.
         In the example below, I am reusing the S3 mock and setup before starting
         an ASGI server. In this particular case it is running a GraphQL API with{" "}
-        <Link label="Ariadne" href="https://ariadnegraphql.org/" />. But this
-        could also be any other app. Again, the AWS environment variables are
+        <A label="Ariadne" href="https://ariadnegraphql.org/" />. But this could
+        also be any other app. Again, the AWS environment variables are
         overridden to make sure no real AWS config accidentally is picked up.
       </P>
       <BlockCode code={appCode} lang="python" label="app.py" />

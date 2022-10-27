@@ -1,4 +1,4 @@
-import { P, Link, Code, BlockCode, Img } from "./components";
+import { P, A, Code, BlockCode, Img } from "../components";
 
 const yaml = `AWSTemplateFormatVersion: "2010-09-09"
 Transform: AWS::Serverless-2016-10-31
@@ -85,21 +85,21 @@ export default function Page(): JSX.Element {
       />
       <P>
         This nugget builds up on the{" "}
-        <Link
+        <A
           href="https://vordeck.de/kn/lambda-graphql"
           label="Lambda-GraphQL nugget"
         />{" "}
         somewhat. You have a GraphQL API hosted by AWS Lambda & API Gateway
         deployed by the{" "}
-        <Link
+        <A
           href="https://aws.amazon.com/serverless/sam/"
           label="SAM framework"
         />
         . For users and login/register features you might want to use{" "}
-        <Link href="https://aws.amazon.com/cognito/" label="Cognito" /> as well.
-        If you want to do authentication and authorization already in the API
+        <A href="https://aws.amazon.com/cognito/" label="Cognito" /> as well. If
+        you want to do authentication and authorization already in the API
         Gateway layer you should use{" "}
-        <Link
+        <A
           label="API Gateway Lambda authorizers"
           href="https://docs.aws.amazon.com/apigateway/latest/developerguide/apigateway-use-lambda-authorizer.html"
         />
@@ -109,7 +109,7 @@ export default function Page(): JSX.Element {
       <P>
         With a GraphQL API there are some caveats though. A GraphQL client will
         do pre-flight requests regularly (
-        <Link
+        <A
           label="pre-flight requests"
           href="https://developer.mozilla.org/en-US/docs/Glossary/Preflight_request"
         />
@@ -124,14 +124,14 @@ export default function Page(): JSX.Element {
         <Code>Authorizer: NONE</Code> does the trick. Note that I also did this
         for the <i>GET</i> endpoint. In my case I wanted an unauthorized user to
         at least be able to see the{" "}
-        <Link
+        <A
           label="GraphQL Playground"
           href="https://github.com/graphql/graphql-playground"
         />{" "}
         (from the GraphQL Playground you can also provide authorization tokens).
         The <i>OPTIONS</i> endpoint should return status code 200 and whatever
         CORS headers you want to set (here is{" "}
-        <Link
+        <A
           label="Mozilla article on CORS"
           href="https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS"
         />

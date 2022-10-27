@@ -1,4 +1,4 @@
-import { P, H4, Link, Code, BlockCode, Img } from "./components";
+import { P, H4, A, Code, BlockCode, Img } from "../components";
 
 const loggerPy = `from typing import Dict
 from pytorch_lightning.loggers import TensorBoardLogger
@@ -178,34 +178,29 @@ export default function Page(): JSX.Element {
         width="800px"
         height="250px"
       />
-      <H4>PyTorch Lightning</H4>
+      <H4 text="PyTorch Lightning" />
       <P>
-        I love <Link label="PyTorch" href="https://pytorch.org/" /> for it's
+        I love <A label="PyTorch" href="https://pytorch.org/" /> for it's
         simplicity and transparency. I like the fact that it is mainly just
         python. Tensors and tensor calculations have to be defined in a
         NumPy-like fashion. But everything else is just python. However,
         sometimes it is nice to avoid some rather engineery boilerplate code and
         focus on the actual experiment. This is where{" "}
-        <Link
-          label="PyTorch Lightning"
-          href="https://www.pytorchlightning.ai/"
-        />{" "}
+        <A label="PyTorch Lightning" href="https://www.pytorchlightning.ai/" />{" "}
         comes into play.
       </P>
 
       <Img
-        height="600px"
-        width="900px"
-        src="https://github.com/PyTorchLightning/pytorch-lightning/raw/master/docs/source/_static/images/general/pl_quick_start_full_compressed.gif"
-      >
-        "Lightning disentangles PyTorch code to decouple the science from the
+        height="800px"
+        src="https://i.ibb.co/1dJsh2Q/pytorch-lightning-new-release-0.png"
+        label="Lightning disentangles PyTorch code to decouple the science from the
         engineering"
-      </Img>
+      />
       <P>
         PyTorch Lightning basically tries to hide all the boilerplate and
         engineering code while so that you can focus on the actual data science.
         Here is a{" "}
-        <Link
+        <A
           label="PyTorch Lightning introduction"
           href="https://pytorch-lightning.readthedocs.io/en/latest/starter/new-project.html"
         />
@@ -217,20 +212,17 @@ export default function Page(): JSX.Element {
         way PyTorch Lightning tries to retain you flexibility while removing
         boilerplate code.
       </P>
-      <H4>TensorBoard</H4>
+      <H4 text="TensorBoard" />
       <P>
         Another super useful tool for training neural nets is{" "}
-        <Link
-          label="TensorBoard"
-          href="https://www.tensorflow.org/tensorboard"
-        />
-        . It's a UI tool that you can deploy to monitor your training runs. With
+        <A label="TensorBoard" href="https://www.tensorflow.org/tensorboard" />.
+        It's a UI tool that you can deploy to monitor your training runs. With
         it you can track your train/val losses over epochs, custom metrics,
         gradient and activation distributions, and more. It basically looks for
         certain logging files in your directory and visualizes them. So if your
         training runs regularly write these logging files, TensorBoard will
         recognize them. One feature I particularly like is a{" "}
-        <Link
+        <A
           href="https://www.tensorflow.org/tensorboard/hyperparameter_tuning_with_hparams"
           label="HPARAMS"
         />{" "}
@@ -240,13 +232,8 @@ export default function Page(): JSX.Element {
         src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/tensorboard_hparams_table.jpg"
         height="400px"
         width="900px"
-      >
-        Hyperparameter tuning with TensorBoard{" "}
-        <Link
-          href="https://www.tensorflow.org/tensorboard/hyperparameter_tuning_with_hparams"
-          label="HPARAMS"
-        />
-      </Img>
+        label="Hyperparameter tuning with TensorBoard"
+      />
       <P>
         If you do hyperparameter optimization you might start 20 training runs
         with different sets of hyperparameters to find out which hyperparmeter
@@ -256,10 +243,10 @@ export default function Page(): JSX.Element {
         easily see which hyperparameters have a large effect on performance and
         which not.
       </P>
-      <H4>PyTorch Lightning and TensorBoard</H4>
+      <H4 text="PyTorch Lightning and TensorBoard" />
       <P>
         Generally, these two work together well. There is a logger class{" "}
-        <Link
+        <A
           label="pl.loggers.TensorBoardLogger"
           href="https://pytorch-lightning.readthedocs.io/en/latest/extensions/generated/pytorch_lightning.loggers.TensorBoardLogger.html#pytorch_lightning.loggers.TensorBoardLogger"
         />{" "}
@@ -268,13 +255,13 @@ export default function Page(): JSX.Element {
         whole thing works great except for one thing: the <i>HPARAMS</i> feature
         in TensorBoard. The reason for that is somewhat technical. I
         investigated the whole thing in{" "}
-        <Link
+        <A
           label="this issue"
           href="https://github.com/PyTorchLightning/pytorch-lightning/issues/1228"
         />
         . What follows is just a summary of how you can make it work anyway.
       </P>
-      <H4>Custom TensorBoardLogger</H4>
+      <H4 text="Custom TensorBoardLogger" />
       <P>
         One part of the issue is that before starting, when no training has been
         done yet, the PyTorch Lightning <i>Trainer</i> tells the{" "}
@@ -288,7 +275,7 @@ export default function Page(): JSX.Element {
         switching it off.
       </P>
       <BlockCode code={loggerPy} lang="python" label="logger.py" />
-      <H4>TensorBoard logging during Training</H4>
+      <H4 text="TensorBoard logging during Training" />
       <P>
         Now we need to tell PyTorch Lightning's <i>Module</i> that it should use
         this new <Code>log_hyperparams_metrics</Code> for logging. These modules
@@ -311,11 +298,11 @@ export default function Page(): JSX.Element {
         and interprets them. All metrics under <i>metrics/*</i> will go together
         in one tab.
       </P>
-      <H4>Implementation</H4>
+      <H4 text="Implementation" />
       <P>
         The <i>Module</i> can then be implemented for the actual experiment.
         This happens like in the{" "}
-        <Link
+        <A
           label="PyTorch Lightning tutorials"
           href="https://pytorch-lightning.readthedocs.io/en/latest/starter/new-project.html"
         />
@@ -331,13 +318,13 @@ export default function Page(): JSX.Element {
       <BlockCode code={trainerPy} lang="python" label="mytrainer.py" />
       <P>
         Last comment. I tried around with different PyTorch Lightning setups in{" "}
-        <Link
+        <A
           label="this repo"
           href="https://github.com/mRcSchwering/pytorch_lightning_test/"
         />
         . There is also one in combination with{" "}
-        <Link label="Optuna" href="https://optuna.org/" /> and one with{" "}
-        <Link
+        <A label="Optuna" href="https://optuna.org/" /> and one with{" "}
+        <A
           label="RAY[tune]"
           href="https://docs.ray.io/en/latest/tune/index.html"
         />

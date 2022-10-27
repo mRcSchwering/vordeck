@@ -1,4 +1,5 @@
-import { P, H4, Link, Code, BlockCode, Ol, Img } from "./components";
+import { ListItem } from "@chakra-ui/react";
+import { P, H4, A, Code, BlockCode, Ol, Img } from "../components";
 
 const treeOut = `$ tree -L 1
 .
@@ -93,7 +94,7 @@ export default function Page(): JSX.Element {
       <P>
         This is for all the times I have struggled finding any information on
         why my VSCode doesn't work properly anymore. First things first, I think{" "}
-        <Link
+        <A
           label="this SO thread"
           href="https://stackoverflow.com/questions/53653083/how-to-correctly-set-pythonpath-for-visual-studio-code/62581540"
         />{" "}
@@ -101,16 +102,16 @@ export default function Page(): JSX.Element {
         regular problems typically fall into one of these categories:
       </P>
       <Ol>
-        <li>linter can't find a module</li>
-        <li>integrated terminal can't find a module</li>
-        <li>files are not linted anymore</li>
-        <li>auto-format doesn't work anymore</li>
+        <ListItem>linter can't find a module</ListItem>
+        <ListItem>integrated terminal can't find a module</ListItem>
+        <ListItem>files are not linted anymore</ListItem>
+        <ListItem>auto-format doesn't work anymore</ListItem>
       </Ol>
-      <H4>Typical Backend Setup</H4>
+      <H4 text="Typical Backend Setup" />
       <P>
         Here is a typical backend setup for me when writing a serverless backend
-        using <Link label="SAM" href="https://aws.amazon.com/serverless/sam/" />
-        . It took me a while to correctly configure all aspects of it in VSCode.
+        using <A label="SAM" href="https://aws.amazon.com/serverless/sam/" />.
+        It took me a while to correctly configure all aspects of it in VSCode.
         This might not help you directly but maybe you find some settings
         useful. The project root directory looks like this:
       </P>
@@ -139,7 +140,7 @@ export default function Page(): JSX.Element {
         <i>.vscode/settings.json</i> with the correct <i>python.pythonPath</i>.
         You can then add the other keys to this file.
       </P>
-      <H4>More Settings</H4>
+      <H4 text="More Settings" />
       <P>
         Below are some additional seetings I usually need to set. I'm just going
         to paste them here for my future self. Otherwise I will keep looking up

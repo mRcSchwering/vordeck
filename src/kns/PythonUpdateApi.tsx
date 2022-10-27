@@ -1,4 +1,4 @@
-import { P, BlockCode, Img, Code, H4, Link } from "./components";
+import { P, BlockCode, Img, Code, H4, A } from "../components";
 
 const crudCode = `from enum import Enum
 from typing import Any, Optional, TypeVar, Union
@@ -76,7 +76,7 @@ export default function Page(): JSX.Element {
         keys of a resource, only to update one. Here is one way of achieving
         this in Python.
       </P>
-      <H4>Null vs Undefined in Python</H4>
+      <H4 text="Null vs Undefined in Python" />
       <P>
         Languages like JavaScript have properties for <i>null</i> and{" "}
         <i>undefined</i>. In Python however there is just the <Code>None</Code>{" "}
@@ -111,10 +111,10 @@ export default function Page(): JSX.Element {
         <Code>department</Code> is defined and must therefore be either a string
         or <Code>None</Code>.
       </P>
-      <H4>GraphQL and Ariadne</H4>
+      <H4 text="GraphQL and Ariadne" />
       <P>
         If you build a GraphQL API with something like{" "}
-        <Link label="Ariadne" href="https://ariadnegraphql.org/" /> you can use
+        <A label="Ariadne" href="https://ariadnegraphql.org/" /> you can use
         that CRUD function like below. In the schema all fields except for{" "}
         <Code>id</Code> are optional. Here, all inputs are combined in one
         argument called <i>payload</i>. They can be accessed under the same name
@@ -124,13 +124,12 @@ export default function Page(): JSX.Element {
         <i>payload</i>. Thus, all other keys are <i>undefined</i>.
       </P>
       <BlockCode code={gqlCode} lang="python" />
-      <H4>REST and Pydantic</H4>
+      <H4 text="REST and Pydantic" />
       <P>
         If you build a REST API with something like{" "}
-        <Link label="fastAPI" href="https://fastapi.tiangolo.com/" /> you will
-        have some additional marshalling in the middle. This is usually done
-        with{" "}
-        <Link label="Pydantic" href="https://pydantic-docs.helpmanual.io/" />.
+        <A label="fastAPI" href="https://fastapi.tiangolo.com/" /> you will have
+        some additional marshalling in the middle. This is usually done with{" "}
+        <A label="Pydantic" href="https://pydantic-docs.helpmanual.io/" />.
         Here, you just need to make sure that you only parse keys which were
         actually in the POST payload. So, you define you Pydantic payload with
         all optional keys. Then, when you convert the Pydantic model to a

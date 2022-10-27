@@ -1,4 +1,4 @@
-import { P, H4, Link, Code, BlockCode, Img } from "./components";
+import { P, H4, A, Code, BlockCode, Img } from "../components";
 
 const usageCode = `const [loc, setLoc] = React.useState<LocationType>();
 
@@ -112,27 +112,27 @@ export default function Page(): JSX.Element {
       />
       <P>
         I was developing a{" "}
-        <Link label="React Native" href="https://reactnative.dev/" /> app with{" "}
-        <Link label="Expo" href="https://expo.dev/" /> and needed background
+        <A label="React Native" href="https://reactnative.dev/" /> app with{" "}
+        <A label="Expo" href="https://expo.dev/" /> and needed background
         location updates. The app (
-        <Link
+        <A
           label="ankerwache (github)"
           href="https://github.com/mRcSchwering/ankerwache"
         />
         ) is an anchor watch while on a boat at anchor. It should raise a
         warning if the anchor is dragging. Background tasks in Expo can be
         managed with{" "}
-        <Link
+        <A
           label="TaskManager"
           href="https://docs.expo.dev/versions/v43.0.0/sdk/task-manager/"
         />
         . First, a task has to be defined with{" "}
-        <Link
+        <A
           label="TaskManager.defineTask"
           href="https://docs.expo.dev/versions/v43.0.0/sdk/task-manager/#taskmanagerdefinetasktaskname-taskexecutor"
         />
         , then it can be started with <i>e.g.</i>{" "}
-        <Link
+        <A
           label="Location.startLocationUpdatesAsync"
           href="https://docs.expo.dev/versions/latest/sdk/location/#locationstartlocationupdatesasynctaskname-options"
         />
@@ -147,10 +147,10 @@ export default function Page(): JSX.Element {
         still running. So, how do you get events from your background task into
         your React app?
       </P>
-      <H4>Observer Pattern</H4>
+      <H4 text="Observer Pattern" />
       <P>
         To achieve that we can implement an{" "}
-        <Link
+        <A
           label="Observer pattern"
           href="https://refactoring.guru/design-patterns/observer"
         />
@@ -168,7 +168,7 @@ export default function Page(): JSX.Element {
         app I can now get background location updates like this:
       </P>
       <BlockCode code={usageCode} lang="typescript" label="SomeComponent.tsx" />
-      <H4>Explanation</H4>
+      <H4 text="Explanation" />
       <P>
         First, the task needs to be defined. This thing needs to be called in
         the global scope of the JS bundle. It will become active once we call{" "}
@@ -194,12 +194,12 @@ export default function Page(): JSX.Element {
         Publisher is actually just a <i>Mediator</i>. It doesn't know anything
         about the location. It just mediates between the Subscribers and the
         background task. It is actually a{" "}
-        <Link
+        <A
           label="Pub-Sub pattern (wiki)"
           href="https://en.wikipedia.org/wiki/Publish%E2%80%93subscribe_pattern"
         />
         . However, I think the Pub-Sub explanation is very generic. The{" "}
-        <Link
+        <A
           label="Observer pattern"
           href="https://refactoring.guru/design-patterns/observer"
         />{" "}

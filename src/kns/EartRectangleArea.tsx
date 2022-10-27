@@ -1,4 +1,4 @@
-import { P, Link, BlockCode, Img } from "./components";
+import { P, A, BlockCode, Img } from "../components";
 
 const rect2areaDef = `
 type Tuple = [number, number];
@@ -19,17 +19,15 @@ export default function Page(): JSX.Element {
     <>
       <Img
         src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/homer_math.jpg"
-        width="800px"
-        height="300px"
+        width="600px"
       />
       <P>
-        Imagine you have a{" "}
-        <Link href="https://leafletjs.com/" label="leafletjs" /> app and a user
-        can select a rectangle on it. Top and bottom borders of the rectangle
-        are parallel to the equator, left and right borders are parallel the
-        meridians. Calculating the actual area of this spherical surface is
-        actually quite hard. I'm just guessing you work with a{" "}
-        <Link
+        Imagine you have a <A href="https://leafletjs.com/" label="leafletjs" />{" "}
+        app and a user can select a rectangle on it. Top and bottom borders of
+        the rectangle are parallel to the equator, left and right borders are
+        parallel the meridians. Calculating the actual area of this spherical
+        surface is actually quite hard. I'm just guessing you work with a{" "}
+        <A
           href="https://en.wikipedia.org/wiki/Mercator_projection"
           label="Mercator projection (wikipedia)"
         />{" "}
@@ -37,11 +35,10 @@ export default function Page(): JSX.Element {
         trapezoid on an ellipsoid.
       </P>
       <Img
-        height="250px"
+        height="300px"
         src="//upload.wikimedia.org/wikipedia/commons/thumb/7/73/Mercator_projection_Square.JPG/480px-Mercator_projection_Square.JPG"
-      >
-        Mercator projection (wikipedia)
-      </Img>
+        label="Mercator projection (wikipedia)"
+      />
 
       <P>
         I don't know how to properly calculate this area but if you don't need

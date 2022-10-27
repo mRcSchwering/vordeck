@@ -1,4 +1,4 @@
-import { P, Link, BlockCode, Img, H4 } from "./components";
+import { P, A, BlockCode, Img, H4 } from "../components";
 
 const code1 = `export function getDistanceFromLatLonInM(
   lat1: number,
@@ -66,12 +66,12 @@ export default function Page(): JSX.Element {
       <P>
         These are two more knowledge nuggets in the series of
         geolocation-related calculations (see{" "}
-        <Link
+        <A
           label="Decimals to DMS"
           href="https://vordeck.de/kn/decimal-and-dms"
         />{" "}
         and{" "}
-        <Link
+        <A
           label="Area on Earth"
           href="https://vordeck.de/kn/earth-rectangle-area"
         />
@@ -79,45 +79,45 @@ export default function Page(): JSX.Element {
         given in latitude and longitude. The other is about finding point B when
         moving from point A a given distance in a given direction. These
         calculation are all along a{" "}
-        <Link
+        <A
           label="great circle"
           href="https://en.wikipedia.org/wiki/Great_circle"
         />
         . In other words, they assume the earth is a perfect sphere. This is
         actually not true but it is still correct within{" "}
-        <Link
+        <A
           label="about 0.5%"
           href="https://en.wikipedia.org/wiki/Arc_length#Arcs_of_great_circles_on_the_Earth"
         />
         . Btw,{" "}
-        <Link
+        <A
           label="movable-type.co.uk"
           href="http://www.movable-type.co.uk/scripts/latlong.html"
         />{" "}
         is a great resource for these kind of questions.
       </P>
-      <H4>Great Circle Distance</H4>
+      <H4 text="Great Circle Distance" />
       <P>
         This is the distance from one point on earth to another along a great
         circle. The formula is called{" "}
-        <Link
+        <A
           href="https://en.wikipedia.org/wiki/Haversine_formula"
           label="Haversine formula"
         />{" "}
         and below is an implementation in Typescript. It is not obvious that
         this is the Haversine formula because it is a very optimized version
         from{" "}
-        <Link
+        <A
           label="this SO question"
           href="https://stackoverflow.com/questions/27928/calculate-distance-between-two-latitude-longitude-points-haversine-formula"
         />
         . The distance is given in meters, latitudes/longitudes are in degrees.
       </P>
       <BlockCode code={code1} lang="typescript" />
-      <H4>Coordinates from Bearing and Distance</H4>
+      <H4 text="Coordinates from Bearing and Distance" />
       <P>
         The following is a Typescript implementation from{" "}
-        <Link
+        <A
           label="this SO question"
           href="https://stackoverflow.com/questions/877524/calculating-coordinates-given-a-bearing-and-a-distance"
         />

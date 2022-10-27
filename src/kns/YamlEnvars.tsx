@@ -1,4 +1,4 @@
-import { P, BlockCode, Img, Code } from "./components";
+import { P, BlockCode, Img, Code } from "../components";
 
 const funDef = `#!/usr/bin/env bash
 # generate a .yml file from one of the *tmplt.yml files

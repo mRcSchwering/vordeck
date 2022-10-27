@@ -258,7 +258,7 @@ function Page(props: PageProps): JSX.Element {
   return (
     <PageContainer>
       <AppHeader />
-      <Flex direction="column" align="center" p="2rem">
+      <Flex direction="column" align="center" m="2rem" mb="10em">
         <Flex direction="column" align="center" m="4rem">
           <H2 text={props.title} />
           <Text color="gray.500">{props.description}</Text>
