@@ -37,6 +37,14 @@ export function PageContainer(props: {
   );
 }
 
+export function H1(props: { text: string }): JSX.Element {
+  return (
+    <Heading as="h1" my={["1rem", "2rem"]} color="gray.700" fontSize="5xl">
+      {props.text}
+    </Heading>
+  );
+}
+
 export function H2(props: { text: string }): JSX.Element {
   return (
     <Heading as="h2" my={["1rem", "2rem"]} color="gray.700" fontSize="5xl">
@@ -63,12 +71,13 @@ export function H6(props: { text: string }): JSX.Element {
 
 export function P(props: {
   children: React.ReactNode;
+  fontSize?: string;
   style?: React.CSSProperties;
 }): JSX.Element {
   return (
     <Box my={["1rem", "2rem"]} style={props.style}>
       <Container maxWidth="xl" centerContent>
-        <Text as="p" my="1rem">
+        <Text as="p" my="1rem" fontSize={props.fontSize}>
           {props.children}
         </Text>
       </Container>
@@ -151,11 +160,13 @@ export function Redirect(props: {
   label: string;
   href: string;
   isExt?: boolean;
+  fontSize?: string;
+  color?: string;
 }): JSX.Element {
   return (
     <Link
-      fontSize="xl"
-      color="gray.700"
+      fontSize={props.fontSize || "xl"}
+      color={props.color || "gray.700"}
       mx={["0.25rem", "0.5rem"]}
       style={{ textDecoration: "none" }}
       href={props.href}
@@ -213,7 +224,7 @@ export const soButton = (
   />
 );
 
-export function AppHeader(): JSX.Element {
+export function AppHeader(props: { isDark?: boolean }): JSX.Element {
   return (
     <Flex
       as="header"
@@ -226,9 +237,21 @@ export function AppHeader(): JSX.Element {
       gap={["0.5rem", "1rem"]}
       margin={0}
     >
-      <Redirect href="/" label="Home" />
-      <Redirect href="/about" label="About" />
-      <Redirect href="/kns" label="Knowledge Nuggets" />
+      <Redirect
+        href="/"
+        label="Home"
+        color={props.isDark ? "gray.200" : undefined}
+      />
+      <Redirect
+        href="/about"
+        label="About"
+        color={props.isDark ? "gray.200" : undefined}
+      />
+      <Redirect
+        href="/kns"
+        label="Knowledge Nuggets"
+        color={props.isDark ? "gray.200" : undefined}
+      />
     </Flex>
   );
 }

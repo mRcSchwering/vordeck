@@ -1,19 +1,19 @@
 import React from "react";
 import {
-  Box,
   Heading,
   Container,
   Text,
   useMediaQuery,
   Flex,
+  Image,
 } from "@chakra-ui/react";
-import { AppHeader, AppFooter, mailToHref, Redirect } from "../components";
+import { AppHeader, AppFooter, mailToHref, Redirect, P } from "../components";
 import ReactCardFlip from "react-card-flip";
-import LogoSvg from "../assets/logo.jsx";
-import CloudSvg from "../assets/cloudIcon.jsx";
-import CogwheelSvg from "../assets/cogwheelIcon.jsx";
-import DnaSvg from "../assets/dnaIcon.jsx";
-import TachometerSvg from "../assets/tachometerIcon.jsx";
+import logoSvg from "../assets/logo.svg";
+import cloudSvg from "../assets/cloud-icon.svg";
+import cogwheelSvg from "../assets/cogwheel-icon.svg";
+import dnaSvg from "../assets/dna-icon.svg";
+import tachometerSvg from "../assets/tachometer-icon.svg";
 
 interface CardProps {
   background?: string;
@@ -25,27 +25,28 @@ interface CardProps {
 
 function Card(props: CardProps): JSX.Element {
   return (
-    <Box
+    <Flex
       width="260px"
       height="260px"
-      boxShadow="sm"
+      boxShadow="2xl"
       borderRadius="260px"
-      margin="small"
-      alignContent="center"
-      justifyContent="center"
+      margin="0.5em"
+      align="center"
+      justify="start"
+      direction="column"
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
       background={props.background}
     >
       {props.children}
-    </Box>
+    </Flex>
   );
 }
 
 interface ValuePropBoxProps {
   title: string;
-  svg: () => JSX.Element;
+  svg: string;
   text: string;
   isSmall: boolean;
 }
@@ -67,29 +68,22 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
       <Card
         onClick={handleClick}
         onMouseEnter={() => handleHover(true)}
-        background="brand"
+        background="primary"
       >
-        <Flex
-          p={{ horizontal: "medium", top: "70px" }}
-          gap="small"
-          justify="start"
-          width="100%"
+        <Image height="70px" mt="70px" src={props.svg} fit="contain" />
+        <Text
+          mt="10px"
+          fontWeight="bold"
+          fontSize="xl"
+          textAlign="center"
+          color="gray.200"
+          width="150px"
         >
-          <Box height="70px">
-            <props.svg />
-          </Box>
-          <Text fontWeight="bold" size="medium" textAlign="center">
-            {props.title}
-          </Text>
-        </Flex>
+          {props.title}
+        </Text>
       </Card>
       <Card onClick={handleClick} onMouseLeave={() => handleHover(false)}>
-        <Text
-          textAlign="center"
-          margin={{ horizontal: "10px" }}
-          size="small"
-          style={{ width: "200px" }}
-        >
+        <Text textAlign="center" my="auto" mx="1em" fontSize="lg" width="220px">
           {props.text}
         </Text>
       </Card>
@@ -98,26 +92,26 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
 }
 
 export default function HomePage(): JSX.Element {
-  const [isSmall] = useMediaQuery("(min-width: 768px)");
+  const [isLarge] = useMediaQuery("(min-width: 768px)");
 
   const valueProps = [
     {
-      svg: DnaSvg,
+      svg: dnaSvg,
       title: "Domain Knowledge",
       text: "No PowerPoint karaoke about genes, proteins, drug discovery and development. Get to the point on day one.",
     },
     {
-      svg: TachometerSvg,
+      svg: tachometerSvg,
       title: "MVP-driven",
       text: "Deploy a minimum viable product as soon as possible. See production pitfalls immediately. Get users involved early on.",
     },
     {
-      svg: CloudSvg,
+      svg: cloudSvg,
       title: "Modern Architecture",
       text: "Serverless over self-hosted where possible. Minimize maintenance. Reduce costs. Have a product that scales seamlessly.",
     },
     {
-      svg: CogwheelSvg,
+      svg: cogwheelSvg,
       title: "API-first",
       text: "The system will change over time. Focus on well-defined APIs. Build products on top. Integrate legacy systems. Enable data scientists.",
     },
@@ -125,42 +119,40 @@ export default function HomePage(): JSX.Element {
 
   return (
     <>
-      <Box background="brand" height="100vh">
-        <AppHeader />
-        <Box style={{ marginTop: "20vh" }}>
-          <Heading as="h1" color="dark-5">
+      <Flex background="primary" height="100vh" direction="column">
+        <AppHeader isDark />
+        <Flex direction="column" align="center" mt="25vh">
+          <Heading
+            as="h1"
+            my={["1rem", "2rem"]}
+            color="primaryDark1"
+            fontSize="6xl"
+          >
             vordeck
-            <Box width="35px" margin={{ horizontal: "small" }}>
-              <LogoSvg />
-            </Box>
+            <Image width="35px" mx="0.25em" src={logoSvg} display="inline" />
           </Heading>
-          <Text textAlign="center" size="large" margin="medium">
+          <Text textAlign="center" fontSize="3xl" margin="1em" color="gray.200">
             Heaving software for Biotech and Pharma
           </Text>
-        </Box>
-      </Box>
-      <Box style={{ marginBottom: "20vh", marginTop: "20vh" }}>
-        <Container size="large">
+        </Flex>
+      </Flex>
+      <Flex direction="column" my="10vh">
+        <P fontSize="2xl">
           I am Marc. My background is Molecular Biotechnology but for the past
           years I have worked as a Software Developer in Pharma R&D. Another
           career jumper? Yes, but with experience. Do you need help realizing
           some ideas? Let's have a chat.
-        </Container>
-        <Flex
-          direction="row"
-          flexWrap="wrap"
-          justify="center"
-          margin={{ vertical: "large" }}
-        >
+        </P>
+        <Flex direction="row" gap="1em" wrap="wrap" justify="center" my="7em">
           {valueProps.map((d) => (
-            <ValuePropBox key={d.title} isSmall={isSmall} {...d} />
+            <ValuePropBox key={d.title} isSmall={!isLarge} {...d} />
           ))}
         </Flex>
-        <Container textAlign="center" size="large">
-          <Redirect label="Contact" href={mailToHref} /> |{" "}
-          <Redirect label="About" href="/about" />
+        <Container textAlign="center" fontSize="2xl">
+          <Redirect label="Contact" href={mailToHref} fontSize="2xl" /> |{" "}
+          <Redirect label="About" href="/about" fontSize="2xl" />
         </Container>
-      </Box>
+      </Flex>
       <AppFooter />
     </>
   );

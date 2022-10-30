@@ -22,8 +22,16 @@ function ThemedApp(): JSX.Element {
    */
   const theme = extendTheme({
     colors: {
+      primaryDark2: "#00292D",
+      primaryDark1: "#014046",
       primary: "#0c555d",
+      primaryLight1: "#1B6A71",
+      primaryLight2: "#337C83",
+      secondaryDark2: "#7A3A01",
+      secondaryDark1: "#A35A19",
       secondary: "#c77933",
+      secondaryLight1: "#E19959",
+      secondaryLight2: "#FFC38E",
     },
     components: {
       Text: {
