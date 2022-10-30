@@ -72,15 +72,26 @@ export function H6(props: { text: string }): JSX.Element {
 export function P(props: {
   children: React.ReactNode;
   fontSize?: string;
+  fontWeight?: string;
   style?: React.CSSProperties;
+  maxWidth?: string;
 }): JSX.Element {
   return (
-    <Box my={["1rem", "2rem"]} style={props.style}>
-      <Container maxWidth="xl" centerContent>
-        <Text as="p" my="1rem" fontSize={props.fontSize}>
-          {props.children}
-        </Text>
-      </Container>
+    <Box
+      my={["1rem", "2rem"]}
+      mx="0.5rem"
+      maxWidth={props.maxWidth || "xl"}
+      width="100%"
+      style={props.style}
+    >
+      <Text
+        as="p"
+        my="1rem"
+        fontSize={props.fontSize}
+        fontWeight={props.fontWeight}
+      >
+        {props.children}
+      </Text>
     </Box>
   );
 }
@@ -146,7 +157,7 @@ export function LinkIcon(props: { icon: any; href: string }): JSX.Element {
     <Link
       fontSize="xl"
       color="gray.600"
-      mx={["0.25rem", "0.5rem"]}
+      mx="0.5rem"
       href={props.href}
       isExternal
       pt="4px"
@@ -167,7 +178,7 @@ export function Redirect(props: {
     <Link
       fontSize={props.fontSize || "xl"}
       color={props.color || "gray.700"}
-      mx={["0.25rem", "0.5rem"]}
+      mx="0.5rem"
       style={{ textDecoration: "none" }}
       href={props.href}
       isExternal={props.isExt}

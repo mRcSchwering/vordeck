@@ -136,7 +136,7 @@ export default function HomePage(): JSX.Element {
           </Text>
         </Flex>
       </Flex>
-      <Flex direction="column" my="10vh">
+      <Flex direction="column" my="10vh" align="center">
         <P fontSize="2xl">
           I am Marc. My background is Molecular Biotechnology but for the past
           years I have worked as a Software Developer in Pharma R&D. Another
