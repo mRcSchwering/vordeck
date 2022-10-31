@@ -1,11 +1,8 @@
 import React from "react";
 import Slider from "react-slick";
 import {
-  Container,
   Link as Anchor,
-  Box,
   Flex,
-  Heading,
   Text,
   Image,
   useMediaQuery,
@@ -26,6 +23,7 @@ import {
   P,
   H2,
   H4,
+  PageContainer,
 } from "../components";
 import biotechSvg from "../assets/biotech.svg";
 import dataSvg from "../assets/data.svg";
@@ -49,28 +47,8 @@ const preferredTechStack = [
   },
 ];
 
-function TechTable(props: {
-  data: { name: string; text: string }[];
-}): JSX.Element {
-  const rows = props.data.map((d) => {
-    return (
-      <Tr>
-        <Td fontWeight="bold">{d.name}</Td>
-        <Td>{d.text}</Td>
-      </Tr>
-    );
-  });
-  return (
-    <TableContainer>
-      <Table variant="simple" fontSize="lg">
-        {rows}
-      </Table>
-    </TableContainer>
-  );
-}
-
 const projects = [
-  <CarouselEntry title="CO2AI: AI for Sustainability">
+  <CarouselEntry title="CO2AI: AI for Sustainability" key={9}>
     As part of a team at BCG GAMMA I developed CO2AI, an app to reduce carbon
     emissions.{" "}
     <Link
@@ -84,7 +62,7 @@ const projects = [
     As a full-stack developer I created several new features, and helped in
     refactoring, increasing performance, and security.
   </CarouselEntry>,
-  <CarouselEntry title="Android App: Ankerwache">
+  <CarouselEntry title="Android App: Ankerwache" key={8}>
     I built an anchor watch app (
     <Link
       href="https://github.com/mRcSchwering/ankerwache"
@@ -95,14 +73,14 @@ const projects = [
     and start the anchor watch. If your phone is persistently outside the
     defined radius it will start to ring loudly.
   </CarouselEntry>,
-  <CarouselEntry title="Pharmacometrics IT Landscape">
+  <CarouselEntry title="Pharmacometrics IT Landscape" key={7}>
     As part of a DevOps team I was building a GxP-validated Pharmacometrics IT
     landscape. The old one had to be replaced. Instead of just re-creating all
     its parts we wanted to design it to be more efficient and flexible. Thus,
     apart from developing the landscape itself, a lot of time was put into
     understanding users, business processes, and regulatory requirements.
   </CarouselEntry>,
-  <CarouselEntry title="prevailing-winds.de">
+  <CarouselEntry title="prevailing-winds.de" key={6}>
     <Link href="https://prevailing-winds.de" label="prevailing-winds.de" /> is a
     side-project I did on the weekend. It's an interactive pilot chart for
     surfers, pilots, sailors, paragliders, and anyone else interested in wind
@@ -112,7 +90,7 @@ const projects = [
     with historic wind data passage planning. Over time I added more weather and
     sea state data. Now it is basically a holiday planner.
   </CarouselEntry>,
-  <CarouselEntry title="Antibody BERT">
+  <CarouselEntry title="Antibody BERT" key={5}>
     In a machine learning research group I created a transformer wich predicts
     antibody characteristics. I re-designed a{" "}
     <Link label="BERT" href="https://arxiv.org/abs/1810.04805" /> - a
@@ -121,14 +99,14 @@ const projects = [
     antibodies and fine-tuned it to specific problems in the drug discovery and
     development pipeline.
   </CarouselEntry>,
-  <CarouselEntry title="Digital Beehive">
+  <CarouselEntry title="Digital Beehive" key={4}>
     <Link href="https://github.com/mRcSchwering/beehive" label="beehive" /> was
     a little side-project I did to help beekeepers. I developed and trained a
     model which can detect the content of a honeycomb photo. E.g. it can count
     the number of cells with larvae, pollen, nectar and so on. You can use this
     to get an accurate estimate of your beehive's health.
   </CarouselEntry>,
-  <CarouselEntry title="Visual Analytics Platforms">
+  <CarouselEntry title="Visual Analytics Platforms" key={3}>
     As part of a DevOps team I developed, deployed, and maintained 2 visual
     analytics platforms: one for genes, one for diseases. These platforms
     combined multiple data sources of each entity and represented them in
@@ -136,7 +114,7 @@ const projects = [
     useful, and scientificly accurate ways of representing the data. Another
     interesting aspect was the harmonization of data and curation of ontologies.
   </CarouselEntry>,
-  <CarouselEntry title="Biotop Community Lab e.V.">
+  <CarouselEntry title="Biotop Community Lab e.V." key={2}>
     I co-founded and supported{" "}
     <Link
       href="https://www.biotop-heidelberg.de/"
@@ -150,7 +128,7 @@ const projects = [
     want to put citizens in the conditions to make use of it, as any other
     common technology.
   </CarouselEntry>,
-  <CarouselEntry title="CRISPR AnalyzeR">
+  <CarouselEntry title="CRISPR AnalyzeR" key={1}>
     <Link
       href="https://www.biorxiv.org/content/10.1101/109967v1"
       label="CRISPR AnalyzeR"
@@ -171,35 +149,42 @@ function Link(props: { href: string; label: string }): JSX.Element {
   );
 }
 
-interface CarouselEntryProps {
+function CarouselEntry(props: {
   title: string;
   children?: React.ReactNode;
-}
-
-function CarouselEntry(props: CarouselEntryProps): JSX.Element {
+}): JSX.Element {
   return (
-    <Flex direction="column" align="center">
+    <Flex direction="column" align="center" mb={2}>
       <H4 text={props.title} />
-      <P
-        style={{
-          paddingLeft: "1rem",
-          paddingRight: "1rem",
-          marginBottom: "2rem",
-          marginTop: "0",
-        }}
-      >
-        {props.children}
-      </P>
+      <P>{props.children}</P>
     </Flex>
   );
 }
 
-interface PhaseSectionProps {
-  children?: React.ReactNode;
-  background?: string;
+function TechTable(props: {
+  data: { name: string; text: string }[];
+}): JSX.Element {
+  const rows = props.data.map((d) => {
+    return (
+      <Tr key={d.name}>
+        <Td fontWeight="bold">{d.name}</Td>
+        <Td>{d.text}</Td>
+      </Tr>
+    );
+  });
+  return (
+    <TableContainer>
+      <Table variant="simple" fontSize="lg">
+        <Tbody>{rows}</Tbody>
+      </Table>
+    </TableContainer>
+  );
 }
 
-function PhaseSection(props: PhaseSectionProps): JSX.Element {
+function PhaseSection(props: {
+  children?: React.ReactNode;
+  background?: string;
+}): JSX.Element {
   return (
     <Flex
       direction="row"
@@ -224,8 +209,8 @@ export default function HomePage(): JSX.Element {
   } as React.CSSProperties;
 
   return (
-    <>
-      <Flex minHeight="100vh" direction="column">
+    <PageContainer>
+      <Flex minHeight="90vh" direction="column">
         <AppHeader />
         <Flex direction="column" align="center">
           <Text
@@ -351,6 +336,6 @@ export default function HomePage(): JSX.Element {
         <TechTable data={preferredTechStack} />
       </Flex>
       <AppFooter />
-    </>
+    </PageContainer>
   );
 }

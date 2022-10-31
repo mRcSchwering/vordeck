@@ -7,7 +7,14 @@ import {
   Flex,
   Image,
 } from "@chakra-ui/react";
-import { AppHeader, AppFooter, mailToHref, Redirect, P } from "../components";
+import {
+  AppHeader,
+  AppFooter,
+  mailToHref,
+  Redirect,
+  P,
+  PageContainer,
+} from "../components";
 import ReactCardFlip from "react-card-flip";
 import logoSvg from "../assets/logo.svg";
 import cloudSvg from "../assets/cloud-icon.svg";
@@ -119,7 +126,7 @@ export default function HomePage(): JSX.Element {
 
   return (
     <>
-      <Flex background="primary" height="100vh" direction="column">
+      <PageContainer isDark>
         <AppHeader isDark />
         <Flex direction="column" align="center" mt="25vh">
           <Heading
@@ -135,7 +142,7 @@ export default function HomePage(): JSX.Element {
             Heaving software for Biotech and Pharma
           </Text>
         </Flex>
-      </Flex>
+      </PageContainer>
       <Flex direction="column" my="10vh" align="center">
         <P fontSize="2xl">
           I am Marc. My background is Molecular Biotechnology but for the past
@@ -148,10 +155,10 @@ export default function HomePage(): JSX.Element {
             <ValuePropBox key={d.title} isSmall={!isLarge} {...d} />
           ))}
         </Flex>
-        <Container textAlign="center" fontSize="2xl">
+        <Flex my="5vh" textAlign="center" fontSize="2xl">
           <Redirect label="Contact" href={mailToHref} fontSize="2xl" /> |{" "}
           <Redirect label="About" href="/about" fontSize="2xl" />
-        </Container>
+        </Flex>
       </Flex>
       <AppFooter />
     </>

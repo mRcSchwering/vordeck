@@ -29,9 +29,16 @@ export const mailToHref =
 
 export function PageContainer(props: {
   children: React.ReactNode;
+  isDark?: boolean;
+  style?: React.CSSProperties;
 }): JSX.Element {
   return (
-    <Flex direction="column" minHeight="100vh">
+    <Flex
+      background={props.isDark ? "primary" : "transparent"}
+      direction="column"
+      minHeight="100vh"
+      style={props.style}
+    >
       {props.children}
     </Flex>
   );
@@ -78,18 +85,13 @@ export function P(props: {
 }): JSX.Element {
   return (
     <Box
-      my={["1rem", "2rem"]}
-      mx="0.5rem"
+      mt={["1rem", "2rem"]}
+      mb={["2rem", "4rem"]}
       maxWidth={props.maxWidth || "xl"}
       width="100%"
       style={props.style}
     >
-      <Text
-        as="p"
-        my="1rem"
-        fontSize={props.fontSize}
-        fontWeight={props.fontWeight}
-      >
+      <Text as="p" fontSize={props.fontSize} fontWeight={props.fontWeight}>
         {props.children}
       </Text>
     </Box>
@@ -243,8 +245,7 @@ export function AppHeader(props: { isDark?: boolean }): JSX.Element {
       align="center"
       justify="start"
       background="transparent"
-      px={["1rem", "2rem"]}
-      py={["0.12rem", "0.25rem"]}
+      p={["0.12rem", "0.25rem"]}
       gap={["0.5rem", "1rem"]}
       margin={0}
     >

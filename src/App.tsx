@@ -37,6 +37,7 @@ function ThemedApp(): JSX.Element {
       Text: {
         baseStyle: {
           fontSize: "xl",
+          px: [1, 2],
         },
       },
     },
