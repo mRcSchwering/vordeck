@@ -1,4 +1,5 @@
-import { P, A, BlockCode, Img, H4 } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, BlockCode, Img } from "../components";
 
 const code1 = `export function getDistanceFromLatLonInM(
   lat1: number,
@@ -96,7 +97,7 @@ export default function Page(): JSX.Element {
         />{" "}
         is a great resource for these kind of questions.
       </P>
-      <H4 text="Great Circle Distance" />
+      <Heading variant="h4">Great Circle Distance</Heading>
       <P>
         This is the distance from one point on earth to another along a great
         circle. The formula is called{" "}
@@ -114,7 +115,7 @@ export default function Page(): JSX.Element {
         . The distance is given in meters, latitudes/longitudes are in degrees.
       </P>
       <BlockCode code={code1} lang="typescript" />
-      <H4 text="Coordinates from Bearing and Distance" />
+      <Heading variant="h4">Coordinates from Bearing and Distance</Heading>
       <P>
         The following is a Typescript implementation from{" "}
         <A

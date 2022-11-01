@@ -1,4 +1,5 @@
-import { P, H4, A, Code, BlockCode, Ol, Dli, Img } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, Code, BlockCode, Ol, Dli, Img } from "../components";
 
 const allowPublicPolicy = `{
   "Version": "2012-10-17",
@@ -33,7 +34,7 @@ export default function Page(): JSX.Element {
         <A href="https://aws.amazon.com/s3/" label="S3" />, and{" "}
         <A href="https://aws.amazon.com/cloudfront/" label="Cloudfront" />.
       </P>
-      <H4 text="Prerequisites" />
+      <Heading variant="h4">Prerequisites</Heading>
       <P>
         You need a domain. Let's say you own <b>mywebsite.de</b>. Additionally,
         you need a <A href="https://www.cloudflare.com/" label="Cloudflare" />{" "}
@@ -47,7 +48,7 @@ export default function Page(): JSX.Element {
         are some instructions on how to do that. Finally, you need an SPA / some
         static files you want to host as a website.
       </P>
-      <H4 text="Create SPA S3 Bucket" />
+      <Heading variant="h4">Create SPA S3 Bucket</Heading>
       <P>
         The website lives in an S3 bucket. Once we connect Cloudfront to it, all
         files in the S3 bucket will be served as website. A (re)deploy will just
@@ -80,7 +81,7 @@ export default function Page(): JSX.Element {
         bucket.
       </P>
       <BlockCode code={allowPublicPolicy} lang="json" />
-      <H4 text="Create a certificate" />
+      <Heading variant="h4">Create a certificate</Heading>
       <P>
         We need to create a custom AWS-managed certificate for your domain. In
         AWS this is done in the AWS certificate manager. This must be done in{" "}
@@ -107,7 +108,7 @@ export default function Page(): JSX.Element {
           can take a few minutes for AWS to recognize the records.
         </Dli>
       </Ol>
-      <H4 text="Create Cloudfront Distribution" />
+      <Heading variant="h4">Create Cloudfront Distribution</Heading>
       <P>
         Cloudfront is AWS' content delivery network. Here, we use it get TLS/SSL
         for our S3 bucket SPA. This way we can establish a secure <i>HTTPS</i>{" "}
@@ -136,7 +137,7 @@ export default function Page(): JSX.Element {
           that looks like this <i>https://d1dyasvndfdski.cloudfront.net</i>).
         </Dli>
       </Ol>
-      <H4 text="Cloudflare Setup" />
+      <Heading variant="h4">Cloudflare Setup</Heading>
       <P>
         Finally, we need to do some DNS configuration in Cloudflare. Cloudflare
         should direct <i>mywebsite.de</i> requests to the Cloudfront
@@ -168,7 +169,7 @@ export default function Page(): JSX.Element {
         <i>http://s3.amazonaws.com/mywebsite-frontend/</i>) the URL might not be
         active yet or the permissions are wrong.
       </P>
-      <H4 text="Without Cloudfront" />
+      <Heading variant="h4">Without Cloudfront</Heading>
       <P>
         There is a way of setting this up without Cloudfront. This usually
         involves using the <i>website hosting</i> feature of S3 and then setting

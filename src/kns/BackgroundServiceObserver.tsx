@@ -1,4 +1,5 @@
-import { P, H4, A, Code, BlockCode, Img } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, Code, BlockCode, Img } from "../components";
 
 const usageCode = `const [loc, setLoc] = React.useState<LocationType>();
 
@@ -147,7 +148,7 @@ export default function Page(): JSX.Element {
         still running. So, how do you get events from your background task into
         your React app?
       </P>
-      <H4 text="Observer Pattern" />
+      <Heading variant="h4">Observer Pattern</Heading>
       <P>
         To achieve that we can implement an{" "}
         <A
@@ -168,7 +169,7 @@ export default function Page(): JSX.Element {
         app I can now get background location updates like this:
       </P>
       <BlockCode code={usageCode} lang="typescript" label="SomeComponent.tsx" />
-      <H4 text="Explanation" />
+      <Heading variant="h4">Explanation</Heading>
       <P>
         First, the task needs to be defined. This thing needs to be called in
         the global scope of the JS bundle. It will become active once we call{" "}

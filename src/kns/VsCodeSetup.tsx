@@ -1,5 +1,5 @@
-import { ListItem } from "@chakra-ui/react";
-import { P, H4, A, Code, BlockCode, Ol, Img } from "../components";
+import { ListItem, Heading } from "@chakra-ui/react";
+import { P, A, Code, BlockCode, Ol, Img } from "../components";
 
 const treeOut = `$ tree -L 1
 .
@@ -107,7 +107,7 @@ export default function Page(): JSX.Element {
         <ListItem>files are not linted anymore</ListItem>
         <ListItem>auto-format doesn't work anymore</ListItem>
       </Ol>
-      <H4 text="Typical Backend Setup" />
+      <Heading variant="h4">Typical Backend Setup</Heading>
       <P>
         Here is a typical backend setup for me when writing a serverless backend
         using <A label="SAM" href="https://aws.amazon.com/serverless/sam/" />.
@@ -140,7 +140,7 @@ export default function Page(): JSX.Element {
         <i>.vscode/settings.json</i> with the correct <i>python.pythonPath</i>.
         You can then add the other keys to this file.
       </P>
-      <H4 text="More Settings" />
+      <Heading variant="h4">More Settings</Heading>
       <P>
         Below are some additional seetings I usually need to set. I'm just going
         to paste them here for my future self. Otherwise I will keep looking up

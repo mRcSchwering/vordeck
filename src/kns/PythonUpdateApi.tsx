@@ -1,4 +1,5 @@
-import { P, BlockCode, Img, Code, H4, A } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, BlockCode, Img, Code, A } from "../components";
 
 const crudCode = `from enum import Enum
 from typing import Any, Optional, TypeVar, Union
@@ -76,7 +77,7 @@ export default function Page(): JSX.Element {
         keys of a resource, only to update one. Here is one way of achieving
         this in Python.
       </P>
-      <H4 text="Null vs Undefined in Python" />
+      <Heading variant="h4">Null vs Undefined in Python</Heading>
       <P>
         Languages like JavaScript have properties for <i>null</i> and{" "}
         <i>undefined</i>. In Python however there is just the <Code>None</Code>{" "}
@@ -111,7 +112,7 @@ export default function Page(): JSX.Element {
         <Code>department</Code> is defined and must therefore be either a string
         or <Code>None</Code>.
       </P>
-      <H4 text="GraphQL and Ariadne" />
+      <Heading variant="h4">GraphQL and Ariadne</Heading>
       <P>
         If you build a GraphQL API with something like{" "}
         <A label="Ariadne" href="https://ariadnegraphql.org/" /> you can use
@@ -124,7 +125,7 @@ export default function Page(): JSX.Element {
         <i>payload</i>. Thus, all other keys are <i>undefined</i>.
       </P>
       <BlockCode code={gqlCode} lang="python" />
-      <H4 text="REST and Pydantic" />
+      <Heading variant="h4">REST and Pydantic</Heading>
       <P>
         If you build a REST API with something like{" "}
         <A label="fastAPI" href="https://fastapi.tiangolo.com/" /> you will have

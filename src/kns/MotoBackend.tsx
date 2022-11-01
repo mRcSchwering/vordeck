@@ -1,4 +1,5 @@
-import { P, BlockCode, Img, Code, H4, A } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, BlockCode, Img, Code, A } from "../components";
 
 const conftestCode = `import os
 import pytest
@@ -102,7 +103,7 @@ export default function Page(): JSX.Element {
         are just a few things to take care of to avoid accidentally using a real
         AWS service.
       </P>
-      <H4 text="Test Suite" />
+      <Heading variant="h4">Test Suite</Heading>
       <P>
         One obvious place to mock AWS resources is in tests. Below is an example
         of the configuration file of a{" "}
@@ -135,7 +136,7 @@ export default function Page(): JSX.Element {
         bucket creation to ensure that the mocked account is indeed empty at
         first.
       </P>
-      <H4 text="Boto3" />
+      <Heading variant="h4">Boto3</Heading>
       <P>
         The context manager <Code>mock_s3</Code> mocks all s3 resources,
         clients, and sessions from boto3. So, the actual boto3 code can stay
@@ -147,7 +148,7 @@ export default function Page(): JSX.Element {
         entered.
       </P>
       <BlockCode code={s3Code} lang="python" label="s3.py" />
-      <H4 text="Development Environment" />
+      <Heading variant="h4">Development Environment</Heading>
       <P>
         Finally, the same mocking can be done with the development environment.
         In the example below, I am reusing the S3 mock and setup before starting

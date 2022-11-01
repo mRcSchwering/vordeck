@@ -1,5 +1,5 @@
-import { ListItem } from "@chakra-ui/react";
-import { P, H4, A, Code, BlockCode, Ol, Dli, Img } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, Code, BlockCode, Ol, Dli, Img } from "../components";
 
 const templateYaml = `Resources:
 
@@ -53,7 +53,7 @@ export default function Page(): JSX.Element {
         />
         .
       </P>
-      <H4 text="Prerequisites" />
+      <Heading variant="h4">Prerequisites</Heading>
       <P>
         You need a domain. Let's say you own <b>mywebsite.de</b>. Additionally,
         you need a{" "}
@@ -66,7 +66,7 @@ export default function Page(): JSX.Element {
         />{" "}
         are some instructions on how to do that.
       </P>
-      <H4 text="Create a certificate" />
+      <Heading variant="h4">Create a certificate</Heading>
       <P>
         We need to create a custom AWS-managed certificate for your domain. In
         AWS this is done in the AWS certificate manager. This must be done in{" "}
@@ -93,7 +93,7 @@ export default function Page(): JSX.Element {
           can take a few minutes for AWS to recognize the records.
         </Dli>
       </Ol>
-      <H4 text="Deploy backend with custom domain" />
+      <Heading variant="h4">Deploy backend with custom domain</Heading>
       <P>
         Say you have a setup{" "}
         <A label="like this" href="https://vordeck.de/kn/lambda-graphql" />:
@@ -123,7 +123,7 @@ export default function Page(): JSX.Element {
         </Dli>
       </Ol>
       <BlockCode code={templateYaml} lang="yaml" />
-      <H4 text="Cloudflare Setup" />
+      <Heading variant="h4">Cloudflare Setup</Heading>
       <P>
         Now we just need to add a DNS record in Cloudflare. Login to Cloudflare
         and select your domain.

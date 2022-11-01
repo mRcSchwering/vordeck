@@ -1,4 +1,5 @@
-import { P, H4, A, Code, BlockCode, Img } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, Code, BlockCode, Img } from "../components";
 
 const easyOptuna = `import optuna
 
@@ -60,7 +61,7 @@ export default function Page(): JSX.Element {
         ). Say you have a machine learning model which takes 10 to 20 hours to
         train. Now you want to do hyperparameter optimization for a few days.
       </P>
-      <H4 text="Optuna Trials" />
+      <Heading variant="h4">Optuna Trials</Heading>
       <P>
         If you like light-weight libraries like me you might be using{" "}
         <A
@@ -84,7 +85,7 @@ export default function Page(): JSX.Element {
         If one of the trials finishes it releases the GPU for another trial to
         start.
       </P>
-      <H4 text="Multiprocessing Queue" />
+      <Heading variant="h4">Multiprocessing Queue</Heading>
       <P>
         After a few mental breakdowns I figured out that I can do what I want
         using a <i>multiprocessing.Queue</i>. I define a queue where each GPU is

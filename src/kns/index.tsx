@@ -1,6 +1,6 @@
 import React from "react";
-import { Spinner, Text, Flex } from "@chakra-ui/react";
-import { AppHeader, AppFooter, PageContainer, H2 } from "../components";
+import { Spinner, Text, Flex, Heading } from "@chakra-ui/react";
+import { AppHeader, AppFooter } from "../components";
 
 type RegistryEntry = {
   title: string;
@@ -256,11 +256,11 @@ type PageProps = {
 function Page(props: PageProps): JSX.Element {
   const Content = React.lazy(props.depends);
   return (
-    <PageContainer>
+    <Flex direction="column" minHeight="100vh">
       <AppHeader />
       <Flex direction="column" align="center" m="2rem" mb="10em">
         <Flex direction="column" align="center" m="4rem">
-          <H2 text={props.title} />
+          <Heading variant="h2">{props.title}</Heading>
           <Text color="gray.500">{props.description}</Text>
           <Text color="gray.500">{props.date} by Marc Schwering</Text>
         </Flex>
@@ -269,7 +269,7 @@ function Page(props: PageProps): JSX.Element {
         </React.Suspense>
       </Flex>
       <AppFooter />
-    </PageContainer>
+    </Flex>
   );
 }
 

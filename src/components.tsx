@@ -1,7 +1,6 @@
 import React from "react";
 import {
   Icon,
-  Container,
   Flex,
   Link,
   Box,
@@ -25,56 +24,8 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 export const mailToHref =
   "mailto:info@vordeck.de?subject=Contact%20from%20vordeck.de";
 
-// TODO: add header/footer to page contaienr with align center around content?
-
-export function PageContainer(props: {
-  children: React.ReactNode;
-  isDark?: boolean;
-  style?: React.CSSProperties;
-}): JSX.Element {
-  return (
-    <Flex
-      background={props.isDark ? "primary" : "transparent"}
-      direction="column"
-      minHeight="100vh"
-      style={props.style}
-    >
-      {props.children}
-    </Flex>
-  );
-}
-
-export function H1(props: { text: string }): JSX.Element {
-  return (
-    <Heading as="h1" my={["1rem", "2rem"]} color="gray.700" fontSize="5xl">
-      {props.text}
-    </Heading>
-  );
-}
-
-export function H2(props: { text: string }): JSX.Element {
-  return (
-    <Heading as="h2" my={["1rem", "2rem"]} color="gray.700" fontSize="5xl">
-      {props.text}
-    </Heading>
-  );
-}
-
-export function H4(props: { text: string }): JSX.Element {
-  return (
-    <Heading as="h4" my={["0.5rem", "1rem"]} color="gray.700" fontSize="xl">
-      {props.text}
-    </Heading>
-  );
-}
-
-export function H6(props: { text: string }): JSX.Element {
-  return (
-    <Heading as="h6" my={["0.5rem", "1rem"]} color="gray.700" fontSize="md">
-      {props.text}
-    </Heading>
-  );
-}
+// TODO: Hs replace with theme config
+// TODO direction=column theme config
 
 export function P(props: {
   children: React.ReactNode;
@@ -100,7 +51,7 @@ export function P(props: {
 
 export function A(props: { href: string; label: string }): JSX.Element {
   return (
-    <Link href={props.href} isExternal color="secondary" fontWeight="semibold">
+    <Link href={props.href} isExternal>
       {props.label}
     </Link>
   );
@@ -169,21 +120,21 @@ export function LinkIcon(props: { icon: any; href: string }): JSX.Element {
   );
 }
 
-export function Redirect(props: {
+export function Nav(props: {
   label: string;
   href: string;
   isExt?: boolean;
   fontSize?: string;
-  color?: string;
+  isDark?: boolean;
 }): JSX.Element {
   return (
     <Link
-      fontSize={props.fontSize || "xl"}
-      color={props.color || "gray.700"}
-      mx="0.5rem"
-      style={{ textDecoration: "none" }}
+      variant="nav"
+      fontSize={props.fontSize}
+      color={props.isDark ? "gray.200" : undefined}
       href={props.href}
       isExternal={props.isExt}
+      style={{ textDecoration: "none" }}
     >
       {props.label}
     </Link>
@@ -249,21 +200,9 @@ export function AppHeader(props: { isDark?: boolean }): JSX.Element {
       gap={["0.5rem", "1rem"]}
       margin={0}
     >
-      <Redirect
-        href="/"
-        label="Home"
-        color={props.isDark ? "gray.200" : undefined}
-      />
-      <Redirect
-        href="/about"
-        label="About"
-        color={props.isDark ? "gray.200" : undefined}
-      />
-      <Redirect
-        href="/kns"
-        label="Knowledge Nuggets"
-        color={props.isDark ? "gray.200" : undefined}
-      />
+      <Nav href="/" label="Home" isDark={props.isDark} />
+      <Nav href="/about" label="About" isDark={props.isDark} />
+      <Nav href="/kns" label="Knowledge Nuggets" isDark={props.isDark} />
     </Flex>
   );
 }
@@ -284,9 +223,9 @@ export function AppFooter(): JSX.Element {
       wrap="wrap"
     >
       <Flex direction="row" gap={2}>
-        <Redirect label="legal notice" href="/ln" />
-        <Redirect label="cookie policy" href="/cp" />
-        <Redirect
+        <Nav label="legal notice" href="/ln" />
+        <Nav label="cookie policy" href="/cp" />
+        <Nav
           label="page source"
           href="https://github.com/mRcSchwering/vordeck"
           isExt

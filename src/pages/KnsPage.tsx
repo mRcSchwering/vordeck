@@ -11,7 +11,7 @@ import {
   LinkOverlay,
 } from "@chakra-ui/react";
 import { FaSearch } from "react-icons/fa";
-import { AppHeader, AppFooter, P, PageContainer } from "../components";
+import { AppHeader, AppFooter, P } from "../components";
 import { registry } from "../kns";
 
 type FilterProps = {
@@ -24,7 +24,7 @@ function Filter(props: FilterProps): JSX.Element {
     <InputGroup width="100%" maxWidth="md">
       <InputLeftElement
         pointerEvents="none"
-        children={<Icon as={FaSearch} color="primary" mt="5px" />}
+        children={<Icon as={FaSearch} color="primary.500" mt="5px" />}
       />
       <Input
         size="lg"
@@ -51,12 +51,12 @@ function TilCard(props: TilCardProps): JSX.Element {
     <Box
       key={d}
       borderWidth="2px"
-      borderColor="primary"
+      borderColor="primary.500"
       margin="3px"
       p="0.2rem"
       rounded="lg"
     >
-      <Text fontSize="md" color="primary">
+      <Text fontSize="md" color="primary.500">
         {d}
       </Text>
     </Box>
@@ -78,7 +78,7 @@ function TilCard(props: TilCardProps): JSX.Element {
             {props.date}
           </Text>
         </LinkOverlay>
-        <Text fontSize="lg" color="primary" fontWeight="bold">
+        <Text fontSize="lg" color="primary.500" fontWeight="bold">
           {props.title}
         </Text>
       </Flex>
@@ -118,7 +118,7 @@ export default function TilPage(): JSX.Element {
   }
 
   return (
-    <PageContainer>
+    <Flex direction="column" minHeight="100vh">
       <AppHeader />
       <Flex direction="column" align="center" m={["1rem", "2rem"]} mb="4rem">
         <P>
@@ -145,6 +145,6 @@ export default function TilPage(): JSX.Element {
         </Flex>
       </Flex>
       <AppFooter />
-    </PageContainer>
+    </Flex>
   );
 }

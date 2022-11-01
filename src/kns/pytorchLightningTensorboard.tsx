@@ -1,4 +1,5 @@
-import { P, H4, A, Code, BlockCode, Img } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, Code, BlockCode, Img } from "../components";
 
 const loggerPy = `from typing import Dict
 from pytorch_lightning.loggers import TensorBoardLogger
@@ -178,7 +179,7 @@ export default function Page(): JSX.Element {
         width="800px"
         height="250px"
       />
-      <H4 text="PyTorch Lightning" />
+      <Heading variant="h4">PyTorch Lightning</Heading>
       <P>
         I love <A label="PyTorch" href="https://pytorch.org/" /> for it's
         simplicity and transparency. I like the fact that it is mainly just
@@ -212,7 +213,7 @@ export default function Page(): JSX.Element {
         way PyTorch Lightning tries to retain you flexibility while removing
         boilerplate code.
       </P>
-      <H4 text="TensorBoard" />
+      <Heading variant="h4">TensorBoard</Heading>
       <P>
         Another super useful tool for training neural nets is{" "}
         <A label="TensorBoard" href="https://www.tensorflow.org/tensorboard" />.
@@ -243,7 +244,7 @@ export default function Page(): JSX.Element {
         easily see which hyperparameters have a large effect on performance and
         which not.
       </P>
-      <H4 text="PyTorch Lightning and TensorBoard" />
+      <Heading variant="h4">PyTorch Lightning and TensorBoard</Heading>
       <P>
         Generally, these two work together well. There is a logger class{" "}
         <A
@@ -261,7 +262,7 @@ export default function Page(): JSX.Element {
         />
         . What follows is just a summary of how you can make it work anyway.
       </P>
-      <H4 text="Custom TensorBoardLogger" />
+      <Heading variant="h4">Custom TensorBoardLogger</Heading>
       <P>
         One part of the issue is that before starting, when no training has been
         done yet, the PyTorch Lightning <i>Trainer</i> tells the{" "}
@@ -275,7 +276,7 @@ export default function Page(): JSX.Element {
         switching it off.
       </P>
       <BlockCode code={loggerPy} lang="python" label="logger.py" />
-      <H4 text="TensorBoard logging during Training" />
+      <Heading variant="h4">TensorBoard logging during Training</Heading>
       <P>
         Now we need to tell PyTorch Lightning's <i>Module</i> that it should use
         this new <Code>log_hyperparams_metrics</Code> for logging. These modules
@@ -298,7 +299,7 @@ export default function Page(): JSX.Element {
         and interprets them. All metrics under <i>metrics/*</i> will go together
         in one tab.
       </P>
-      <H4 text="Implementation" />
+      <Heading variant="h4">Implementation</Heading>
       <P>
         The <i>Module</i> can then be implemented for the actual experiment.
         This happens like in the{" "}

@@ -1,4 +1,8 @@
-import { extendTheme, ChakraProvider } from "@chakra-ui/react";
+import {
+  extendTheme,
+  ChakraProvider,
+  defineStyleConfig,
+} from "@chakra-ui/react";
 import Router from "./Router";
 
 // TODO: svg usage is super ugly
@@ -11,6 +15,51 @@ import Router from "./Router";
 // TODO: react-card-flip needs React v17 but ChakraUI needs React v18
 //       creator is working on it: https://github.com/AaronCCWong/react-card-flip/issues/100
 
+const Link = defineStyleConfig({
+  variants: {
+    default: {
+      color: "secondary.600",
+      fontWeight: "semibold",
+    },
+    nav: {
+      fontSize: "xl",
+      mx: 2,
+      color: "gray.700",
+    },
+  },
+  defaultProps: {
+    variant: "default",
+  },
+});
+
+const Text = defineStyleConfig({
+  baseStyle: {
+    fontSize: "xl",
+    px: [1, 2],
+  },
+});
+
+const Heading = defineStyleConfig({
+  baseStyle: {
+    color: "gray.700",
+  },
+  variants: {
+    h2: {
+      my: ["1rem", "2rem"],
+      fontSize: "5xl",
+    },
+    h4: {
+      my: ["0.5rem", "1rem"],
+      fontSize: "xl",
+    },
+    h6: {
+      my: ["0.5rem", "1rem"],
+      fontSize: "md",
+      as: "h2",
+    },
+  },
+});
+
 function ThemedApp(): JSX.Element {
   /**
    * Theming:
@@ -22,24 +71,25 @@ function ThemedApp(): JSX.Element {
    */
   const theme = extendTheme({
     colors: {
-      primaryDark2: "#00292D",
-      primaryDark1: "#014046",
-      primary: "#0c555d",
-      primaryLight1: "#1B6A71",
-      primaryLight2: "#337C83",
-      secondaryDark2: "#7A3A01",
-      secondaryDark1: "#A35A19",
-      secondary: "#c77933",
-      secondaryLight1: "#E19959",
-      secondaryLight2: "#FFC38E",
+      primary: {
+        300: "#337C83",
+        400: "#1B6A71",
+        500: "#0c555d",
+        600: "#014046",
+        700: "#00292D",
+      },
+      secondary: {
+        300: "#FFC38E",
+        400: "#E19959",
+        500: "#c77933",
+        600: "#A35A19",
+        700: "#7A3A01",
+      },
     },
     components: {
-      Text: {
-        baseStyle: {
-          fontSize: "xl",
-          px: [1, 2],
-        },
-      },
+      Text,
+      Link,
+      Heading,
     },
   });
 

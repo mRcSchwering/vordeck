@@ -1,4 +1,5 @@
-import { P, A, BlockCode, Img, H4, Code } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, BlockCode, Img, Code } from "../components";
 
 const taskDef = `import * as Location from "expo-location";
 import * as TaskManager from "expo-task-manager";
@@ -85,7 +86,7 @@ export default function Page(): JSX.Element {
         want to wait for this issue being fixed and so I had to look for
         alternatives.
       </P>
-      <H4 text="Android Foreground Services" />
+      <Heading variant="h4">Android Foreground Services</Heading>
       <P>
         Fortunately, there is a thing called{" "}
         <A

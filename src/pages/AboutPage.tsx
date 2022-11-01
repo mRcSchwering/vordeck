@@ -11,6 +11,7 @@ import {
   Tr,
   Td,
   Table,
+  Heading,
 } from "@chakra-ui/react";
 import {
   AppHeader,
@@ -21,9 +22,6 @@ import {
   githubButton,
   mailButton,
   P,
-  H2,
-  H4,
-  PageContainer,
 } from "../components";
 import biotechSvg from "../assets/biotech.svg";
 import dataSvg from "../assets/data.svg";
@@ -155,7 +153,7 @@ function CarouselEntry(props: {
 }): JSX.Element {
   return (
     <Flex direction="column" align="center" mb={2}>
-      <H4 text={props.title} />
+      <Heading variant="h4">{props.title}</Heading>
       <P>{props.children}</P>
     </Flex>
   );
@@ -209,7 +207,7 @@ export default function HomePage(): JSX.Element {
   } as React.CSSProperties;
 
   return (
-    <PageContainer>
+    <Flex minHeight="100vh" direction="column">
       <Flex minHeight="90vh" direction="column">
         <AppHeader />
         <Flex direction="column" align="center">
@@ -272,7 +270,7 @@ export default function HomePage(): JSX.Element {
 
       <PhaseSection background="#edfadd">
         <Flex m="1rem" direction="column">
-          <H2 text="Biotechnology" />
+          <Heading variant="h2">Biotechnology</Heading>
           <P fontSize="xl" style={{ marginTop: "0" }}>
             I studied Molecular Biotechnology in Heidelberg and worked at the
             German Cancer Research Center for a while. My big fascinations were
@@ -288,7 +286,7 @@ export default function HomePage(): JSX.Element {
       <PhaseSection background="#d3e8eb">
         <Image width="230px" src={dataSvg} />
         <Flex m="1rem" direction="column">
-          <H2 text="Data Science" />
+          <Heading variant="h2">Data Science</Heading>
           <P fontSize="xl" style={{ marginTop: "0" }}>
             Towards to end of my studies I drifted from pure wetlab work to
             bioinformatics. At first I worked with traditional sequencing and
@@ -301,7 +299,7 @@ export default function HomePage(): JSX.Element {
       </PhaseSection>
       <PhaseSection background="#fff1e8">
         <Flex m="1rem" direction="column">
-          <H2 text="Software Engineering" />
+          <Heading variant="h2">Software Engineering</Heading>
           <P fontSize="xl" style={{ marginTop: "0" }}>
             When I naively joined Bayer as a former bioinformatician I realized
             how complex software development can be. I was fortunate enough to
@@ -323,7 +321,7 @@ export default function HomePage(): JSX.Element {
         mx="1rem"
         style={dottedBackground}
       >
-        <H2 text="Previous Projects" />
+        <Heading variant="h2">Previous Projects</Heading>
         <Flex direction="column" maxWidth="4xl" width="100%">
           <Slider dots={true} arrows={isLarge}>
             {projects}
@@ -332,10 +330,10 @@ export default function HomePage(): JSX.Element {
       </Flex>
 
       <Flex direction="column" align="center" my="4rem" mx="1rem" mb="20vh">
-        <H2 text="Preferred Techstack" />
+        <Heading variant="h2">Preferred Techstack</Heading>
         <TechTable data={preferredTechStack} />
       </Flex>
       <AppFooter />
-    </PageContainer>
+    </Flex>
   );
 }

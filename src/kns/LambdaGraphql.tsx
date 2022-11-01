@@ -1,6 +1,6 @@
-import { ListItem, ListIcon } from "@chakra-ui/react";
+import { ListItem, ListIcon, Heading } from "@chakra-ui/react";
 import { FaThumbsUp, FaThumbsDown } from "react-icons/fa";
-import { P, H4, A, BlockCode, Code, Img, Ul } from "../components";
+import { P, A, BlockCode, Code, Img, Ul } from "../components";
 
 function GoodLi(props: { text: string }): JSX.Element {
   return (
@@ -89,7 +89,7 @@ export default function Page(): JSX.Element {
         <BadLi text="Multipart file-upload sucks" />
         <BadLi text="100-150ms overhead (10-100 times slower than a running server)" />
       </Ul>
-      <H4 text="Setup Endpoint in template.yaml" />
+      <Heading variant="h4">Setup Endpoint in template.yaml</Heading>
       <P>
         You only need one endpoint to answer POST requests. So, the SAM{" "}
         <i>template.yaml</i> definition can be as little as the code below. I
@@ -111,7 +111,7 @@ export default function Page(): JSX.Element {
         />{" "}
         there which gives you a tool play with your API and develop queries.
       </P>
-      <H4 text="Ariadne for Python GraphQL" />
+      <Heading variant="h4">Ariadne for Python GraphQL</Heading>
       <P>
         I'm using <A href="https://ariadnegraphql.org/" label="Ariadne" /> to
         develop the API in python. You first define a schema (usually as a{" "}
@@ -127,7 +127,7 @@ export default function Page(): JSX.Element {
         This is how a simple ASGI app could look like:
       </P>
       <BlockCode code={starletteGql} lang="python" />
-      <H4 text="Ariadne in Lambda" />
+      <Heading variant="h4">Ariadne in Lambda</Heading>
       <P>
         Ariadne also has a <Code> graphql_sync </Code> function which lets you
         execute a single query synchronously (without the ASGI app). This is

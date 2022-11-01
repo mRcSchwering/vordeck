@@ -1,12 +1,12 @@
-import { Flex } from "@chakra-ui/react";
-import { AppHeader, AppFooter, PageContainer, H2, P, A } from "../components";
+import { Flex, Heading } from "@chakra-ui/react";
+import { AppHeader, AppFooter, P, A } from "../components";
 
 export default function CookiePolicyPage(): JSX.Element {
   return (
-    <PageContainer>
+    <Flex direction="column" minHeight="100vh">
       <AppHeader />
       <Flex direction="column" align="center">
-        <H2 text="Cookie Policy" />
+        <Heading variant="h2">Cookie Policy</Heading>
         <P>
           You might have noticed there was no <b>cookie banner</b> you had to
           click away (<A href="https://gdpr.eu/cookies/" label="gdpr.eu" />
@@ -17,6 +17,6 @@ export default function CookiePolicyPage(): JSX.Element {
         </P>
       </Flex>
       <AppFooter />
-    </PageContainer>
+    </Flex>
   );
 }

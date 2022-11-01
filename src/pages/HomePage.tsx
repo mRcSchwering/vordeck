@@ -1,20 +1,6 @@
 import React from "react";
-import {
-  Heading,
-  Container,
-  Text,
-  useMediaQuery,
-  Flex,
-  Image,
-} from "@chakra-ui/react";
-import {
-  AppHeader,
-  AppFooter,
-  mailToHref,
-  Redirect,
-  P,
-  PageContainer,
-} from "../components";
+import { Heading, Text, useMediaQuery, Flex, Image } from "@chakra-ui/react";
+import { AppHeader, AppFooter, mailToHref, Nav, P } from "../components";
 import ReactCardFlip from "react-card-flip";
 import logoSvg from "../assets/logo.svg";
 import cloudSvg from "../assets/cloud-icon.svg";
@@ -75,7 +61,7 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
       <Card
         onClick={handleClick}
         onMouseEnter={() => handleHover(true)}
-        background="primary"
+        background="primary.500"
       >
         <Image height="70px" mt="70px" src={props.svg} fit="contain" />
         <Text
@@ -126,13 +112,13 @@ export default function HomePage(): JSX.Element {
 
   return (
     <>
-      <PageContainer isDark>
+      <Flex direction="column" minHeight="100vh" background="primary.500">
         <AppHeader isDark />
         <Flex direction="column" align="center" mt="25vh">
           <Heading
             as="h1"
             my={["1rem", "2rem"]}
-            color="primaryDark1"
+            color="primary.700"
             fontSize="6xl"
           >
             vordeck
@@ -142,7 +128,7 @@ export default function HomePage(): JSX.Element {
             Heaving software for Biotech and Pharma
           </Text>
         </Flex>
-      </PageContainer>
+      </Flex>
       <Flex direction="column" my="10vh" align="center">
         <P fontSize="2xl">
           I am Marc. My background is Molecular Biotechnology but for the past
@@ -156,8 +142,8 @@ export default function HomePage(): JSX.Element {
           ))}
         </Flex>
         <Flex my="5vh" textAlign="center" fontSize="2xl">
-          <Redirect label="Contact" href={mailToHref} fontSize="2xl" /> |{" "}
-          <Redirect label="About" href="/about" fontSize="2xl" />
+          <Nav label="Contact" href={mailToHref} fontSize="2xl" /> |{" "}
+          <Nav label="About" href="/about" fontSize="2xl" />
         </Flex>
       </Flex>
       <AppFooter />

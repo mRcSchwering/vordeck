@@ -1,4 +1,5 @@
-import { P, H4, A, BlockCode, Code, Img } from "../components";
+import { Heading } from "@chakra-ui/react";
+import { P, A, BlockCode, Code, Img } from "../components";
 
 const toDegreesMinutesAndSecondsDef = `export function toDMS(coordinate: number): string {
   const absolute = Math.abs(coordinate);
@@ -64,7 +65,7 @@ export default function Page(): JSX.Element {
         where somebody has already done this. Below, is my version of it.
       </P>
       <BlockCode code={toDegreesMinutesAndSecondsDef} lang="typescript" />
-      <H4 text="Weird coordinates" />
+      <Heading variant="h4">Weird coordinates</Heading>
       <P>
         Now comes another tricky part. If you work with libraries like{" "}
         <A href="https://leafletjs.com/" label="leafletjs" />; you also need to
