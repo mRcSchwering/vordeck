@@ -4,7 +4,6 @@ import {
   Flex,
   Link,
   Box,
-  Heading,
   Text,
   Image,
   OrderedList,
@@ -24,9 +23,6 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 export const mailToHref =
   "mailto:info@vordeck.de?subject=Contact%20from%20vordeck.de";
 
-// TODO: Hs replace with theme config
-// TODO direction=column theme config
-
 export function P(props: {
   children: React.ReactNode;
   fontSize?: string;
@@ -36,8 +32,8 @@ export function P(props: {
 }): JSX.Element {
   return (
     <Box
-      mt={["1rem", "2rem"]}
-      mb={["2rem", "4rem"]}
+      mt={["0.5rem", "1rem"]}
+      mb={["1rem", "2rem"]}
       maxWidth={props.maxWidth || "xl"}
       width="100%"
       style={props.style}
@@ -90,10 +86,12 @@ export function BlockCode(props: {
   label?: string;
 }): JSX.Element {
   return (
-    <Box>
-      <Text fontSize="lg" color="gray.600" m={["0.25rem", "0.5rem"]}>
-        {props.label}
-      </Text>
+    <Box mb="4rem">
+      {props.label && (
+        <Text fontSize="lg" color="gray.600" m={["0.25rem", "0.5rem"]}>
+          {props.label}
+        </Text>
+      )}
       <SyntaxHighlighter
         language={props.lang}
         style={docco}

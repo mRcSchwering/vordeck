@@ -5,8 +5,6 @@ import {
 } from "@chakra-ui/react";
 import Router from "./Router";
 
-// TODO: svg usage is super ugly
-
 // TODO: replace media query with touchscreen query for cards
 // https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
 
@@ -14,6 +12,8 @@ import Router from "./Router";
 
 // TODO: react-card-flip needs React v17 but ChakraUI needs React v18
 //       creator is working on it: https://github.com/AaronCCWong/react-card-flip/issues/100
+
+// TODO: centered loading spinner
 
 const Link = defineStyleConfig({
   variants: {
@@ -42,20 +42,23 @@ const Text = defineStyleConfig({
 const Heading = defineStyleConfig({
   baseStyle: {
     color: "gray.700",
+    px: [1, 2],
   },
   variants: {
     h2: {
-      my: ["1rem", "2rem"],
+      mt: ["1rem", "2rem"],
+      mb: ["0.5rem", "1rem"],
       fontSize: "5xl",
     },
     h4: {
-      my: ["0.5rem", "1rem"],
+      mt: ["0.5rem", "1rem"],
+      mb: ["0.25rem", "0.5rem"],
       fontSize: "xl",
     },
     h6: {
-      my: ["0.5rem", "1rem"],
+      mt: ["0.5rem", "1rem"],
+      mb: ["0.25rem", "0.5rem"],
       fontSize: "md",
-      as: "h2",
     },
   },
 });

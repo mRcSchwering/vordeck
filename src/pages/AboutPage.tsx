@@ -152,7 +152,7 @@ function CarouselEntry(props: {
   children?: React.ReactNode;
 }): JSX.Element {
   return (
-    <Flex direction="column" align="center" mb={2}>
+    <Flex direction="column" align="center" mb={["2rem", "1rem"]}>
       <Heading variant="h4">{props.title}</Heading>
       <P>{props.children}</P>
     </Flex>

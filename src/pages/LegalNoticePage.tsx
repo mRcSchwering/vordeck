@@ -7,20 +7,25 @@ export default function LegalNoticePage(): JSX.Element {
       <AppHeader />
       <Flex direction="column" align="center">
         <Heading variant="h2">Impressum</Heading>
+
+        <Heading variant="h6">Kontakt</Heading>
         <P>
-          <Heading variant="h6">Kontakt</Heading>
           E-Mail: info@vordeck.de
           <br />
           LinkedIn: marc-schwering-139914103
           <br />
           Twitter: schweringMarc
           <br />
-          <Heading variant="h6">Umsatzsteuer-ID</Heading>
+        </P>
+        <Heading variant="h6">Umsatzsteuer-ID</Heading>
+        <P>
           Umsatzsteuer-Identifikationsnummer gemäß § 27 a Umsatzsteuergesetz:
-          DE348811421 <br />
-          <Heading variant="h6">
-            Verbraucherstreitbeilegung/Universalschlichtungsstelle
-          </Heading>
+          DE348811421
+        </P>
+        <Heading variant="h6">
+          Verbraucherstreitbeilegung / Universalschlichtungsstelle
+        </Heading>
+        <P>
           Wir sind nicht bereit oder verpflichtet, an Streitbeile-
           gungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
           <br />
@@ -28,8 +33,9 @@ export default function LegalNoticePage(): JSX.Element {
             href="https://ec.europa.eu/consumers/odr/main/index.cfm?event=main.home2.show&lng=DE"
             label="Online -Streitbeilegungsplattform"
           />
-          <br />
-          <Heading variant="h6">Haftung für Inhalte</Heading>
+        </P>
+        <Heading variant="h6">Haftung für Inhalte</Heading>
+        <P>
           Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte
           auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach
           §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht
@@ -45,7 +51,9 @@ export default function LegalNoticePage(): JSX.Element {
           von entsprechenden Rechtsverletzungen werden wir diese Inhalte
           umgehend entfernen.
           <br />
-          <Heading variant="h6">Haftung für Links</Heading>
+        </P>
+        <Heading variant="h6">Haftung für Links</Heading>
+        <P>
           Unser Angebot enthält Links zu externen Websites Dritter, auf deren
           Inhalte wir keinen Einfluss haben. Deshalb können wir für diese
           fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
@@ -60,7 +68,9 @@ export default function LegalNoticePage(): JSX.Element {
           Bekanntwerden von Rechtsverletzungen werden wir derartige Links
           umgehend entfernen.
           <br />
-          <Heading variant="h6">Urheberrecht</Heading>
+        </P>
+        <Heading variant="h6">Urheberrecht</Heading>
+        <P>
           Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen
           Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung,
           Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der

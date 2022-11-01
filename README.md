@@ -20,8 +20,3 @@ almost exactly:
 5. Set TLS policy to _strict_
 
 After that any push will trigger a redeploy.
-
-## TODO:
-
-- Dev currently only works with `export NODE_OPTIONS=--openssl-legacy-provider`
-- KNs should be links not buttons
