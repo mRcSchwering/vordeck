@@ -1,6 +1,6 @@
 import React from "react";
-import { Spinner, Text, Flex, Heading } from "@chakra-ui/react";
-import { AppHeader, AppFooter } from "../components";
+import { Text, Flex, Heading } from "@chakra-ui/react";
+import { AppHeader, AppFooter, Spinner } from "../components";
 
 type RegistryEntry = {
   title: string;

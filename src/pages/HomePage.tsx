@@ -1,5 +1,5 @@
 import React from "react";
-import { Heading, Text, useMediaQuery, Flex, Image } from "@chakra-ui/react";
+import { Heading, Text, Flex, Image } from "@chakra-ui/react";
 import { AppHeader, AppFooter, mailToHref, Nav, P } from "../components";
 import ReactCardFlip from "react-card-flip";
 import logoSvg from "../assets/logo.svg";
@@ -27,6 +27,8 @@ function Card(props: CardProps): JSX.Element {
       align="center"
       justify="start"
       direction="column"
+      cursor="pointer"
+      _hover={{ boxShadow: "orange" }}
       onClick={props.onClick}
       onMouseEnter={props.onMouseEnter}
       onMouseLeave={props.onMouseLeave}
@@ -41,7 +43,6 @@ interface ValuePropBoxProps {
   title: string;
   svg: string;
   text: string;
-  isSmall: boolean;
 }
 
 function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
@@ -52,17 +53,9 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
     setIsFlipped((prev) => !prev);
   }
 
-  function handleHover(d: boolean) {
-    props.isSmall || setIsFlipped(d);
-  }
-
   return (
     <ReactCardFlip isFlipped={isFlipped}>
-      <Card
-        onClick={handleClick}
-        onMouseEnter={() => handleHover(true)}
-        background="primary.500"
-      >
+      <Card onClick={handleClick} background="primary.500">
         <Image height="70px" mt="70px" src={props.svg} fit="contain" />
         <Text
           mt="10px"
@@ -75,7 +68,7 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
           {props.title}
         </Text>
       </Card>
-      <Card onClick={handleClick} onMouseLeave={() => handleHover(false)}>
+      <Card onClick={handleClick}>
         <Text textAlign="center" my="auto" mx="1em" fontSize="lg" width="220px">
           {props.text}
         </Text>
@@ -85,8 +78,6 @@ function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
 }
 
 export default function HomePage(): JSX.Element {
-  const [isLarge] = useMediaQuery("(min-width: 768px)");
-
   const valueProps = [
     {
       svg: dnaSvg,
@@ -138,7 +129,7 @@ export default function HomePage(): JSX.Element {
         </P>
         <Flex direction="row" gap="1em" wrap="wrap" justify="center" my="7em">
           {valueProps.map((d) => (
-            <ValuePropBox key={d.title} isSmall={!isLarge} {...d} />
+            <ValuePropBox key={d.title} {...d} />
           ))}
         </Flex>
         <Flex my="5vh" textAlign="center" fontSize="2xl">

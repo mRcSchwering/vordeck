@@ -5,15 +5,10 @@ import {
 } from "@chakra-ui/react";
 import Router from "./Router";
 
-// TODO: replace media query with touchscreen query for cards
-// https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
-
 // TODO: check final import size
 
 // TODO: react-card-flip needs React v17 but ChakraUI needs React v18
 //       creator is working on it: https://github.com/AaronCCWong/react-card-flip/issues/100
-
-// TODO: centered loading spinner
 
 const Link = defineStyleConfig({
   variants: {
@@ -88,6 +83,9 @@ function ThemedApp(): JSX.Element {
         600: "#A35A19",
         700: "#7A3A01",
       },
+    },
+    shadows: {
+      orange: "0 25px 50px -12px #A35A19",
     },
     components: {
       Text,

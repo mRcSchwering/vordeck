@@ -9,6 +9,7 @@ import {
   OrderedList,
   ListItem,
   List,
+  Spinner as ChakraSpinner,
 } from "@chakra-ui/react";
 import {
   FaLinkedinIn,
@@ -22,6 +23,21 @@ import { docco } from "react-syntax-highlighter/dist/esm/styles/hljs";
 
 export const mailToHref =
   "mailto:info@vordeck.de?subject=Contact%20from%20vordeck.de";
+
+export function Spinner(props: { background?: string }): JSX.Element {
+  return (
+    <Flex
+      direction="row"
+      justify="center"
+      align="center"
+      width="100vw"
+      height="100vh"
+      backgroundColor={props.background}
+    >
+      <ChakraSpinner size="xl" thickness="4px" color="secondary.500" />
+    </Flex>
+  );
+}
 
 export function P(props: {
   children: React.ReactNode;

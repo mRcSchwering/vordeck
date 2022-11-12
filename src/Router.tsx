@@ -1,12 +1,12 @@
 import React from "react";
-import { Spinner } from "@chakra-ui/react";
+import { Spinner } from "./components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { pages } from "./kns";
 
 function SuspendedHomePage(): JSX.Element {
   const Page = React.lazy(() => import("./pages/HomePage"));
   return (
-    <React.Suspense fallback={<Spinner />}>
+    <React.Suspense fallback={<Spinner background="primary.500" />}>
       <Page />
     </React.Suspense>
   );
