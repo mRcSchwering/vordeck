@@ -32,20 +32,6 @@ const example = `>>> d = {"a": {"b": [1, {"c": "asd"}]}}
 >>> find_key_in_json("c", d)
 ['a', 'b', 1, 'c']`;
 
-const tests = `@pytest.mark.parametrize(
-  "obj, exp",
-  [
-      ({"b": 1, "a": {"x": -1}}, ["a", "x"]),
-      ({"a": {"b": {"x": -1}}}, ["a", "b", "x"]),
-      ({"a": [0, 0, {"x": -1}]}, ["a", 2, "x"]),
-      ([0, {"x": -1}], [1, "x"]),
-  ],
-)
-def test_find_key_in_json(obj, exp):
-  res = find_key_in_json(key="x", parsed_json=obj)
-  assert res == exp
-`;
-
 export default function Page(): JSX.Element {
   return (
     <>
@@ -73,10 +59,8 @@ export default function Page(): JSX.Element {
         Note, this is for JSON. You might think you can use this for dicts in
         general... don't. Whereas in JSON object keys are strings and list
         indices are integers, a plain python dict can contain non-string keys,
-        tuples, and basically any object. Finally, for all the people as
-        paranoid as me, here are some tests for this function.
+        tuples, and basically any object.
       </P>
-      <BlockCode code={tests} lang="python" />
     </>
   );
 }

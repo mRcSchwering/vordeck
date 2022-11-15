@@ -5,8 +5,6 @@ import {
 } from "@chakra-ui/react";
 import Router from "./Router";
 
-// TODO: check final import size
-
 // TODO: react-card-flip needs React v17 but ChakraUI needs React v18
 //       creator is working on it: https://github.com/AaronCCWong/react-card-flip/issues/100
 
