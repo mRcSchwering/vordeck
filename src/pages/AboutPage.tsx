@@ -29,12 +29,12 @@ import softwareSvg from "../assets/software.svg";
 
 const preferredTechStack = [
   {
-    name: "Python3 with type-hints",
+    name: "Python3",
     text: "CLIs, backends, and general purpose",
   },
   { name: "React and Typescript", text: "frontends of all kind" },
   { name: "docker", text: "tests, builds, deployments" },
-  { name: "gitlab", text: "especially for its CI/CD pipelines" },
+  { name: "gitlab", text: "VCS and CI/CD pipelines" },
   {
     name: "AWS",
     text: "huge infrastructure toolbox",
