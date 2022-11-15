@@ -10,7 +10,7 @@ const fs = require("fs");
 
 const outfile = "build/sitemap.xml";
 const url = "https://vordeck.de";
-const files = ["./src/App.tsx", "./src/kns/index.tsx"];
+const files = ["./src/Router.tsx", "./src/kns/index.tsx"];
 const date = new Date().toJSON().slice(0, 10);
 
 function findPaths(fileName) {
