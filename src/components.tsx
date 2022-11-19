@@ -44,7 +44,7 @@ export function P(props: {
   fontSize?: string;
   fontWeight?: string;
   style?: React.CSSProperties;
-  maxWidth?: string;
+  maxWidth?: string | string[];
 }): JSX.Element {
   return (
     <Box

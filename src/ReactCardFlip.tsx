@@ -74,7 +74,7 @@ const ReactCardFlip: React.FC<ReactFlipCardProps> = (props) => {
       setFlipped(props.isFlipped);
       setRotation((c) => c + 180);
     }
-  }, [props.isFlipped]);
+  }, [props.isFlipped, isFlipped]);
 
   const getContainerClassName = useMemo(() => {
     let className = "react-card-flip";

@@ -108,7 +108,7 @@ export default function HomePage(): JSX.Element {
         <Flex direction="column" align="center" mt="25vh">
           <Heading
             as="h1"
-            my={["1rem", "2rem"]}
+            mt={["2rem", "4rem"]}
             color="primary.700"
             fontSize="6xl"
           >
@@ -120,7 +120,7 @@ export default function HomePage(): JSX.Element {
           </Text>
         </Flex>
       </Flex>
-      <Flex direction="column" my="10vh" align="center">
+      <Flex direction="column" my="10vh" align="center" mx="1rem">
         <P fontSize="2xl">
           I am Marc. My background is Molecular Biotechnology but for the past
           years I have worked as a Software Developer in Pharma R&D. Another

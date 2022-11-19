@@ -247,8 +247,10 @@ export default function HomePage(): JSX.Element {
                 style={{
                   marginBottom: "0",
                   marginTop: "0",
+                  marginLeft: "0.2rem",
+                  marginRight: "0.2rem",
                 }}
-                maxWidth="lg"
+                maxWidth={["100%", "lg"]}
               >
                 Hi, my name is Marc Schwering. My original background is
                 Molecular Biotechnology. Throughout my career I have changed
