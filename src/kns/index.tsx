@@ -245,7 +245,7 @@ export const registry: RegistryEntry[] = [
     path: "/kn/aws-mfa-login",
     title: "AWS CLI MFA Login",
     description:
-      "Because the session token expires. A setup for using 2FA session tokens with AWS CLI.",
+      "For a better feeling when using AWS tokens. AWS CLI session tokens with 2FA on a personal computer.",
     tags: ["AWS", "aws sts", "MFA", "2FA", "security"],
     date: "2023-01-25",
     depends: () => import("./Aws2faLogin"),

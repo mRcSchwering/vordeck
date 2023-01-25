@@ -87,8 +87,8 @@ export default function Page(): JSX.Element {
         lazy to always create dedicated roles and policies for regular AWS
         tinkering. So on the one hand, there's a nicely protected console login.
         And on the other hand, there's a never-expiring, all-access, plain text
-        token laying around on my PC. There is a better solution. One that is as
-        user-friendly as the admin user token, but much more secure.
+        token laying around on my computer. There is a better solution. One that
+        is as user-friendly as the admin user token, but much more secure.
       </P>
       <P>
         In principle MFA is explained in this {awsDocs}. But it's hard to find
@@ -117,10 +117,10 @@ export default function Page(): JSX.Element {
       </P>
       <BlockCode code={awsLogout} lang="bash" label="aws_logout.sh" />
       <P>
-        For a PC this solution might be fine. A more secure setup would be to
-        instead assume a role with only the access rights needed for a certain
-        operation. This is explained in detail in the {awsDocs2} part of the AWS
-        user guide.
+        For a personal computer this solution might be fine. A more secure setup
+        would be to instead assume a role with only the access rights needed for
+        a certain operation. This is explained in detail in the {awsDocs2} part
+        of the AWS user guide.
       </P>
     </>
   );
