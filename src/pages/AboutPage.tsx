@@ -55,7 +55,7 @@ const projects = [
     processing networks. As it is the case in nature, these networks consist of
     structures such as hubs, feed-back loops, and oscillators from which complex
     behavior emerges. I implemented the simulation as a{" "}
-    <Link label="python package" href="https://pypi.org/project/magicsoup/" />
+    <Link label="python package" href="https://pypi.org/project/magicsoup/" />{" "}
     with most calculations being done in CUDA kernels.
   </CarouselEntry>,
   <CarouselEntry title="CO2AI: AI for Sustainability" key={9}>
