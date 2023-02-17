@@ -46,6 +46,18 @@ const preferredTechStack = [
 ];
 
 const projects = [
+  <CarouselEntry title="MagicSoup: A Cellular Evolution Game" key={9}>
+    I created{" "}
+    <Link href="https://magic-soup.readthedocs.io/" label="MagicSoup" />, a game
+    that simulates cell metabolic and transduction pathway evolution. Given a
+    defined chemistry, cells are allowed to evolve proteins with different
+    domains and different kinetic properties. They thereby create complex signal
+    processing networks. As it is the case in nature, these networks consist of
+    structures such as hubs, feed-back loops, and oscillators from which complex
+    behaviour emerges. I implemented the simulation as a{" "}
+    <Link label="python package" href="https://pypi.org/project/magicsoup/" />
+    with most calculations being done in CUDA kernels.
+  </CarouselEntry>,
   <CarouselEntry title="CO2AI: AI for Sustainability" key={9}>
     As part of a team at BCG GAMMA I developed CO2AI, an app to reduce carbon
     emissions.{" "}
