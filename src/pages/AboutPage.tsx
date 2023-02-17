@@ -50,11 +50,11 @@ const projects = [
     I created{" "}
     <Link href="https://magic-soup.readthedocs.io/" label="MagicSoup" />, a game
     that simulates cell metabolic and transduction pathway evolution. Given a
-    defined chemistry, cells are allowed to evolve proteins with different
+    user-defined chemistry, cells are allowed to evolve proteins with different
     domains and different kinetic properties. They thereby create complex signal
     processing networks. As it is the case in nature, these networks consist of
     structures such as hubs, feed-back loops, and oscillators from which complex
-    behaviour emerges. I implemented the simulation as a{" "}
+    behavior emerges. I implemented the simulation as a{" "}
     <Link label="python package" href="https://pypi.org/project/magicsoup/" />
     with most calculations being done in CUDA kernels.
   </CarouselEntry>,
