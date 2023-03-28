@@ -18,7 +18,9 @@ const craLink = (
   <A href="https://create-react-app.dev/" label="Create React App" />
 );
 
-const vordeckLink = <A href="https://vordeck.de" label="vordeck.de" />;
+const vordeckLink = (
+  <A href="https://github.com/mRcSchwering/vordeck" label="vordeck.de" />
+);
 
 const findPathsCode = `function findPaths(fileName) {
   const regex = /path(: |=)"(\\/[\\w-\\/]+)"/;

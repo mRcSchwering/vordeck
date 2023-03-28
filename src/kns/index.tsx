@@ -252,7 +252,7 @@ export const registry: RegistryEntry[] = [
   },
   {
     path: "/kn/lofi-sitemap-generator",
-    title: "LoFi Sitemap XML Generator",
+    title: "Lo-fi Sitemap XML Generator",
     description:
       "A simple DIY solution for generating a sitemap.xml for a webapp without using additional libraries.",
     tags: ["Typescript", "sitemap.xml", "Regex"],
