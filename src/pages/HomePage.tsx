@@ -2,7 +2,7 @@ import React from "react";
 import { Heading, Text, Flex, Image } from "@chakra-ui/react";
 import { AppHeader, AppFooter, mailToHref, Nav, P } from "../components";
 import ReactCardFlip from "../ReactCardFlip";
-import logoSvg from "../assets/logo.svg";
+import logoSvg from "../assets/android-chrome-367x472.png";
 import cloudSvg from "../assets/cloud-icon.svg";
 import cogwheelSvg from "../assets/cogwheel-icon.svg";
 import dnaSvg from "../assets/dna-icon.svg";
