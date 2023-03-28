@@ -250,6 +250,15 @@ export const registry: RegistryEntry[] = [
     date: "2023-01-25",
     depends: () => import("./Aws2faLogin"),
   },
+  {
+    path: "/kn/lofi-sitemap-generator",
+    title: "LoFi Sitemap XML Generator",
+    description:
+      "A simple DIY solution for generating a sitemap.xml for a webapp without using additional libraries.",
+    tags: ["Typescript", "sitemap.xml", "Regex"],
+    date: "2023-03-28",
+    depends: () => import("./LofiSitemapGenerator"),
+  },
 ];
 
 type PageProps = {
