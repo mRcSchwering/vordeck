@@ -8,6 +8,7 @@ Deployed using [cloudflare pages](https://pages.cloudflare.com/).
 - [App.tsx](./src/App.tsx) entrypoint with lazy-loading routes in [Router.tsx](./src/Router.tsx)
 - [kns/](./src/kns/index.tsx) knowledge nugget pages
 
+
 ## Deploy Setup
 
 I followed the [getting startet tutorial](https://developers.cloudflare.com/pages/getting-started#adding-a-custom-domain)
