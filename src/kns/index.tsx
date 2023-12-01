@@ -259,6 +259,15 @@ export const registry: RegistryEntry[] = [
     date: "2023-03-28",
     depends: () => import("./LofiSitemapGenerator"),
   },
+  {
+    path: "/kn/python-rust-package",
+    title: "Python package with some Rust",
+    description:
+      "An example setup for a Python package, that is mainly written in Python with a few Rust functions included.",
+    tags: ["python", "rust", "maturin", "PyO3", "PyPI", "github-actions"],
+    date: "2023-12-01",
+    depends: () => import("./PythonRustPackage"),
+  },
 ];
 
 type PageProps = {
