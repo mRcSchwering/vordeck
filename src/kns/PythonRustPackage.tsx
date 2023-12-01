@@ -167,6 +167,7 @@ export default function Page(): JSX.Element {
         github.com and also include a {pytest} run for every build.
         Additionally, the workflow must be configured with a secret{" "}
         <Code>PYPI_API_TOKEN</Code> for accessing PyPI.
+        {ghlutz} is a full example of the final package setup.
       </P>
     </>
   );
