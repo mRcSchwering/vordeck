@@ -268,6 +268,15 @@ export const registry: RegistryEntry[] = [
     date: "2023-12-01",
     depends: () => import("./PythonRustPackage"),
   },
+  {
+    path: "/kn/data-parallel-writer",
+    title: "Data Parallel Writer in Python",
+    description:
+      "An example setup for a Python package, that is mainly written in Python with a few Rust functions included.",
+    tags: ["python", "multiprocessing", "asynchronous", "queue"],
+    date: "2024-01-29",
+    depends: () => import("./DataParallelWriter"),
+  },
 ];
 
 type PageProps = {
