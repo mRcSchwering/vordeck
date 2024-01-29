@@ -272,7 +272,7 @@ export const registry: RegistryEntry[] = [
     path: "/kn/data-parallel-writer",
     title: "Data Parallel Writer in Python",
     description:
-      "An example setup for a Python package, that is mainly written in Python with a few Rust functions included.",
+      "A data parallel multiprocessing module variable execution times and writing to a single file.",
     tags: ["python", "multiprocessing", "asynchronous", "queue"],
     date: "2024-01-29",
     depends: () => import("./DataParallelWriter"),
