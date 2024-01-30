@@ -26,7 +26,7 @@ const worker = `def worker(queue: mp.Queue):
 
 const writer = `def writer(file: Path, queue: mp.Queue):
   while True:
-    data = queue.get(timeout=timeout)
+    data = queue.get()
     if data is None:
         break
     with open(file, "a", encoding="utf-8") as fh:
@@ -143,7 +143,7 @@ export default function Page(): JSX.Element {
         is performed on the data (here the <Code>worker</Code> function) always
         takes a vastly different amount of time to finish. <i>E.g.</i> it could
         happen that one of the workers gets a chunk of data where each element
-        take hours to compute while the other workers get chunks that only take
+        take hours to compute while the other workers get chunks that only takes
         seconds. In that case it is better to fill a {queue} with all the
         elements, then start a few workers, and let them work off the queue.
       </P>
@@ -182,7 +182,7 @@ export default function Page(): JSX.Element {
       <BlockCode lang="python" code={parallel} label="parallel.py" />
       <P>
         The actual worker function can be added as an argument. If the module
-        was saved as <i>parallel.py</i> it would be used like shown below.
+        was saved as <i>parallel.py</i> it would be used like shown below. Here,{" "}
         <Code>random</Code> and <Code>time</Code> is just used to simulate the
         effect of different execution times of <Code>myfun</Code>.
       </P>
