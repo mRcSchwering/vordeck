@@ -277,6 +277,15 @@ export const registry: RegistryEntry[] = [
     date: "2024-01-29",
     depends: () => import("./DataParallelWriter"),
   },
+  {
+    path: "/kn/sklearn-in-lambda",
+    title: "Sklearn on AWS Lambda",
+    description:
+      "Deploying scikit-learn models for inference as zip on AWS Lambda using SAM.",
+    tags: ["python", "machine-learning", "inference", "scikit-learn", "SAM"],
+    date: "2024-05-21",
+    depends: () => import("./SklearnLambda"),
+  },
 ];
 
 type PageProps = {
