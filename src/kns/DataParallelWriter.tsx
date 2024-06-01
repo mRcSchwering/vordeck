@@ -118,9 +118,9 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Img
-        src="https://i.stack.imgur.com/HH0fN.png"
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/htop.png"
         width="600px"
-        height="170px"
+        height="100px"
       />
       <P>
         When optimizing performance in python, the {mp} package should not be

@@ -107,9 +107,9 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Img
-        src="https://funvizeo.com/media/memes/19351c81f5fb28f5/observe-d-the-event-bystander-memes-7ccb995a415bbf57-03368de16f531c49.jpg"
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/main/imgs/observer.jpeg"
         width="600px"
-        height="400px"
+        height="300px"
       />
       <P>
         I was developing a{" "}
