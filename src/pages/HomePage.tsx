@@ -32,8 +32,6 @@ const companyLogos = [
   { svg: logoDocmetric, height: 40 },
 ];
 
-// logos of companies
-
 interface ValuePropCardProps {
   title: string;
   svg: string;
@@ -41,7 +39,6 @@ interface ValuePropCardProps {
 }
 
 function ValuePropCard(props: ValuePropCardProps): JSX.Element {
-  // TODO: refactor
   return (
     <Card width="260px" height="320px" background="primary.500">
       <CardHeader>
