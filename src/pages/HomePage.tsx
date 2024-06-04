@@ -1,79 +1,63 @@
 import React from "react";
-import { Heading, Text, Flex, Image } from "@chakra-ui/react";
+import {
+  Heading,
+  Text,
+  Flex,
+  Image,
+  Card,
+  CardHeader,
+  CardBody,
+} from "@chakra-ui/react";
 import { AppHeader, AppFooter, mailToHref, Nav, P } from "../components";
-import ReactCardFlip from "../ReactCardFlip";
 import logoSvg from "../assets/android-chrome-367x472.png";
 import cloudSvg from "../assets/cloud-icon.svg";
 import cogwheelSvg from "../assets/cogwheel-icon.svg";
 import dnaSvg from "../assets/dna-icon.svg";
 import tachometerSvg from "../assets/tachometer-icon.svg";
+import logoDkfz from "../assets/logo_dkfz.svg";
+import logoCo2ai from "../assets/logo_co2ai.svg";
+import logoBcg from "../assets/logo_bcg.svg";
+import logoBayer from "../assets/logo_bayer.svg";
+import logoDocmetric from "../assets/logo_docmetric.svg";
+import logoMp from "../assets/logo_mp.svg";
+import logoUni from "../assets/logo_uni.svg";
 
-interface CardProps {
-  background?: string;
-  children?: React.ReactNode;
-  onMouseEnter?: () => void;
-  onMouseLeave?: () => void;
-  onClick?: (e: React.MouseEvent<HTMLDivElement>) => void;
-}
+const companyLogos = [
+  { svg: logoUni, height: 50 },
+  { svg: logoMp, height: 50 },
+  { svg: logoDkfz, height: 40 },
+  { svg: logoBayer, height: 50 },
+  { svg: logoCo2ai, height: 50 },
+  { svg: logoBcg, height: 40 },
+  { svg: logoDocmetric, height: 40 },
+];
 
-function Card(props: CardProps): JSX.Element {
-  return (
-    <Flex
-      width="260px"
-      height="260px"
-      boxShadow="2xl"
-      borderRadius="260px"
-      margin="0.5em"
-      align="center"
-      justify="start"
-      direction="column"
-      cursor="pointer"
-      _hover={{ boxShadow: "orange" }}
-      onClick={props.onClick}
-      onMouseEnter={props.onMouseEnter}
-      onMouseLeave={props.onMouseLeave}
-      background={props.background}
-    >
-      {props.children}
-    </Flex>
-  );
-}
+// logos of companies
 
-interface ValuePropBoxProps {
+interface ValuePropCardProps {
   title: string;
   svg: string;
   text: string;
 }
 
-function ValuePropBox(props: ValuePropBoxProps): JSX.Element {
-  const [isFlipped, setIsFlipped] = React.useState(false);
-
-  function handleClick(e: React.MouseEvent<HTMLDivElement>) {
-    e.preventDefault();
-    setIsFlipped((prev) => !prev);
-  }
-
+function ValuePropCard(props: ValuePropCardProps): JSX.Element {
+  // TODO: refactor
   return (
-    <ReactCardFlip isFlipped={isFlipped}>
-      <Card onClick={handleClick} background="primary.500">
-        <Image height="70px" mt="70px" src={props.svg} fit="contain" />
-        <Text
-          mt="10px"
-          fontWeight="bold"
-          fontSize="xl"
-          textAlign="center"
+    <Card width="260px" height="320px" background="primary.500">
+      <CardHeader>
+        <Image height="30px" mt="0px" src={props.svg} fit="contain" />
+      </CardHeader>
+      <CardBody pt={0} color="gray.200" fontSize="lg">
+        <Heading
+          variant="h4"
           color="gray.200"
-          width="150px"
+          style={{ paddingInlineStart: 0 }}
         >
           {props.title}
-        </Text>
-      </Card>
-      <Card onClick={handleClick}>
-        <Text textAlign="center" my="auto" mx="1em" fontSize="lg" width="220px">
-          {props.text}
-        </Text>
-      </Card>
-    </ReactCardFlip>
+        </Heading>
+        {props.text}
+      </CardBody>
+    </Card>
   );
 }
 
@@ -120,16 +104,36 @@ export default function HomePage(): JSX.Element {
           </Text>
         </Flex>
       </Flex>
+      <Flex
+        background="gray.50"
+        direction="row"
+        align="center"
+        justify="space-evenly"
+        wrap="wrap"
+      >
+        {companyLogos.map((d) => (
+          <Image
+            height={`${d.height}px`}
+            mx="1em"
+            my="2em"
+            src={d.svg}
+            display="inline"
+          />
+        ))}
+      </Flex>
       <Flex direction="column" my="10vh" align="center" mx="1rem">
         <P fontSize="2xl">
-          I am Marc. My background is Molecular Biotechnology but for the past
-          years I have worked as a Software Developer in Pharma R&D. Another
-          career jumper? Yes, but with experience. Do you need help realizing
-          some ideas? Let's have a chat.
+          I'm Marc, a seasoned Software Developer with a strong background in
+          Molecular Biotechnology. With years of experience in Pharma R&D, I
+          bring a unique blend of scientific knowledge and technical expertise
+          to every project.
+          <br />
+          <br /> Ready to bring your ideas to life? Let's connect and make it
+          happen.
         </P>
         <Flex direction="row" gap="1em" wrap="wrap" justify="center" my="7em">
           {valueProps.map((d) => (
-            <ValuePropBox key={d.title} {...d} />
+            <ValuePropCard key={d.title} {...d} />
           ))}
         </Flex>
         <Flex my="5vh" textAlign="center" fontSize="2xl">
