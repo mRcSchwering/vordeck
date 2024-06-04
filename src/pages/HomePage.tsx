@@ -66,7 +66,7 @@ export default function HomePage(): JSX.Element {
     {
       svg: dnaSvg,
       title: "Domain Knowledge",
-      text: "No PowerPoint karaoke about genes, proteins, drug discovery and development. Get to the point on day one.",
+      text: "No PowerPoint karaoke about health care or drug discovery and development. Get to the point on day one.",
     },
     {
       svg: tachometerSvg,
@@ -76,7 +76,7 @@ export default function HomePage(): JSX.Element {
     {
       svg: cloudSvg,
       title: "Modern Architecture",
-      text: "Serverless over self-hosted where possible. Minimize maintenance. Reduce costs. Have a product that scales seamlessly.",
+      text: "Serverless where practical. Take maintenance and security into consideration. Reduce costs. Have a product that scales seamlessly.",
     },
     {
       svg: cogwheelSvg,
@@ -100,7 +100,7 @@ export default function HomePage(): JSX.Element {
             <Image width="35px" mx="0.25em" src={logoSvg} display="inline" />
           </Heading>
           <Text textAlign="center" fontSize="3xl" margin="1em" color="gray.200">
-            Heaving software for Biotech and Pharma
+            Heaving software for Life Sciences
           </Text>
         </Flex>
       </Flex>

@@ -41,7 +41,7 @@ const preferredTechStack = [
   },
   {
     name: "serverless",
-    text: "over self-hosted where possible",
+    text: "over self-hosted where practical",
   },
 ];
 
@@ -231,9 +231,10 @@ export default function HomePage(): JSX.Element {
             mx="0.5rem"
             mt="15vh"
           >
-            Software development is full of decisions, a lot of which are left
-            to the developer team. Domain knowledge is key to creating useful
-            software. This is especially true in research and development.
+            Successful life sciences projects hinge on deep domain
+            understanding. Considering security and operations ensures their
+            longevity. Quality software isn't just about code; it's about
+            insight and foresight.
           </Text>
           <Flex
             direction="row"
