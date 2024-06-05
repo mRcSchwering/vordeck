@@ -21,6 +21,7 @@ import logoBayer from "../assets/logo_bayer.svg";
 import logoDocmetric from "../assets/logo_docmetric.svg";
 import logoMp from "../assets/logo_mp.svg";
 import logoUni from "../assets/logo_uni.svg";
+import logoCgm from "../assets/logo_cgm.svg";
 
 const companyLogos = [
   { svg: logoUni, height: 50 },
@@ -30,6 +31,7 @@ const companyLogos = [
   { svg: logoCo2ai, height: 50 },
   { svg: logoBcg, height: 40 },
   { svg: logoDocmetric, height: 40 },
+  { svg: logoCgm, height: 50 },
 ];
 
 interface ValuePropCardProps {
