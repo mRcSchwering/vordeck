@@ -46,7 +46,17 @@ const preferredTechStack = [
 ];
 
 const projects = [
-  <CarouselEntry title="MagicSoup: A Cellular Evolution Game" key={9}>
+  <CarouselEntry title="Healthcare Data at Docmetric" key={11}>
+    At <Link href="https://docmetric.de/" label="docmetric.de" />, a health care
+    data broker dedicated to enhancing efficiency for health care professionals
+    through insightful data, I led initiatives that transformed our data
+    processing. I designed API endpoints for automated statistical reporting and
+    developed data pipelines for enrichment and exports, ensuring data integrity
+    and efficiency. By refactoring code, I reduced pipeline runtime from weeks
+    to hours. My anomaly analysis detected artifacts and led to filters that
+    improved pipeline stability and data quality.
+  </CarouselEntry>,
+  <CarouselEntry title="MagicSoup: A Cellular Evolution Game" key={10}>
     I created{" "}
     <Link href="https://magic-soup.readthedocs.io/" label="MagicSoup" />, a game
     that simulates cell metabolic and transduction pathway evolution. Given a
