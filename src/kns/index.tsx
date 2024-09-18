@@ -286,6 +286,24 @@ export const registry: RegistryEntry[] = [
     date: "2024-05-21",
     depends: () => import("./SklearnLambda"),
   },
+  {
+    path: "/kn/fastapi-marshalling",
+    title: "Reasonable FastAPI Marshalling",
+    description:
+      "Distinguishing required, optional, null, undefined in FastAPI with Pydantic payload and response models.",
+    tags: [
+      "FastAPI",
+      "pydantic",
+      "REST",
+      "python",
+      "null",
+      "undefined",
+      "typing",
+      "validation",
+    ],
+    date: "2024-09-24",
+    depends: () => import("./FastApiMarshalling"),
+  },
 ];
 
 type PageProps = {
