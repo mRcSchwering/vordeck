@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import { P, BlockCode, Img, Code, A, Ul, Dli } from "../components";
+import { P, BlockCode, Img, Code, A } from "../components";
 
 const dataPrep = `import polars as pl
 import pyarrow.parquet as pq
