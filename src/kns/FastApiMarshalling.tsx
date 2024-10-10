@@ -1,6 +1,5 @@
 import { Heading } from "@chakra-ui/react";
 import { P, BlockCode, Img, Code, A, Ul, Dli } from "../components";
-import { Link } from "react-router-dom";
 
 const usualCode = `from pydantic import BaseModel
 

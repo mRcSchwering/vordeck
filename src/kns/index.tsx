@@ -304,6 +304,15 @@ export const registry: RegistryEntry[] = [
     date: "2024-09-24",
     depends: () => import("./FastApiMarshalling"),
   },
+  {
+    path: "/kn/scan-s3-parquet",
+    title: "Scanning Parquet Files on S3",
+    description:
+      "Some tests on querying paruqet files on S3 using PyArrow and Polars",
+    tags: ["polars", "pyarrow", "python", "parquet", "s3"],
+    date: "2024-10-10",
+    depends: () => import("./ScanParquetOnS3"),
+  },
 ];
 
 type PageProps = {
