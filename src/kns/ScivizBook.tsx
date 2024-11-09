@@ -1,5 +1,5 @@
 import { Heading } from "@chakra-ui/react";
-import { P, A, BlockCode, Img } from "../components";
+import { P, A, BlockCode, Img, Code } from "../components";
 
 const coloredLines = `import numpy as np
 from matplotlib.colors import Colormap
@@ -61,7 +61,7 @@ def legend_trickery():
     ax.set_xlabel("Height (m)", weight="medium")
     ax.set_ylabel("Weight (kg)", weight="medium")
     ax.set_title(
-        """Distribution of height & weight\n"""
+        """Distribution of height & weight\\n"""
         """according to sex & age (fake data)""",
         family="serif",
     )
@@ -117,140 +117,6 @@ def legend_trickery():
 
     ax.scatter(X, [19] * len(X), marker="|", color=cmap(C), linewidth=0.5, alpha=0.25)
     ax.scatter([1.3] * len(X), Y, marker="_", color=cmap(C), linewidth=0.5, alpha=0.25)
-    plt.show()`;
-
-const legendAlternatives = `import numpy as np
-from matplotlib.axes import Axes
-import matplotlib.pyplot as plt
-
-def legend_alternatives():
-    X = np.linspace(-np.pi, np.pi, 400, endpoint=True)
-    C, S = np.cos(X), np.sin(X)
-    label_2_Y = {"cosine": C, "sine": S}
-    label_2_xi = {"cosine": 100, "sine": 200}
-
-    def plot(ax: Axes):
-        ax.set_xlim((-np.pi, np.pi))
-        ax.set_xticks([-np.pi, -np.pi / 2, 0, np.pi / 2, np.pi])
-        ax.set_xticklabels(["-π", "-π/2", "0", "+π/2", "+π"])
-        ax.set_ylim((-1, 1))
-        ax.set_yticks([-1, 0, 1])
-        ax.set_yticklabels(["-1", "0", "+1"])
-
-        ax.spines["right"].set_visible(False)
-        ax.spines["top"].set_visible(False)
-        ax.spines["left"].set_position(("data", -3.25))
-        ax.spines["bottom"].set_position(("data", -1.25))
-
-        # no clip because y-axis cuts of >1, <-1
-        (plot1,) = ax.plot(X, C, label="cosine", clip_on=False)
-        (plot2,) = ax.plot(X, S, label="sine", clip_on=False)
-
-        return plot1, plot2
-
-    n = 4
-    fig = plt.figure(figsize=(6, n * 2))
-
-    # one ax over all for common labels
-    ax = fig.add_subplot(111)
-    ax.tick_params(labelcolor="w", top=False, bottom=False, left=False, right=False)
-    ax.spines["left"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.spines["bottom"].set_visible(False)
-    ax.spines["top"].set_visible(False)
-    ax.set_xlabel("Angle", va="center", weight="bold")
-    ax.xaxis.set_label_coords(x=0.5, y=-0.1)
-    ax.set_ylabel("Value", ha="center", weight="bold")
-    ax.yaxis.set_label_coords(x=-0.1, y=0.5)
-
-    # clip_on=False is actually default
-    ax = fig.add_subplot(n, 1, 1)
-    for p in plot(ax):
-        label = p.get_label()
-        color = p.get_color()
-        Y = label_2_Y[label]
-        ax.text(
-            x=X[-1],
-            y=Y[-1],
-            s=f" — {label}",
-            size="small",
-            color=color,
-            ha="left",
-            va="center",
-            clip_on=False,  # is outside of x-axis
-        )
-
-    ax.set_title("Trigonometric functions", x=1, y=1.2, ha="right")
-
-    ax = fig.add_subplot(n, 1, 2)
-    for p in plot(ax):
-        label = p.get_label()
-        color = p.get_color()
-        Y = label_2_Y[label]
-        xi = label_2_xi[label]
-        ax.text(
-            x=X[xi],
-            y=Y[xi],
-            s=f" {label}",
-            family="Roboto Condensed",
-            size="small",
-            bbox={"facecolor": "white", "edgecolor": "None", "alpha": 0.85},
-            color=color,
-            ha="center",
-            va="center",
-            rotation=42.5,
-        )
-
-    ax = fig.add_subplot(n, 1, 3)
-    for p in plot(ax):
-        label = p.get_label()
-        color = p.get_color()
-        Y = label_2_Y[label]
-        xi = label_2_xi[label]
-        ax.annotate(
-            text=label,
-            xy=(X[xi], Y[xi]),
-            size="small",
-            color=color,
-            xytext=(-50, +10),
-            textcoords="offset points",
-            arrowprops={
-                "arrowstyle": "->",
-                "color": color,
-                "connectionstyle": "arc3,rad=-0.3",
-            },
-        )
-
-    ax = fig.add_subplot(n, 1, 4)
-    index = 10
-    for p in plot(ax):
-        label = p.get_label()
-        color = p.get_color()
-        Y = label_2_Y[label]
-        ax.scatter(
-            x=[X[index]],
-            y=[Y[index]],
-            s=100,
-            marker="o",
-            zorder=10,
-            clip_on=False,  # circle would be cut off below -1
-            linewidth=1,
-            edgecolor=color,
-            facecolor="white",
-        )
-        ax.text(
-            x=X[index],
-            y=1.01 * Y[index],
-            s="A",
-            zorder=20,  # place over white circle
-            color=color,
-            ha="center",
-            va="center",
-            size="x-small",
-            clip_on=False,  # A would be cut off below -1
-        )
-
-    plt.tight_layout()
     plt.show()`;
 
 const annotationZoom = `import numpy as np
@@ -339,19 +205,99 @@ export default function Page(): JSX.Element {
         width="300px"
         height="50px"
       />
-      <P>asd</P>
-      <Heading variant="h4">asd</Heading>
-      <P>asd</P>
-      <BlockCode code={legendTrickery} lang="python" />
-      <Heading variant="h4">asd</Heading>
-      <P>asd</P>
-      <BlockCode code={legendAlternatives} lang="python" />
-      <Heading variant="h4">asd</Heading>
-      <P>asd</P>
-      <BlockCode code={annotationZoom} lang="python" />
-      <Heading variant="h4">asd</Heading>
-      <P>asd</P>
+      <P>
+        I have used <A href="https://matplotlib.org/" label="matplotlib" /> for
+        about 10 years for simple plots. It wasn't until recently when I read{" "}
+        <A
+          label="Nicolas P. Rougier's 'Scientific Visualization'"
+          href="https://www.amazon.com/dp/2957990105"
+        />{" "}
+        that I realized I was barely scratching it's surface. The book is
+        available{" "}
+        <A
+          label="online (PDF)"
+          href="https://inria.hal.science/hal-03427242/document"
+        />{" "}
+        and can be build from{" "}
+        <A
+          label="online (PDF)"
+          href="https://github.com/rougier/scientific-visualization-book"
+        />
+        . It's a guide on using matplotlib for scientific visualization that
+        goes a bit beyond standard scatter plots and bar charts. It comes with a
+        few excercises and examples of non-trivial plots. I decided to highlight
+        a few of these non-trivial plots for future reference. These{" "}
+        <A
+          href="https://github.com/matplotlib/cheatsheets"
+          label="cheatsheets"
+        />{" "}
+        are particularly suitable as an attachement.
+      </P>
+      <Heading variant="h4">Line Collections</Heading>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/refs/heads/main/imgs/colored-lines.png"
+        width="800px"
+        height="170px"
+      />
+      <P>
+        The trick for the above plot is to draw many short connected lines each
+        with slightly different color. This is done using{" "}
+        <Code>LineCollection</Code>. The code is shown below. In addition to
+        that <Code>alpha</Code> is increased with every line(-collection) to
+        create this fade-away effect. The book also links a color stack for{" "}
+        <A
+          href="https://github.com/rougier/scientific-visualization-book/blob/master/code/colors/open-colors.py"
+          label="Open colors"
+        />{" "}
+        and{" "}
+        <A
+          href="https://github.com/rougier/scientific-visualization-book/blob/master/code/colors/material-colors.py"
+          label="Material colors"
+        />
+        .
+      </P>
       <BlockCode code={coloredLines} lang="python" />
+      <Heading variant="h4">Combining Legends</Heading>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/refs/heads/main/imgs/legend-trickery.png"
+        width="600px"
+        height="600px"
+      />
+      <P>
+        The figure above makes maybe a bit excessive use effects to show some
+        ornaments. Instead of drawing a default legend, one legend for each
+        property (size and color) is designed. See comments in the code below
+        for details. One alternative to legends is to describe elements within
+        the plot.{" "}
+        <A
+          label="Here"
+          href="https://github.com/rougier/scientific-visualization-book/blob/master/code/ornaments/legend-alternatives.py"
+        />{" "}
+        are some examples of elegantly describing parts of the plot without
+        creating a legend.
+      </P>
+      <BlockCode code={legendTrickery} lang="python" />
+      <Heading variant="h4">Annotation Zoom</Heading>
+      <Img
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/refs/heads/main/imgs/annotation-zoom.png"
+        width="600px"
+        height="600py"
+      />
+      <P>
+        This is one way of highlighting a certain area within the plot. The code
+        for it is shown below. Note how <Code>Gridspec</Code> is used for
+        creating one main plot and 5 smaller subplots. Also note that we have to
+        manually ensure to not have these annotation lines cross each other.
+        Having zoomed-in subplots next to the main plot, one could also draw the
+        zoomed-in plot into the main plot. This is shown in{" "}
+        <A
+          href="https://github.com/rougier/scientific-visualization-book/blob/master/code/rules/rule-3.py"
+          label="this example"
+        />
+        , which uses <Code>zoomed_inset_axes</Code> from{" "}
+        <Code>mpl_toolkits.axes_grid1.inset_locator</Code>.
+      </P>
+      <BlockCode code={annotationZoom} lang="python" />
     </>
   );
 }

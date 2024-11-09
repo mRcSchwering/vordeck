@@ -64,34 +64,12 @@ const query2 = `df = (
     .unnest("genres")
 )`;
 
-const query3 = `df = (
-    pl.scan_parquet(S3_BASICS, hive_partitioning=True)
-    .filter((pl.col("startYear") >= 2000) & (pl.col("tconst").is_in(tconsts)))
-    .select(pl.col("genres").value_counts(sort=True, name="n"))
-    .head(10)
-    .collect()
-    .unnest("genres")
-)`;
-
 const query4 = `df = (
     pl.scan_parquet(S3_BASICS, hive_partitioning=True)
     .filter((pl.col("startYear") == 2000) & (pl.col("tconst").is_in(tconsts)))
     .select(pl.col("genres").value_counts(sort=True, name="n"))
     .head(10)
     .collect()
-    .unnest("genres")
-)`;
-
-const query5 = `tmp = (
-    pl.scan_parquet(S3_BASICS, hive_partitioning=True)
-    .filter((pl.col("startYear") == 2000))
-    .select(pl.col("genres"), pl.col("tconst"))
-    .collect()
-)
-df = (
-    tmp.filter(pl.col("tconst").is_in(tconsts))
-    .select(pl.col("genres").value_counts(sort=True, name="n"))
-    .head(10)
     .unnest("genres")
 )`;
 

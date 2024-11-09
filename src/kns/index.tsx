@@ -308,7 +308,7 @@ export const registry: RegistryEntry[] = [
     path: "/kn/scan-s3-parquet",
     title: "Scanning Parquet Files on S3",
     description:
-      "Some tests on querying paruqet files on S3 using PyArrow and Polars",
+      "Some tests on querying paruqet files on S3 using PyArrow and Polars.",
     tags: ["polars", "pyarrow", "python", "parquet", "s3"],
     date: "2024-10-10",
     depends: () => import("./ScanParquetOnS3"),
@@ -316,9 +316,10 @@ export const registry: RegistryEntry[] = [
   {
     path: "/kn/sciviz-book",
     title: "Scientific Visualization with matplotlib",
-    description: "asd",
+    description:
+      "Examples from Nicolas P. Rougier's 'Scientific Visualization' using matplotlib.",
     tags: ["matplotlib", "visualization", "python", "Nicolas P. Rougier"],
-    date: "1990-11-24",
+    date: "2024-11-24",
     depends: () => import("./ScivizBook"),
   },
 ];
