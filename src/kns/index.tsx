@@ -313,6 +313,14 @@ export const registry: RegistryEntry[] = [
     date: "2024-10-10",
     depends: () => import("./ScanParquetOnS3"),
   },
+  {
+    path: "/kn/sciviz-book",
+    title: "Scientific Visualization with matplotlib",
+    description: "asd",
+    tags: ["matplotlib", "visualization", "python", "Nicolas P. Rougier"],
+    date: "1990-11-24",
+    depends: () => import("./ScivizBook"),
+  },
 ];
 
 type PageProps = {
