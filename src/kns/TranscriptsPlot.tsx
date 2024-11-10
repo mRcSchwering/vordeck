@@ -216,23 +216,26 @@ export default function Page(): JSX.Element {
   return (
     <>
       <Img
-        src="https://matplotlib.org/stable/_static/logo_dark.svg"
-        width="300px"
-        height="50px"
+        src="https://raw.githubusercontent.com/mRcSchwering/vordeck/refs/heads/main/imgs/transcript_plot.png"
+        width="800px"
+        height="500px"
       />
-      <Heading variant="h4">Test Suite</Heading>
       <P>
-        One obvious place to mock AWS resources is in tests. Below is an example
-        of the configuration file of a{" "}
-        <A label="pytest" href="https://docs.pytest.org/" /> test suite. Moto
-        has a context manager for every AWS resource to be mocked. In the
-        example below I am mocking S3 with <Code>mock_s3</Code>. I place this
-        context into a fixture for easy usage in tests. Additionally, a function{" "}
-        <Code>fake_s3_setup</Code> is called to create the S3 bucket I am using.
-        Moto doesn't know which buckets you actually have, so it thinks you have
-        no resources at all. This means before accessing a bucket in your tests,
-        you must first create it. This function is also a nice place for adding
-        any test data.
+        Sometimes I spend way too much time on trying to get{" "}
+        <A href="https://matplotlib.org/" label="matplotlib" /> plot right. I
+        decided to start saving the code for such non-trivial plots for future
+        reference. Apart from that{" "}
+        <A
+          href="https://matplotlib.org/stable/gallery/index.html"
+          label="matplotlib examples"
+        />{" "}
+        should suffice.
+      </P>
+      <Heading variant="h4">Code</Heading>
+      <P>
+        <Code>barh</Code> <Code>patches.FancyArrow</Code>{" "}
+        <Code>ax.transData</Code> <Code>ax.set_axisbelow(True)</Code>
+        <Code>patches.Polygon(..., ec="white")</Code>
       </P>
       <BlockCode code={wholeCode} lang="python" />
     </>
