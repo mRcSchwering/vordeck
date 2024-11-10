@@ -215,27 +215,62 @@ plot_transcripts(genome_range=genome_range, transcripts=transcripts, color_map=c
 export default function Page(): JSX.Element {
   return (
     <>
+      <P>
+        Sometimes I spend way too much time on trying to get a plot right. I
+        decided to start saving the code for such non-trivial plots for future
+        reference.
+      </P>
       <Img
         src="https://raw.githubusercontent.com/mRcSchwering/vordeck/refs/heads/main/imgs/transcript_plot.png"
         width="800px"
-        height="500px"
+        height="400px"
       />
       <P>
-        Sometimes I spend way too much time on trying to get{" "}
-        <A href="https://matplotlib.org/" label="matplotlib" /> plot right. I
-        decided to start saving the code for such non-trivial plots for future
-        reference. Apart from that{" "}
-        <A
-          href="https://matplotlib.org/stable/gallery/index.html"
-          label="matplotlib examples"
-        />{" "}
-        should suffice.
+        This is a plot I was using for{" "}
+        <A href="https://magic-soup.readthedocs.io/" label="Magicsoup" /> a
+        package that simulates cell metabolic and pathway evolution. The goal is
+        to visualize the transcriptome of a cell. Cell transcripts are often
+        visualized as bars or arrows above or below the x-axis as the cell's
+        genome. Usually, arrows above the genome represent transcripts in the
+        forward (5'-3') direction while arrows below the genome represent
+        transcripts in the reverse-complement (3'-5') direction. In this
+        particular case I want to highlight certain regions within these error
+        with colors. There are 3 domain types which are each represented by one
+        color.
       </P>
       <Heading variant="h4">Code</Heading>
       <P>
-        <Code>barh</Code> <Code>patches.FancyArrow</Code>{" "}
-        <Code>ax.transData</Code> <Code>ax.set_axisbelow(True)</Code>
-        <Code>patches.Polygon(..., ec="white")</Code>
+        The whole code is shown below. A major challenge was drawing the
+        transcript arrows. First, I wanted to use{" "}
+        <Code>patches.FancyArrow</Code> as gray transcript arrow, then draw
+        colorful <Code>barh</Code> domains over it. This doesn't work because{" "}
+        <Code>patches.FancyArrow</Code> is not rendered in a very reproducible
+        way. This means sometimes it is rendered a pixel higher or lower. Which
+        in turn means the following <Code>barh</Code> are not exactly aligned
+        anymore. This creates artifacts: <i>e.g.</i> gray 1 pixel high lines
+        shimmereing behind the domain regions and edges where the domain regions
+        start and end. Only <Code>barh</Code> really draws repetitive lines
+        precisely in the same way. So, the arrow stems have to be done using{" "}
+        <Code>barh</Code>. This means <Code>patches.Polygon</Code> can be used
+        just to draw the arrow head triangle. However,{" "}
+        <Code>patches.Polygon</Code> also doesn't draw very precisely (just as{" "}
+        <Code>patches.FancyArrow</Code>). This means the arrow head will not
+        always appear flush with the arrow stem. I tried slightly downscaling
+        the triangle, but it would always create some artifacts. Eventually, I
+        gave up and gave the triangle a white outline. Now, the arrow head does
+        not appear connected anymore, but it also hints the actual end
+        coordinate of the transcript.
+      </P>
+      <P>
+        Another challenge is making the plot scale in different directions.
+        Sometimes there might be just 1 transcript, sometimes there may be 50.
+        Some genomes are below 1000 base pairs, some are a few thousand. The
+        ratio of the arrow head length to the arrow width should always be
+        constant. Otherwise the arrow head would sometimes appear longer or
+        shorter. For that I am using <Code>ax.transData</Code> to first
+        calculate how many pixels the arrow width occupies on the y-axis, to
+        then use <Code>ax.transData.inverted()</Code> to calculate how many base
+        pairs would create this many pixels on the x-axis.
       </P>
       <BlockCode code={wholeCode} lang="python" />
     </>
