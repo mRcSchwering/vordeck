@@ -322,6 +322,22 @@ export const registry: RegistryEntry[] = [
     date: "2024-11-24",
     depends: () => import("./ScivizBook"),
   },
+  {
+    path: "/kn/transcripts-plot",
+    title: "Transcripts Plot with matplotlib",
+    description:
+      "Plotting genomics transcripts and highlighting domains using matplotlib.",
+    tags: [
+      "matplotlib",
+      "visualization",
+      "python",
+      "transcripts",
+      "domains",
+      "CDS",
+    ],
+    date: "2024-11-25",
+    depends: () => import("./TranscriptsPlot"),
+  },
 ];
 
 type PageProps = {
