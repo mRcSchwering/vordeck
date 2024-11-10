@@ -264,11 +264,10 @@ export default function Page(): JSX.Element {
         height="600px"
       />
       <P>
-        The figure above makes maybe a bit excessive use effects to show some
-        ornaments. Instead of drawing a default legend, one legend for each
-        property (size and color) is designed. See comments in the code below
-        for details. One alternative to legends is to describe elements within
-        the plot.{" "}
+        Maybe the figure above makes a bit excessive use of ornaments. Instead
+        of drawing a default legend, one legend for each property (size and
+        color) is designed. See comments in the code below for details. One
+        alternative to legends is to describe elements within the plot.{" "}
         <A
           label="Here"
           href="https://github.com/rougier/scientific-visualization-book/blob/master/code/ornaments/legend-alternatives.py"
@@ -288,8 +287,8 @@ export default function Page(): JSX.Element {
         for it is shown below. Note how <Code>Gridspec</Code> is used for
         creating one main plot and 5 smaller subplots. Also note that we have to
         manually ensure to not have these annotation lines cross each other.
-        Having zoomed-in subplots next to the main plot, one could also draw the
-        zoomed-in plot into the main plot. This is shown in{" "}
+        Instead of having zoomed-in subplots next to the main plot, one could
+        also draw the zoomed-in plot into the main plot. This is shown in{" "}
         <A
           href="https://github.com/rougier/scientific-visualization-book/blob/master/code/rules/rule-3.py"
           label="this example"
