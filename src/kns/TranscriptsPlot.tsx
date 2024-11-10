@@ -7,7 +7,7 @@ import matplotlib.pyplot as plt
 import random
 import matplotlib.patheffects as path_effects
 
-def get_data(
+def generate_data(
     genome_size: int,
     p_start=0.01,
     p_end=0.01,
@@ -202,15 +202,7 @@ def plot_transcripts(
         edgecolor="none",
     )
     fig.suptitle(title)
-    plt.show()
-
-color_map = {
-    "catalytic": "#fe218b",
-    "transporter": "#21b0fe",
-    "regulatory": "#fed700",
-}
-transcripts, genome_range = get_data(genome_size=1000)
-plot_transcripts(genome_range=genome_range, transcripts=transcripts, color_map=color_map)`;
+    plt.show()`;
 
 export default function Page(): JSX.Element {
   return (

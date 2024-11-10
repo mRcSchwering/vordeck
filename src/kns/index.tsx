@@ -319,7 +319,7 @@ export const registry: RegistryEntry[] = [
     description:
       "Examples from Nicolas P. Rougier's 'Scientific Visualization' using matplotlib.",
     tags: ["matplotlib", "visualization", "python", "Nicolas P. Rougier"],
-    date: "2024-11-24",
+    date: "2024-11-23",
     depends: () => import("./ScivizBook"),
   },
   {
@@ -335,7 +335,7 @@ export const registry: RegistryEntry[] = [
       "domains",
       "CDS",
     ],
-    date: "2024-11-25",
+    date: "2024-11-24",
     depends: () => import("./TranscriptsPlot"),
   },
 ];
