@@ -222,24 +222,23 @@ export default function Page(): JSX.Element {
         <A href="https://magic-soup.readthedocs.io/" label="Magicsoup" /> a
         package that simulates cell metabolic and pathway evolution. The goal is
         to visualize the transcriptome of a cell. Cell transcripts are often
-        visualized as bars or arrows above or below the x-axis as the cell's
-        genome. Usually, arrows above the genome represent transcripts in the
-        forward (5'-3') direction while arrows below the genome represent
-        transcripts in the reverse-complement (3'-5') direction. In this
-        particular case I want to highlight certain regions within these error
-        with colors. There are 3 domain types which are each represented by one
-        color.
+        visualized as bars or arrows above or below the cell's genome,
+        represented by the x-axis. Usually, arrows above the genome represent
+        transcripts in the forward (5'-3') direction while arrows below the
+        genome represent transcripts in the reverse-complement (3'-5')
+        direction. In this particular case I want to highlight certain regions
+        within these transcripts by colors.
       </P>
       <Heading variant="h4">Code</Heading>
       <P>
-        The whole code is shown below. A major challenge was drawing the
+        The entire code is shown below. One major challenge was drawing the
         transcript arrows. First, I wanted to use{" "}
         <Code>patches.FancyArrow</Code> as gray transcript arrow, then draw
         colorful <Code>barh</Code> domains over it. This doesn't work because{" "}
         <Code>patches.FancyArrow</Code> is not rendered in a very reproducible
         way. This means sometimes it is rendered a pixel higher or lower. Which
         in turn means the following <Code>barh</Code> are not exactly aligned
-        anymore. This creates artifacts: <i>e.g.</i> gray 1 pixel high lines
+        anymore. This creates artifacts: <i>e.g.</i> gray 1 pixel thick lines
         shimmereing behind the domain regions and edges where the domain regions
         start and end. Only <Code>barh</Code> really draws repetitive lines
         precisely in the same way. So, the arrow stems have to be done using{" "}
@@ -249,20 +248,21 @@ export default function Page(): JSX.Element {
         <Code>patches.FancyArrow</Code>). This means the arrow head will not
         always appear flush with the arrow stem. I tried slightly downscaling
         the triangle, but it would always create some artifacts. Eventually, I
-        gave up and gave the triangle a white outline. Now, the arrow head does
-        not appear connected anymore, but it also hints the actual end
-        coordinate of the transcript.
+        gave up and gave the triangle a white outline. On the one hand, the
+        arrow head does not appear connected anymore. On the other hand, it
+        precicely marks the end coordinate of the transcript.
       </P>
       <P>
         Another challenge is making the plot scale in different directions.
         Sometimes there might be just 1 transcript, sometimes there may be 50.
-        Some genomes are below 1000 base pairs, some are a few thousand. The
-        ratio of the arrow head length to the arrow width should always be
-        constant. Otherwise the arrow head would sometimes appear longer or
-        shorter. For that I am using <Code>ax.transData</Code> to first
-        calculate how many pixels the arrow width occupies on the y-axis, to
-        then use <Code>ax.transData.inverted()</Code> to calculate how many base
-        pairs would create this many pixels on the x-axis.
+        Some genomes are below 1000 base pairs, some are a few thousand (the
+        simulation deals with small genomes). The ratio of the arrow head length
+        to the arrow width should always be constant. Otherwise the arrow head
+        would sometimes appear longer or shorter. For that I am using{" "}
+        <Code>ax.transData</Code> to first calculate how many pixels the arrow
+        width occupies on the y-axis, to then use{" "}
+        <Code>ax.transData.inverted()</Code> to calculate how many base pairs
+        would create this many pixels on the x-axis.
       </P>
       <BlockCode code={wholeCode} lang="python" />
     </>
