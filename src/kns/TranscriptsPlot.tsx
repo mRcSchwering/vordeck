@@ -149,7 +149,7 @@ def plot_transcripts(
 
         # draw arrow head alone
         arrow = patches.Polygon(
-            [(x1, yl), (x1, yh), (xtip, y)], fc=base_color, ec="white"
+            [(x1, yl), (x1, yh), (xtip, y)], fc=base_color, linewidth=0
         )
         ax.add_patch(arrow)
 
@@ -215,7 +215,7 @@ export default function Page(): JSX.Element {
       <Img
         src="https://raw.githubusercontent.com/mRcSchwering/vordeck/refs/heads/main/imgs/transcript_plot.png"
         width="800px"
-        height="400px"
+        height="520px"
       />
       <P>
         This is a plot I was using for{" "}
