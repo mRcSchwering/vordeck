@@ -243,14 +243,7 @@ export default function Page(): JSX.Element {
         start and end. Only <Code>barh</Code> really draws repetitive lines
         precisely in the same way. So, the arrow stems have to be done using{" "}
         <Code>barh</Code>. This means <Code>patches.Polygon</Code> can be used
-        just to draw the arrow head triangle. However,{" "}
-        <Code>patches.Polygon</Code> also doesn't draw very precisely (just as{" "}
-        <Code>patches.FancyArrow</Code>). This means the arrow head will not
-        always appear flush with the arrow stem. I tried slightly downscaling
-        the triangle, but it would always create some artifacts. Eventually, I
-        gave up and gave the triangle a white outline. On the one hand, the
-        arrow head does not appear connected anymore. On the other hand, it
-        precicely marks the end coordinate of the transcript.
+        just to draw the arrow head triangle.
       </P>
       <P>
         Another challenge is making the plot scale in different directions.
