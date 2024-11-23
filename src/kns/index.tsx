@@ -319,7 +319,7 @@ export const registry: RegistryEntry[] = [
     description:
       "Examples from Nicolas P. Rougier's 'Scientific Visualization' using matplotlib.",
     tags: ["matplotlib", "visualization", "python", "Nicolas P. Rougier"],
-    date: "2024-11-23",
+    date: "2024-10-23",
     depends: () => import("./ScivizBook"),
   },
   {
@@ -335,8 +335,17 @@ export const registry: RegistryEntry[] = [
       "domains",
       "CDS",
     ],
-    date: "2024-11-24",
+    date: "2024-10-24",
     depends: () => import("./TranscriptsPlot"),
+  },
+  {
+    path: "/kn/search-cloudwatch-logs",
+    title: "Searching through CloudWatch Logs from CLI",
+    description:
+      "Python helper functions for finding events in all streams of a particular log group in AWS CloudWatch.",
+    tags: ["CloudWatch", "AWS", "python", "CLI"],
+    date: "2024-11-23",
+    depends: () => import("./SearchCloudWatchLogs"),
   },
 ];
 
