@@ -1,4 +1,3 @@
-import { Heading } from "@chakra-ui/react";
 import { P, BlockCode, Img, Code, A } from "../components";
 
 const code = `import datetime as dt
